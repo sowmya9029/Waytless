@@ -1,0 +1,145 @@
+<mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <i class="material-icons">person</i>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+          <td>
+            <i class="material-icons">lock</i>
+            <mat-form-field class="example-full-width">
+
+            <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+          </mat-form-field></td>
+        </tr></table>
+      </form>
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+    
+    <mat-card-actions>
+      <button mat-raised-button (click)="login()" color="primary">Login</button>
+    </mat-card-actions>
+   
+      <mat-card-subtitle  style=" text-align: left; margin-top:10px; color: coral"><a  href="register" style=" color: coral" >Register Now!</a></mat-card-subtitle>
+      <mat-card-subtitle  style="text-align: right;  margin-top:-35px; color: coral"><a>Forgot password?</a></mat-card-subtitle>
+  </mat-card>
+<div class="div_body"><h3 class="title">Popular Restaurants NearBy</h3>
+<br>
+    <mat-card class="card-container">
+      <mat-card class="example-card">
+          <img src="../assets/images/dinthaifung.png" class="mat-card-image">
+          <mat-card-title>
+            <span class="mat-title">Din Tai Fung</span>     
+          </mat-card-title>
+                <mat-card-actions layout="row" layout-align="start center">    
+                    <img class= "mat-icon-button" src="../assets/images/review_full.png">           
+                    <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                    <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                    <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                    <img class= "mat-icon-button" src="../assets/images/review_full.png">                     
+                    <span class="mat-caption" ><b>4500 Reviews</b></span>            
+                </mat-card-actions>
+          <mat-card-content>
+            <mat-card-subtitle>
+                Chinese . $$$ . LinconSquare/Bellevue
+            </mat-card-subtitle>
+            <span class="mat-body-2">Booked 900 times</span> 
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="example-card">
+            <img src="../assets/images/imagetwo.jpg" class="mat-card-image">
+            <mat-card-title>
+              <span class="mat-title">Olive Garden</span>     
+            </mat-card-title>
+            <mat-card-actions layout="row" layout-align="start center">    
+                      <img class= "mat-icon-button" src="../assets/images/review_full.png">           
+                      <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                      <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                      <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                      <img class= "mat-icon-button" src="../assets/images/review_empty.png">                     
+                      <span class="mat-caption" ><b>400 Reviews</b></span>                        
+            </mat-card-actions>
+            <mat-card-content>
+                <mat-card-subtitle>
+                  Itallian . $$$$ . Kirkland
+                </mat-card-subtitle>
+              <span class="mat-body-2">Booked 345 times</span> 
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="example-card">
+              <img src="../assets/images/image3.jpg" class="mat-card-image">
+              <mat-card-title>
+                <span class="mat-title">Southern Spice</span>     
+              </mat-card-title>
+              <mat-card-actions layout="row" layout-align="start center">    
+                        <img class= "mat-icon-button" src="../assets/images/review_full.png">           
+                        <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                        <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                        <img class= "mat-icon-button" src="../assets/images/review_empty.png">
+                        <img class= "mat-icon-button" src="../assets/images/review_empty.png">                     
+                            <span class="mat-caption" ><b>800 Reviews</b></span>            
+                
+              </mat-card-actions>
+              <mat-card-content>
+                  <mat-card-subtitle>
+                    Indian . $$ . Redmond
+                  </mat-card-subtitle>
+                <span class="mat-body-2">Booked 985 times</span> 
+              </mat-card-content>
+            </mat-card>
+            <mat-card class="example-card">
+                <img src="../assets/images/image4.jpg" class="mat-card-image">
+                <mat-card-title>
+                  <span class="mat-title">Mediterranean Kitchen</span>     
+                </mat-card-title>
+                <mat-card-actions layout="row" layout-align="start center">    
+                          <img class= "mat-icon-button" src="../assets/images/review_full.png">           
+                          <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                          <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                          <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                          <img class= "mat-icon-button" src="../assets/images/review_empty.png">                     
+                              <span class="mat-caption" ><b>765 Reviews</b></span>            
+                  
+                </mat-card-actions>
+                <mat-card-content>
+                    <mat-card-subtitle>
+                      Mediterrean . $$$$ . Bellevue, WA 98004
+                    </mat-card-subtitle>
+                  <span class="mat-body-2">Booked 385 times</span> 
+                </mat-card-content>
+              </mat-card>
+              <mat-card class="example-card">
+                  <img src="../assets/images/image5.jpg" class="mat-card-image">
+                  <mat-card-title>
+                    <span class="mat-title">PF Chang's</span>     
+                  </mat-card-title>
+                  <mat-card-actions layout="row" layout-align="start center">    
+                            <img class= "mat-icon-button" src="../assets/images/review_full.png">           
+                            <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                            <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                            <img class= "mat-icon-button" src="../assets/images/review_full.png">
+                            <img class= "mat-icon-button" src="../assets/images/review_empty.png">                     
+                                <span class="mat-caption" ><b>6005 Reviews</b></span>            
+                    
+                  </mat-card-actions>
+                  <mat-card-content>
+                      <mat-card-subtitle>
+                        Indo Chinese . $$$ . AlderwoodMall/Lynwood
+                      </mat-card-subtitle>
+                    <span class="mat-body-2">Booked 585 times</span> 
+                  </mat-card-content>
+                </mat-card>
+        
+    </mat-card>
+    </div>
