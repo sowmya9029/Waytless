@@ -11,11 +11,11 @@ import { MenuComponent } from './components/menu/menu.component';
 
 
 const routes: Routes = [
-    //{ path: 'create', component: CreateComponent },
-    //{ path: 'edit/:id', component: EditComponent },
+  //{ path: 'create', component: CreateComponent },
+  //{ path: 'edit/:id', component: EditComponent },
     { path: 'register', component: RegistrationComponent },
     { path: 'menu/:id', component: MenuComponent },
-   // { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  //{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'home', component: HomeComponent },
     { path: 'waitlist-entry', component: WaitlistEntryComponent},
    { path: '', redirectTo: '/home', pathMatch: 'full'}

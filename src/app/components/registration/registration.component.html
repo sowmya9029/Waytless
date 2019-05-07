@@ -19,14 +19,22 @@
                 
             </td>
           </tr>
-              <tr *ngIf="selected === 'Customer'">
-                <td>
-                    <i class="material-icons">email</i>
-                    <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
-                    </mat-form-field>
-                  </td>
-                </tr>
+          <tr>
+            <td>
+              <i class="material-icons">email</i>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+              </mat-form-field>
+           </td>
+        </tr>
+        <tr>
+            <td>
+              <i class="material-icons">phone</i>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="Phone Number" [(ngModel)]="phone" name="email" required>
+              </mat-form-field>
+           </td>
+        </tr>
                 <tr *ngIf="selected === 'Customer'">
                     <td>
                         <i class="material-icons">phone</i>
