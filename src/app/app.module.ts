@@ -9,6 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { routing }        from './app.routing';
+import { WaitlistEntryComponent } from './components/waitlist-entry/waitlist-entry.component';
+import { OrderCartComponent } from './components/order-cart/order-cart.component';
 
 
 
@@ -16,7 +18,9 @@ import { routing }        from './app.routing';
   declarations: [
     AppComponent,
     HomeComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    WaitlistEntryComponent,
+    OrderCartComponent
   ],
   imports: [
     BrowserModule,
