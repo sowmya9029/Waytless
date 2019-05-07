@@ -1,0 +1,153 @@
+<div class="container-fluid">
+
+  
+  <div class="row">
+
+  <div class="mx-auto mt-md-5"><h1>DIN TAI FUNG</h1></div>
+  
+  <p></p>
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-2">
+      <h2>Filters</h2>
+      <div class="form-group">
+        <label for="usr">Search by name</label>
+        <input type="text" class="form-control" id="name">
+        </div>
+    </div>
+
+    <div class="col-lg-10">
+        <div class="queueStatus">
+          <div class="row">
+            <div class="col-lg-6">
+              <h4>Number of groups: <span class="badge badge-secondary badge-pill">{{ entries?.length }}</span></h4>
+            </div>
+            <div class="col-lg-6">
+              <h4>Average Wait Time (in minutes): <span class="badge badge-secondary badge-pill">10</span></h4>
+            </div>
+          </div>
+    </div>
+    <p>
+    </p>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Group Size</th>
+    <th scope="col">Time joined</th>
+    <th scope="col">Quoted Time</th>
+    <th scope="col">Notified</th>
+    <th scope="col">Confirmed</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let entry of entries; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>{{ entry.name }}</td>
+    <td>{{ entry.groupsize | number }}</td>
+    <td>{{ entry.jointime | date:'shortTime' }}</td>
+    <td>{{ entry.quotedtime | date:'shortTime' }}</td>
+    <td>{{ entry.notified }}</td>
+    <td>{{ entry.confirmed }}</td>
+    <td><button type="button" class="btn btn-primary btn-sm">View</button>
+      <button type="button" class="btn btn-primary btn-sm">Edit</button>
+      <button type="button" class="btn btn-danger btn-sm">Delete</button>
+      <button type="button" class="btn btn-primary btn-sm">Notify</button>
+      <button type="button" class="btn btn-primary btn-sm">Confirmed</button>
+      <button type="button" class="btn btn-danger btn-sm">No Show</button></td>
+  </tr>
+  </tbody>
+</table>
+  </div>    
+
+<!--
+
+    <div class="col-lg-10">
+      <div class="queueStatus">
+        <div class="row">
+          <div class="col-lg-6">
+            <h4>Number of groups: <span class="badge badge-secondary badge-pill">3</span></h4>
+          </div>
+          <div class="col-lg-6">
+            <h4>Average Wait Time (in minutes): <span class="badge badge-secondary badge-pill">10</span></h4>
+          </div>
+        </div>
+      </div>
+      <p></p>
+      <div class="queuetable">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Group Size</th>
+              <th>Time joined</th>
+              <th>Quoted Time</th>
+              <th>Wait</th>
+              <th>Status</th>
+              <th>Action (Admin Only)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mary</td>
+              <td>3</td>
+              <td>2:00 PM</td>
+              <td>2:25 PM</td>
+              <th>20 min</td>
+              <td><button type="button" class="btn btn-warning btn-sm">Table is almost ready!</button></td>
+              <td>
+                <button type="button" class="btn btn-primary btn-sm">View</button>
+                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                <button type="button" class="btn btn-default btn-sm">Notify</button>
+                <button type="button" class="btn btn-default btn-sm">Confirmed</button>
+                <button type="button" class="btn btn-danger btn-sm">No Show</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Scott</td>
+              <td>4</td>
+              <td>2:10 PM</td>
+              <td>2:30 PM</td>
+              <td>10 min</td>
+              <td><button type="button" class="btn btn-info btn-sm">Notification Sent.</button></td>
+              <td>
+                  <button type="button" class="btn btn-primary btn-sm">View</button>
+                  <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                  <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                  <button type="button" class="btn btn-default btn-sm">Notify</button>
+                  <button type="button" class="btn btn-success btn-sm">Confirmed</button>
+                  <button type="button" class="btn btn-danger btn-sm">No Show</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Thomas</td>
+              <td>2</td>
+              <td>2:15 PM</td>
+              <td>2:20 PM</td>
+              <td>5 min</td>
+              <td></td>
+              <td>
+                  <button type="button" class="btn btn-primary btn-sm">View</button>
+                  <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                  <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                  <button type="button" class="btn btn-info btn-sm">Notify</button>
+                  <button type="button" class="btn btn-success btn-sm">Confirmed</button>
+                  <button type="button" class="btn btn-danger btn-sm">No Show</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  -->
+
+</div>
