@@ -1,0 +1,43 @@
+<mat-card class="menu-card">
+  <mat-card-header>
+    <mat-card-title class="center">Menu for {{name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    
+    <h3 class="center">Appetizers</h3>
+
+    <mat-grid-list cols="3" rowHeight="100px">
+      <mat-grid-tile
+        class="menu-item"
+        *ngFor="let a of appetizers">
+        <div class="menu-item-body">
+          <div class="menu-top">
+            <span class="menu-item-name">{{a.name}}</span>
+            <span class="menu-item-price">${{a.price}}</span>
+          </div>
+          <div class="menu-bottom">
+            <span>{{a.description}}</span>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <h3 class="center">Entrees</h3>
+    <mat-grid-list cols="3" rowHeight="100px">
+      <mat-grid-tile
+        class="menu-item"
+        *ngFor="let e of entrees">
+        <div class="menu-item-body">
+          <div class="menu-top">
+            <span class="menu-item-name">{{e.name}}</span>
+            <span class="menu-item-price">${{e.price}}</span>
+          </div>
+          <div class="menu-bottom">
+            <span>{{e.description}}</span>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  </mat-card-content>
+</mat-card>
