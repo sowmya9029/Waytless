@@ -12,6 +12,15 @@
     margin-right: auto;
 }
 
+::ng-deep .mat-card-image:first-child {
+    margin-top: 0 !important;
+}
+
+.mat-card-image {
+    width: 95%;
+    margin: 5px;
+}
+
 .menu-item {
     background: #ffffff;
     min-height: 64px;
