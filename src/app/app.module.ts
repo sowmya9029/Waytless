@@ -11,6 +11,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { routing }        from './app.routing';
 import { MenuComponent } from './components/menu/menu.component';
 import { WaitlistEntryComponent } from './components/waitlist-entry/waitlist-entry.component';
+import {OrderCartComponent} from './components/order-cart/order-cart.component'
 
 
 
@@ -20,7 +21,8 @@ import { WaitlistEntryComponent } from './components/waitlist-entry/waitlist-ent
     HomeComponent,
     RegistrationComponent,
     MenuComponent,
-    WaitlistEntryComponent
+    WaitlistEntryComponent,
+    OrderCartComponent
   ],
   imports: [
     BrowserModule,

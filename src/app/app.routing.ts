@@ -20,7 +20,7 @@ const routes: Routes = [
    // { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'home', component: HomeComponent },
     { path: 'waitlist-entry', component: WaitlistEntryComponent},
-    // { path: 'order-cart',component: OrderCartComponent}, --- FIX ME
+     { path: 'order-cart',component: OrderCartComponent}, 
    { path: '', redirectTo: '/home', pathMatch: 'full'}
   ];
 export const routing =  RouterModule.forRoot(routes);
