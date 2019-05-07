@@ -10,7 +10,7 @@
       <mat-grid-tile
         class="menu-item"
         *ngFor="let a of appetizers">
-        <div class="menu-item-body">
+        <div class="menu-item-body" (click)="addToOrder(a)">
           <div class="menu-top">
             <span class="menu-item-name">{{a.name}}</span>
             <span class="menu-item-price">${{a.price}}</span>
@@ -27,7 +27,7 @@
       <mat-grid-tile
         class="menu-item"
         *ngFor="let e of entrees">
-        <div class="menu-item-body">
+        <div class="menu-item-body" (click)="addToOrder(e)">
           <div class="menu-top">
             <span class="menu-item-name">{{e.name}}</span>
             <span class="menu-item-price">${{e.price}}</span>
@@ -40,4 +40,33 @@
     </mat-grid-list>
 
   </mat-card-content>
+</mat-card>
+
+<mat-card class = "order-cart-card">
+    <mat-card-header>
+        <mat-card-title>Order Cart</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <br>
+        <table class = "orders">
+          <tr>
+          <th>Order name</th>
+          <th>Price</th>
+          <th>Remove</th>
+        </tr>
+        <tr *ngFor="let order of orders">
+          <td>{{order.name}}</td>
+          <td>{{order.price}}</td>
+          <td><i class="material-icons" (click) = "deleteFromCart(order)">delete</i></td>
+        </tr>
+        </table>
+      </mat-card-content>
+      <div class = "total">
+        Total : $<span class = "totalprice">{{getPrice()}}</span>
+      </div>
+
+      <mat-card-actions>
+          <button mat-raised-button class = "confirmBtn" (click)="orderConfirm()" color="primary">Confirm order</button>
+        </mat-card-actions>
 </mat-card>

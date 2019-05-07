@@ -1,0 +1,64 @@
+<br><br>
+<h2>DIN TAI FUNG</h2>
+<mat-card class="waitlist-entry-card">
+    <mat-card-header>
+        <mat-card-title>Add to waitlist!</mat-card-title>
+      </mat-card-header>
+  <mat-card-content>
+     <form class="waitlist-information">
+
+        <i class="material-icons">person</i>
+        <mat-form-field class="full-width">
+          <mat-label>Full Name</mat-label>
+          <input  matInput  placeholder="Full name"  id = "name" name="name"  required>
+        </mat-form-field>
+
+        <i class="material-icons">perm_phone_msg</i>
+        <mat-form-field class="full-width">
+          <mat-label>Phone number</mat-label>
+          <input  matInput  placeholder="Phone number" id = "phone" name="number"  required>
+        </mat-form-field>
+
+        <i class="material-icons">email</i>
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input  matInput  placeholder="Email" id = "email" name="email">
+      </mat-form-field>
+
+      <i class="material-icons">group</i>
+      <mat-form-field class="full-width">
+        <mat-label>Group size</mat-label>
+        <input  matInput  placeholder="Group size"  id = "groupsize" name="groupSize" required>
+     </mat-form-field>
+
+     </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button class = "addBtn" (click)="addToWaitlist()" color="black">ADD</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card class="customer-waitlist-information-card">
+    <mat-card-header>
+        <i class="material-icons">info</i>
+        <mat-card-title>Your waitlist information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div *ngIf="show; else notShow">
+            <b>Name : </b> <span id = "bookedName">Spoorthi</span> <br><br>
+            <b>Number : </b> <span id = "queuePosition">2</span><br><br>
+            <b>Booking time: </b><span id = "addedTime">2019-05-07 19:05</span> <br><br>
+            <b>Approximate wait time : </b><span id = "waitTime"></span><br><br>
+            <i class="material-icons" (click) = "editWaitList()">edit</i>
+            <i class="material-icons " (click) = "deleteFromWaitList()">delete</i>
+          </div>
+          
+          <ng-template #notShow>
+            <p style="color:grey;padding:10px;">
+              "Add yourself to waitlist to monitor your status."
+            </p>
+          </ng-template>
+    </mat-card-content>
+</mat-card>
+<br>
+<button class = "selectMenuBtn" mat-raised-button color="warn">MENU</button>

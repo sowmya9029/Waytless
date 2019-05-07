@@ -15,6 +15,7 @@ export class MenuComponent implements OnInit {
   private name: string;
   private appetizers: MenuItem[];
   private entrees: MenuItem[];
+  private orders: MenuItem[];
 
   constructor(private route: ActivatedRoute) {
     this.id = 0;
@@ -33,6 +34,7 @@ export class MenuComponent implements OnInit {
       }
       this.appetizers = this.getAppetizers(this.id);
       this.entrees = this.getEntrees(this.id);
+      this.orders = [];
     })
   }
 
@@ -40,10 +42,23 @@ export class MenuComponent implements OnInit {
 
   }
 
+  private addToOrder(item: MenuItem) {
+    this.orders.push(item);
+  }
+
+  private getPrice(): number {
+    return Math.round(100 * this.orders.reduce((a, b) => a + b.price, 0)) / 100.0;
+  }
+
+  private deleteFromCart(order) {
+    let i = this.orders.indexOf(order);
+    delete this.orders[i];
+  }
+
   private getAppetizers(id: number): MenuItem[] {
     let items: MenuItem[];
     if (id == 1) {
-      const m1 = { id: 1, name: "Cucumber Salad", price: 2.31, description: "Cucumbers marinated in sauceCucumbers marinated in sauceCucumbers marinated in sauce" };
+      const m1 = { id: 1, name: "Cucumber Salad", price: 2.31, description: "Cucumbers marinated in sauce" };
       const m2 = { id: 2, name: "Soy Noodle Salad", price: 3.31, description: "Vegetarian cold salad" };
       const m3 = { id: 3, name: "Fried Pork Chop", price: 4.31, description: "Fried pork" };
       const m4 = { id: 3, name: "Spring Rolls", price: 4.31, description: "Fried and vegetarian" };

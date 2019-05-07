@@ -35,7 +35,7 @@
 <div class="div_body"><h3 class="title">Popular Restaurants NearBy</h3>
 <br>
     <mat-card class="card-container">
-      <mat-card class="example-card">
+      <mat-card class="example-card" (click)="onRestaurantClickEvent()">
           <img src="../assets/images/dinthaifung.png" class="mat-card-image">
           <mat-card-title>
             <span class="mat-title">Din Tai Fung</span>     
@@ -57,7 +57,7 @@
           </mat-card-content>
         </mat-card>
 
-        <mat-card class="example-card">
+        <mat-card class="example-card" (click)="onRestaurantClickEvent()">
             <img src="../assets/images/imagetwo.jpg" class="mat-card-image">
             <mat-card-title>
               <span class="mat-title">Olive Garden</span>     
@@ -79,7 +79,7 @@
             </mat-card-content>
           </mat-card>
 
-          <mat-card class="example-card">
+          <mat-card class="example-card" (click)="onRestaurantClickEvent()">
               <img src="../assets/images/image3.jpg" class="mat-card-image">
               <mat-card-title>
                 <span class="mat-title">Southern Spice</span>     
@@ -123,7 +123,7 @@
                   <a href="menu/4" class="mat-body-2">See menu</a> 
                 </mat-card-content>
               </mat-card>
-              <mat-card class="example-card">
+              <mat-card class="example-card" (click)="onRestaurantClickEvent()">
                   <img src="../assets/images/image5.jpg" class="mat-card-image">
                   <mat-card-title>
                     <span class="mat-title">PF Chang's</span>     

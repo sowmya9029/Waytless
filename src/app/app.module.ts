@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { routing }        from './app.routing';
 import { MenuComponent } from './components/menu/menu.component';
+import { WaitlistEntryComponent } from './components/waitlist-entry/waitlist-entry.component';
 
 
 
@@ -18,7 +19,8 @@ import { MenuComponent } from './components/menu/menu.component';
     AppComponent,
     HomeComponent,
     RegistrationComponent,
-    MenuComponent
+    MenuComponent,
+    WaitlistEntryComponent
   ],
   imports: [
     BrowserModule,
