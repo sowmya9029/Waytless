@@ -9,6 +9,8 @@ import { WaitlistEntryComponent } from './components/waitlist-entry/waitlist-ent
 import { AuthGuard } from './_guards';
 import { MenuComponent } from './components/menu/menu.component';
 
+import {OrderCartComponent} from './components/order-cart/order-cart.component'
+
 
 const routes: Routes = [
   //{ path: 'create', component: CreateComponent },
@@ -18,6 +20,7 @@ const routes: Routes = [
   //{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'home', component: HomeComponent },
     { path: 'waitlist-entry', component: WaitlistEntryComponent},
+     { path: 'order-cart',component: OrderCartComponent}, 
    { path: '', redirectTo: '/home', pathMatch: 'full'}
   ];
 export const routing =  RouterModule.forRoot(routes);
