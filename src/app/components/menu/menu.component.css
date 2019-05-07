@@ -25,6 +25,11 @@
     margin: 5px !important;
 } 
 
+.menu-item-body.active, .menu-item-body:hover {
+    border-color: #ef6e30;
+    background-color: #f3f2f2;
+}
+
 .menu-item-body {
     padding: 5px;
     border: 1px solid #F0F0F0;
