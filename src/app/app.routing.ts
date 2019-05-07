@@ -6,18 +6,18 @@ import { RegistrationComponent } from './components/registration/registration.co
 
 import { WaitlistEntryComponent } from './components/waitlist-entry/waitlist-entry.component';
 
-import {OrderCartComponent} from './components/order-cart/order-cart.component';
 import { AuthGuard } from './_guards';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 const routes: Routes = [
     //{ path: 'create', component: CreateComponent },
     //{ path: 'edit/:id', component: EditComponent },
     { path: 'register', component: RegistrationComponent },
+    { path: 'menu/:id', component: MenuComponent },
    // { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'home', component: HomeComponent },
     { path: 'waitlist-entry', component: WaitlistEntryComponent},
-    {path: 'order-cart', component: OrderCartComponent},
-   { path: '', redirectTo: '/home', pathMatch: 'full'},
+   { path: '', redirectTo: '/home', pathMatch: 'full'}
   ];
 export const routing =  RouterModule.forRoot(routes);
