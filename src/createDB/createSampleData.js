@@ -249,8 +249,11 @@ waitlistCollection.insert(
         restaurantID: 1,
         groupSize: 3,
         joinTime: new Date("February 4, 2019 16:00:00"),
+        quotedtime: new Date("February 4, 2019 16:10:00"),
         email : "abc@abc.com",
-        phone : "2062112222"
+        phone : "2062112222",
+        notified: true,
+        confirmed: true
 }
 )
 
@@ -260,8 +263,11 @@ waitlistCollection.insert(
         restaurantID: 2,
         groupSize: 2,
         jointime: new Date("February 4, 2019 16:10:00"),
+        quotedtime: new Date("February 4, 2019 16:10:00"),
         email : "abc@abc.com",
-        phone : "2062112222"
+        phone : "2062112222",
+        notified: true,
+        confirmed: true
         }
         )
 
@@ -272,8 +278,11 @@ waitlistCollection.insert(
         restaurantID: 2,
         groupSize: 5,
         jointime: new Date("February 4, 2019 16:15:00"),
+        quotedtime: new Date("February 4, 2019 16:10:00"),
         email : "abc@abc.com",
-        phone : "2062112222"
+        phone : "2062112222",
+        notified: true,
+        confirmed: true
 }
 )
 
@@ -283,8 +292,11 @@ waitlistCollection.insert(
                 restaurantID: 2,
                 groupSize: 3,
                 joinTime: new Date("February 4, 2019 16:00:00"),
+                quotedtime: new Date("February 4, 2019 16:10:00"),
                 email : "abc@abc.com",
-                phone : "2062112222"
+                phone : "2062112222",
+                notified: true,
+                confirmed: true
         }
         )
         
@@ -294,8 +306,11 @@ waitlistCollection.insert(
                 restaurantID: 2,
                 groupSize: 2,
                 jointime: new Date("February 4, 2019 16:10:00"),
+                quotedtime: new Date("February 4, 2019 16:10:00"),
                 email : "abc@abc.com",
-                phone : "2062112222"
+                phone : "2062112222",
+                notified: true,
+                confirmed: true
                 }
                 )
         
@@ -306,8 +321,11 @@ waitlistCollection.insert(
                 restaurantID: 3,
                 groupSize: 5,
                 jointime: new Date("February 4, 2019 16:15:00"),
+                quotedtime: new Date("February 4, 2019 16:10:00"),
                 email : "abc@abc.com",
-                phone : "2062112222"
+                phone : "2062112222",
+                notified: true,
+                confirmed: true
         }
         )
 
@@ -317,8 +335,11 @@ waitlistCollection.insert(
                         restaurantID: 3,
                         groupSize: 3,
                         joinTime: new Date("February 4, 2019 16:00:00"),
+                        quotedtime: new Date("February 4, 2019 16:10:00"),
                         email : "abc@abc.com",
-                        phone : "2062112222"
+                        phone : "2062112222",
+                        notified: true,
+                        confirmed: true
                 }
                 )
                 
@@ -328,8 +349,11 @@ waitlistCollection.insert(
                         restaurantID: 3,
                         groupSize: 2,
                         jointime: new Date("February 4, 2019 16:10:00"),
+                        quotedtime: new Date("February 4, 2019 16:10:00"),
                         email : "abc@abc.com",
-                        phone : "2062112222"
+                        phone : "2062112222",
+                        notified: true,
+                        confirmed: true
                         }
                         )
                 
@@ -340,7 +364,10 @@ waitlistCollection.insert(
                         restaurantID: 3,
                         groupSize: 5,
                         jointime: new Date("February 4, 2019 16:15:00"),
+                        quotedtime: new Date("February 4, 2019 16:10:00"),
                         email : "abc@abc.com",
-                        phone : "2062112222"
+                        phone : "2062112222",
+                        notified: true,
+                        confirmed: true
                 }
                 )
