@@ -4,10 +4,12 @@ interface IMenuItemModel extends Mongoose.Document {
     itemId: Number,
     restaurantID:Number,
     itemName: String,
-    itemCategory: IItemCategoryModel,
+   // price :Number,
     description:String,
     //image:Buffer,
+    itemCategory: Object,
     price :Number,
+
    // type:String
 }
 export {IMenuItemModel};

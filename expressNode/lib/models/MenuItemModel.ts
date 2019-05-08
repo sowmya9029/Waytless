@@ -18,7 +18,7 @@ class MenuItemModel {
         this.schema = new Mongoose.Schema(
             {
                 restaurantID:Number,
-                itemId: Number,
+                itemID: Number,
                 itemName: String,
                 itemCategory: Object,
                 description:String,
@@ -65,7 +65,7 @@ public retrieveMenuBasedOnRestaurantAndCategory(response:any, filter:Object) {
     }
 
    
- //delete menu item to restaurant and itemid
+ //delete menu item to restaurant and itemID
     public deleteMenuBaseOnRestaurantAndMenuId(response:any,filter:Object): any {
        
         this.model.deleteOne(filter, function (err) {
@@ -77,11 +77,21 @@ public retrieveMenuBasedOnRestaurantAndCategory(response:any, filter:Object) {
         });
     }
 
-     //update menu item to restaurant and itemid
-     public updateMenuBaseOnRestaurantAndMenuId(response:any,filter:Object,json:Object): any {
+    public updateMenuBaseOnRestaurantAndMenuId(response:any,search_criteria:any,update:any){
+
+        this.model.updateOne(search_criteria, update)
+        .then(result => {
+            
+            response.send('Successfully changed quantity');
+            
+        });
+          
+    }
+     //update menu item to restaurant and itemID
+  /*   public updateMenuBaseOnRestaurantAndMenuId(response:any,filter:Object,json:Object): any {
         this.deleteMenuBaseOnRestaurantAndMenuId(response,Object);
         this.addToMenuItem(response,json);
-    }
+    }*/
 }
     export {MenuItemModel};
 /*Cat.findOneAndUpdate({age: 17}, {$set:{name:"Naomi"}}, {new: true}, (err, doc) => {

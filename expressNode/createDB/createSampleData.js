@@ -87,32 +87,30 @@ restCollection.remove({})
                 }
         )
 
-        //create a table menu category
-        db.createCollection('menucategory')
-        menucategoryCollection = db.getCollection("menucategory")
-        menucategoryCollection.remove({})
+// create a table 'itemCategory'
+db.createCollection('menucategory')
+itemCategoryCollection = db.getCollection("menucategory")
+itemCategoryCollection.remove({})
 
-        menucategoryCollection.insert(
-        {       
-              
-              categoryId:1,
-                      categoryName:"Appetizer",
-                      description:"description here"
-        })
-        menucategoryCollection.insert(
-                {       
-                      
-                      categoryId:2,
-                              categoryName:"Entree",
-                              description:"description here"
-                })
-                menucategoryCollection.insert(
-                        {       
-                              
-                              categoryId:3,
-                                      categoryName:"Dessert",
-                                      description:"description here"
-                        })
+itemCategoryCollection.insert({
+        categoryId:1,
+        categoryName:"Appetizer",
+        description:"Perfect nibble, bite and nosh"
+})
+
+itemCategoryCollection.insert({
+        categoryId:2,
+        categoryName:"Entree",
+        description:"Main Course from our best kitchen staff"
+})
+
+itemCategoryCollection.insert({
+categoryId:3,
+categoryName:"Dessert",
+description:"Can't leave without trying out award winning desserts"
+})
+
+
 // create a table 'menu' items
 
 db.createCollection('menuitems')
@@ -458,7 +456,133 @@ waitlistCollection.insert(
                 }
                 )
 
-   // create a table for customeruser
+// create a table for customers
 
-   
-   
+db.createCollection('customer')
+customerCollection = db.getCollection("customer")
+customerCollection.remove({})
+
+customerCollection.insert(
+{
+        firstName : "John",
+        lastName : "Doe",
+        address: {
+                "street": "Bellevue Way E",
+                "number": "100", 
+                "zip": "98005",
+                "city": "Bellevue"
+        },
+        phone : 2062112222,
+        email : "abc@abc.com"
+})
+
+customerCollection.insert(
+        {
+                firstName : "Peter",
+                lastName : "Johnson",
+                address: {
+                        "street": "Bellevue Way E",
+                        "number": "100", 
+                        "zip": "98005",
+                        "city": "Bellevue"
+                },
+                phone : "2062112222",
+                email : "abc@abc.com"
+        })
+
+customerCollection.insert(
+        {
+                firstName : "Mary",
+                lastName : "Gates",
+                address: {
+                        "street": "Bellevue Way E",
+                        "number": "100", 
+                        "zip": "98005",
+                        "city": "Bellevue"
+                },
+                phone : "2062112222",
+                email : "abc@abc.com"
+        })
+
+        customerCollection.insert(
+        {
+                firstName : "John",
+                lastName : "Doe",
+                address: {
+                        "street": "Bellevue Way E",
+                        "number": "628", 
+                        "zip": "98025",
+                        "city": "Bellevue"
+                },
+                phone : "2062112222",
+                email : "abc@abc.com"
+        })
+
+       customerCollection.insert(
+                {
+                        firstName : "Bill",
+                        lastName : "Gates",
+                        address: {
+                                "street": "Bellevue Way E",
+                                "number": "100", 
+                                "zip": "98005",
+                                "city": "Bellevue"
+                        },
+                        phone : "2062112222",
+                        email : "abc@abc.com"
+                })
+
+// create a table for orders
+
+db.createCollection('orders')
+ordersCollection = db.getCollection("orders")
+ordersCollection.remove({})
+
+ordersCollection.insert(
+{
+    menuItem: {
+        itemID: 3,
+        itemName: "Item C",
+        price: 10.99,
+      description: "Fried pork chop with a side of rice",
+      restaurantID: 4,
+      type: "Appetizer"
+    },
+    quantity: 1,
+    orderTime: new Date("February 4, 2019 16:15:00"),
+    customerId : 1,
+    restaurantID : 4
+})
+
+ordersCollection.insert(
+        {
+            menuItem: {
+                        itemID: 3,
+                        itemName: "Fried Pork Chop",
+                        price: 10.99,
+                       description: "Fried pork chop with a side of rice",
+                      restaurantID: 1,
+                      type: "Appetizer"
+            },
+            quantity: 2,
+            orderTime: new Date("February 4, 2019 16:15:00"),
+            customerId : 2,
+            restaurantID : 1
+        })
+
+        ordersCollection.insert(
+                {
+                    menuItem: {
+                        itemID: 1,
+                        itemName: "Item A",
+                        price: 5.99,
+                        description: "Cucumbers marinated in sauce",
+                        restaurantID: 2,
+                        type: "Appetizer"
+                    },
+                    quantity: 1,
+                    orderTime: new Date("February 4, 2019 16:15:00"),
+                    customerId : 3,
+                    restaurantID : 2
+                })
+

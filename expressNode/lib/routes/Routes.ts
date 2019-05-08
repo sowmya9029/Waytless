@@ -1,17 +1,27 @@
 import {Request, Response} from "express";
 import {WaitlistEntryModel} from "../models/waitlistEntryModel"
+import {MenuItemModel} from "../models/MenuItemModel"
 import { RestaurantModel } from "../models/RestaurantModel";
-import { MenuItemModel } from "../models/MenuItemModel";
+
+
 import { MenuItemCategoryModel } from "../models/MenuItemCategoryModel";
+import {OrderModel} from "../models/OrderModel";
+
+
+
+
 export class Routes {       
 
     public waitlist:WaitlistEntryModel;
+    public order:OrderModel;
     public restaurantlist:RestaurantModel;
     public menuitem:MenuItemModel;
     public menuitemcat:MenuItemCategoryModel;
     constructor(){
-
         this.waitlist = new WaitlistEntryModel();
+        this.order = new OrderModel();
+        //this.menuItem = new MenuItemModel();
+        
         this.restaurantlist = new RestaurantModel();
         this.menuitem = new MenuItemModel();
         this.menuitemcat = new MenuItemCategoryModel();
@@ -66,28 +76,55 @@ export class Routes {
             })
 
             //delete  menuItem of a particular restaurant
-            app.route('/menuitems/:restId/:itemId').delete((req: Request, res: Response) => {
+            app.route('/menuitems/:restId/:itemID').delete((req: Request, res: Response) => {
                 var restId = req.params.restId;
-                var itemId = req.params.itemId;
-                this.menuitem.deleteMenuBaseOnRestaurantAndMenuId(res,{"restaurantID":restId,"itemId":itemId});
+                var itemID = req.params.itemID;
+                this.menuitem.deleteMenuBaseOnRestaurantAndMenuId(res,{"restaurantID":restId,"itemID":itemID});
             })
 
             //update
-            app.route('/menuitems/:restId/:itemId').patch((req: Request, res: Response) => {
-                var restId = req.params.restId;
-                var itemId = req.params.itemId;;
+            app.route('/menuitems').patch((req: Request, res: Response) => {
+                
                 var menuitems_entry = {
                     "itemID":req.body.itemID,
                     "itemName":req.body.itemName,
                     "price":req.body.price,
                     "description": req.body.description,
                     "restaurantID":req.body.restaurantID,
-                    "itemCategory":
-                    {"categoryId":req.body.categoryId,
-                    "categoryName":req.body.categoryName,
-                    "description":req.body.description}
+                    "itemCategory.categoryId"
+                    :req.body.categoryId,
+                    "itemCategory.categoryName":req.body.categoryName,
+                    "itemCategory.description":req.body.description
                 }
-                this.menuitem.updateMenuBaseOnRestaurantAndMenuId(res,{"restaurantID":restId,"itemId":itemId},menuitems_entry);
+
+               
+            var restaurantId = req.body.restaurantID;
+            var itemID = req.body.itemID;
+           
+
+            const searchCriteria = {
+               
+                "restaurantID" : restaurantId,
+                "itemID" : itemID
+            }
+
+            const toBeChanged = {
+                "$set": {
+                    "itemID":req.body.itemID,
+                    "itemName":req.body.itemName,
+                    "price":req.body.price,
+                    "description": req.body.description,
+                    "restaurantID":req.body.restaurantID,
+                    "itemCategory.categoryId"
+                    :req.body.itemCategory.categoryId,
+                    "itemCategory.categoryName":req.body.itemCategory.categoryName,
+                    "itemCategory.description":req.body.itemCategory.description
+                  }
+            }
+
+           
+
+                this.menuitem.updateMenuBaseOnRestaurantAndMenuId(res,searchCriteria,toBeChanged);
             })
 
 
@@ -130,23 +167,7 @@ export class Routes {
             }
             this.waitlist.addToWaitlist(res,restaurantlist);
         })
-        //add to restaurant of a particular restaurant
-        app.route('/restaurantuser').post((req: Request, res: Response) => { 
-            var restaurantuser = {
-                
-                      "restaurantID" : req.body.restaurantID,
-                        "name": req.body.name,
-                       " address": {
-                                "street": req.body.street,
-                                "number": req.body.number, 
-                                "zip": req.body.zip,
-                                "city": req.body.city
-                        },
-                        "phoneNumber": req.body.phoneNumber,
-                        "email": req.body.email,              
-            }
-            this.waitlist.addToWaitlist(res,restaurantuser);
-        })
+       
 
         //add to waitlist of a particular restaurant
                 app.route('/waitlist').post((req: Request, res: Response) => {
@@ -166,5 +187,54 @@ export class Routes {
 
 
 
+        // retrive order cart for a customer in a restaurant's cart
+        app.route('/orders/:restaurantId/:customerId').get((req: Request, res: Response) =>{
+            var customerId = req.params.customerId;
+            var restaurantId = req.params.restaurantId;
+
+            this.order.retrieveOrderPerCustomer(res,{restaurantID:restaurantId,customerId:customerId});
+            
+        })
+
+        // add to orderCart
+        app.route('/orders').post((req: Request, res: Response) => {
+
+            console.log("Restaurant id:" + req.body.restaurantID);
+            
+
+            var jsonObj = {
+                "menuitemID" : req.body.menuitemID,
+                "quantity" : req.body.quantity,
+                "orderTime": req.body.orderTime,
+                "customerId" : req.body.customerId,
+                "restaurantID" : req.body.restaurantID
+            }
+
+            this.order.addToCart(res,[jsonObj]);
+        })
+
+        // edit the quantity of an order in the cart
+        app.route('/orders').patch((req:Request,res:Response) => {
+            var customerId = req.body.customerId;
+            var restaurantId = req.body.restaurantID;
+            var menuitemID = req.body.menuitemID;
+            var quantity = req.body.quantity;
+
+            const searchCriteria = {
+                "customerId" : customerId,
+                "restaurantID" : restaurantId,
+                "menuitemID" : menuitemID
+            }
+
+            const toBeChanged = {
+                "$set": {
+                    "quantity": quantity
+                  }
+            }
+
+            this.order.updateQuantity(res,searchCriteria,toBeChanged);
+        })
+
+       
     }
 }
