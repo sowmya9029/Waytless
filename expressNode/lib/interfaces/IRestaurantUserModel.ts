@@ -1,7 +1,7 @@
 import Mongoose = require("mongoose");
 
 interface IRestaurantUserModel extends Mongoose.Document {
-    restaurantId: Number,
+    restaurantID: Number,
     name: String,
     address: String,
     phoneNumber: Number,

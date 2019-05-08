@@ -23,12 +23,12 @@ class RestaurantUserModel {
                 address: [this.addressSubschema],
                 phoneNumber: {type:Number, required: true},
                 email:String,
-            }, {collection: 'Restaurant'}
+            }, {collection: 'restaurant'}
         );
     }
 
     public createModel(): void {
-        this.model = Mongoose.model<IRestaurantUserModel>("Restaurant", this.schema);
+        this.model = Mongoose.model<IRestaurantUserModel>("restaurant", this.schema);
     }
     //update restaurant 
 }

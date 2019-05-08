@@ -2,8 +2,7 @@ import Mongoose = require("mongoose");
 import {DataAccess} from '../../DataAccess';
 import { IMenuItemModel } from "../interfaces/IMenuItemModel";
 import { IItemCategoryModel } from "interfaces/IItemCategoryModel";
-let mongooseConnection = DataAccess.mongooseConnection;
-let mongooseObj = DataAccess.mongooseInstance;
+
 
 class MenuItemCategoryModel {
     public schema:any;
@@ -20,26 +19,24 @@ class MenuItemCategoryModel {
                 categoryId:Number,
                 categoryName:String,
                 description:String
-            }, {collection: 'lists'}
+            }, {collection: 'menucategory'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IItemCategoryModel>("Menu", this.schema);
+        this.model = Mongoose.model<IItemCategoryModel>("menucategory", this.schema);
     }    
+ //add menu item to restaurant
+ public addToMenuItemCategory(response:any,jsonObject:any){
+    this.model.create(jsonObject,(err) =>{
+        if (err){
+            response.send("Error while adding to waitlist");
+        }
+        response.send("Addition successful!!");
+    });
 
-   //delete category
-    public deleteCategory(response:any,filter:Object): any {
-        var query = this.model.findOneAndRemove(filter).then(response => {
-            console.log(response)
-          })
-          .catch(err => {
-            console.error(err)
-          });
-        query.exec( (err, itemArray) => {
-            response.json(itemArray) ;
-        });
-    }
+}
+
 
 }
 export {MenuItemCategoryModel};

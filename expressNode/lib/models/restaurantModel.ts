@@ -2,6 +2,7 @@ import Mongoose = require("mongoose");
 import {WaitlistEntryModel} from './WaitlistEntryModel';
 import { IRestaurantModel } from "../interfaces/IRestaurantModel";
 import {MenuItemModel} from "./MenuItemModel";
+import {AddressSchema} from './Address'
 
 
 class RestaurantModel {
@@ -12,15 +13,13 @@ class RestaurantModel {
         this.createSchema();
         this.createModel();
     }
-    public addressSubschema = {
-        street: String, number: String, zip: String, city: String
-    }
+
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                restaurantId:Number,
+                restaurantID:Number,
                 name:{type:String, required: true},
-                address:this.addressSubschema,
+                address:AddressSchema,
                 phoneNumber: {type:Number, required: true},
                 rating:Number,
                 email:String,

@@ -1,15 +1,15 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../../DataAccess';
 import { IMenuItemModel } from "../interfaces/IMenuItemModel";
-import { MenuItemCategoryModel } from "./MenuItemCategoryModel";
-let mongooseConnection = DataAccess.mongooseConnection;
-let mongooseObj = DataAccess.mongooseInstance;
+
+
 
 class MenuItemModel {
     public schema:any;
     public model:any;
 
     public constructor() {
+ 
         this.createSchema();
         this.createModel();
     }
@@ -17,38 +17,81 @@ class MenuItemModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                restaurantId:Number,
+                restaurantID:Number,
                 itemId: Number,
                 itemName: String,
-                itemCategory: [MenuItemCategoryModel],
+                itemCategory: Object,
                 description:String,
-                image: { data: Buffer, contentType: String },
+                //type:String,
+                //image: { data: Buffer, contentType: String },
                 price :Number
-            }, {collection: 'lists'}
+            }, {collection: 'menuitems'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IMenuItemModel>("Menu", this.schema);
+        this.model = Mongoose.model<IMenuItemModel>("menuitems", this.schema);
     }
-   //retrieve menu based on menu category filter will have restaurantID and category
-    public retrieveMenuBasedOnCategory(response:any,filter:Object): any {
+   
+   //retrieve menu based on restaurant 
+    public retrieveAllMenuBasedOnRestaurant(response:any, filter:Object) {
         var query = this.model.find(filter);
         query.exec( (err, itemArray) => {
-            response.json(itemArray) ;
+            if(err){
+                response.send("Could not find records!")
+            }
+            response.json(itemArray);
         });
     }
-    //retrieve all  menu of a restaurant filter will only have restaurantId
-    public retrieveAllMenu(response:any,filter:Object): any {
-        var query = this.model.find(filter);
-        query.exec( (err, itemArray) => {
-            response.json(itemArray) ;
-        });
-    }
-
-    //updateMenuItem based on itemId
-
-
-    //deleteMenuItem based on itemId
+//retrieve menu based on restaurant 
+public retrieveMenuBasedOnRestaurantAndCategory(response:any, filter:Object) {
+    var query = this.model.find(filter);
+    query.exec( (err, itemArray) => {
+        if(err){
+            response.send("Could not find records!")
+        }
+        response.json(itemArray);
+    });
 }
-export {MenuItemModel};
+ //add menu item to restaurant
+    public addToMenuItem(response:any,jsonObject:any){
+        this.model.create(jsonObject,(err) =>{
+            if (err){
+                response.send("Error while adding to waitlist");
+            }
+            response.send("Addition successful!!");
+        });
+
+    }
+
+   
+ //delete menu item to restaurant and itemid
+    public deleteMenuBaseOnRestaurantAndMenuId(response:any,filter:Object): any {
+       
+        this.model.deleteOne(filter, function (err) {
+            if (err){
+                response.send("Error while deleting to waitlist");
+            }
+            response.send("Addition successful!!");
+    
+        });
+    }
+
+     //update menu item to restaurant and itemid
+     public updateMenuBaseOnRestaurantAndMenuId(response:any,filter:Object,json:Object): any {
+        this.deleteMenuBaseOnRestaurantAndMenuId(response,Object);
+        this.addToMenuItem(response,json);
+    }
+}
+    export {MenuItemModel};
+/*Cat.findOneAndUpdate({age: 17}, {$set:{name:"Naomi"}}, {new: true}, (err, doc) => {
+        if (err) {
+            console.log("Something wrong when updating data!");
+        }
+    
+        console.log(doc);
+    });*/
+
+  /*  var query = { name: 'bourne' };
+Model.update(query, { name: 'jason bourne' }, options, callback)* updateMany 
+}*/
