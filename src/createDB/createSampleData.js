@@ -115,6 +115,128 @@ menuitemsCollection.insert(
 }
 )
 
+menuitemsCollection.insert(
+        {       
+                itemID: 1,
+              itemName: "Item A",
+              price: 5.99,
+              description: "Cucumbers marinated in sauce",
+              restaurantID: 2,
+              type: "Appetizer"
+        }
+        )
+        menuitemsCollection.insert(
+        {
+                itemID: 2,
+                itemName: "Item B",
+                price: 7.99,
+                description: "Vegetarian cold salad",
+                restaurantID: 2,
+                type: "Appetizer"
+        }
+        )
+        menuitemsCollection.insert(
+        {
+                itemID: 3,
+                itemName: "Item C",
+                price: 10.99,
+              description: "Fried pork chop with a side of rice",
+              restaurantID: 2,
+              type: "Appetizer"
+        }
+        )
+        menuitemsCollection.insert(
+        {
+                itemID: 4,
+                itemName: "Item D",
+                  price: 5.99,
+                  description: "Cucumbers marinated in sauce",
+                  restaurantID: 2,
+                  type: "Appetizer"
+        }
+        )
+
+        menuitemsCollection.insert(
+                {       
+                        itemID: 1,
+                      itemName: "Item A",
+                      price: 5.99,
+                      description: "Cucumbers marinated in sauce",
+                      restaurantID: 3,
+                      type: "Appetizer"
+                }
+                )
+                menuitemsCollection.insert(
+                {
+                        itemID: 2,
+                        itemName: "Item B",
+                        price: 7.99,
+                        description: "Vegetarian cold salad",
+                        restaurantID: 3,
+                        type: "Appetizer"
+                }
+                )
+                menuitemsCollection.insert(
+                {
+                        itemID: 3,
+                        itemName: "Item C",
+                        price: 10.99,
+                      description: "Fried pork chop with a side of rice",
+                      restaurantID: 3,
+                      type: "Appetizer"
+                }
+                )
+                menuitemsCollection.insert(
+                {
+                        itemID: 4,
+                        itemName: "Item D",
+                          price: 5.99,
+                          description: "Cucumbers marinated in sauce",
+                          restaurantID: 3,
+                          type: "Appetizer"
+                }
+                )
+
+                menuitemsCollection.insert(
+                        {       
+                                itemID: 1,
+                              itemName: "Item A",
+                              price: 5.99,
+                              description: "Cucumbers marinated in sauce",
+                              restaurantID: 4,
+                              type: "Appetizer"
+                        }
+                        )
+                        menuitemsCollection.insert(
+                        {
+                                itemID: 2,
+                                itemName: "Item B",
+                                price: 7.99,
+                                description: "Vegetarian cold salad",
+                                restaurantID: 4,
+                                type: "Appetizer"
+                        }
+                        )
+                        menuitemsCollection.insert(
+                        {
+                                itemID: 3,
+                                itemName: "Item C",
+                                price: 10.99,
+                              description: "Fried pork chop with a side of rice",
+                              restaurantID: 4,
+                              type: "Appetizer"
+                        }
+                        )
+                        menuitemsCollection.insert(
+                        {
+                                itemID: 4,
+                                itemName: "Item D",
+                                  price: 5.99,
+                                  description: "Cucumbers marinated in sauce",
+                                  restaurantID: 4,
+                                  type: "Appetizer"
+                        }
+                        )
 // create a table for waitlist
 
 db.createCollection('waitlist')
@@ -134,8 +256,8 @@ waitlistCollection.insert(
 
 waitlistCollection.insert(
         {
-        customerName: "John",
-        restaurantID: 1,
+        customerName: "Ken",
+        restaurantID: 2,
         groupSize: 2,
         jointime: new Date("February 4, 2019 16:10:00"),
         email : "abc@abc.com",
@@ -146,11 +268,79 @@ waitlistCollection.insert(
 
 waitlistCollection.insert(
 {
-        customerName: "Austin",
-        restaurantID: 1,
-        groupSize: 4,
+        customerName: "Doug",
+        restaurantID: 2,
+        groupSize: 5,
         jointime: new Date("February 4, 2019 16:15:00"),
         email : "abc@abc.com",
         phone : "2062112222"
 }
 )
+
+waitlistCollection.insert(
+        {
+                customerName: "Darren",
+                restaurantID: 2,
+                groupSize: 3,
+                joinTime: new Date("February 4, 2019 16:00:00"),
+                email : "abc@abc.com",
+                phone : "2062112222"
+        }
+        )
+        
+        waitlistCollection.insert(
+                {
+                customerName: "Lisa",
+                restaurantID: 2,
+                groupSize: 2,
+                jointime: new Date("February 4, 2019 16:10:00"),
+                email : "abc@abc.com",
+                phone : "2062112222"
+                }
+                )
+        
+        
+        waitlistCollection.insert(
+        {
+                customerName: "Nico",
+                restaurantID: 3,
+                groupSize: 5,
+                jointime: new Date("February 4, 2019 16:15:00"),
+                email : "abc@abc.com",
+                phone : "2062112222"
+        }
+        )
+
+        waitlistCollection.insert(
+                {
+                        customerName: "Sam",
+                        restaurantID: 3,
+                        groupSize: 3,
+                        joinTime: new Date("February 4, 2019 16:00:00"),
+                        email : "abc@abc.com",
+                        phone : "2062112222"
+                }
+                )
+                
+                waitlistCollection.insert(
+                        {
+                        customerName: "Tony",
+                        restaurantID: 3,
+                        groupSize: 2,
+                        jointime: new Date("February 4, 2019 16:10:00"),
+                        email : "abc@abc.com",
+                        phone : "2062112222"
+                        }
+                        )
+                
+                
+                waitlistCollection.insert(
+                {
+                        customerName: "May",
+                        restaurantID: 3,
+                        groupSize: 5,
+                        jointime: new Date("February 4, 2019 16:15:00"),
+                        email : "abc@abc.com",
+                        phone : "2062112222"
+                }
+                )
