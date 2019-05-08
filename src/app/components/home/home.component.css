@@ -107,4 +107,7 @@
   -ms-overflow-style: none;
   }
    
- 
+ .mat-body-2 {
+   font-family: 'Roboto', 'sans-serif';
+   color: #FF6E40;
+ }
