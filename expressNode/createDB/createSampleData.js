@@ -561,5 +561,3 @@ orderCollection.insert({
         "customerId": 1,
         "restaurantID": 2
 })
-    
-
