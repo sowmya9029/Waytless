@@ -31,5 +31,18 @@ class CustomerModel {
         this.model = Mongoose.model<ICustomerModel>("customer", this.schema);
     }
 
+    public getAllCustomers(response:any): any {
+        var query = this.model.find({});
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
+        });
+    }
+    
+    public getAllCustomersOnFilter(response:any,filter:Object): any {
+        var query = this.model.find(filter);
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
+        });
+    }
 }
 export {CustomerModel};

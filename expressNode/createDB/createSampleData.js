@@ -535,54 +535,31 @@ customerCollection.insert(
 // create a table for orders
 
 db.createCollection('orders')
-ordersCollection = db.getCollection("orders")
-ordersCollection.remove({})
+orderCollection = db.getCollection("orders")
+orderCollection.remove({})
 
-ordersCollection.insert(
-{
-    menuItem: {
-        itemID: 3,
-        itemName: "Item C",
-        price: 10.99,
-      description: "Fried pork chop with a side of rice",
-      restaurantID: 4,
-      type: "Appetizer"
-    },
-    quantity: 1,
-    orderTime: new Date("February 4, 2019 16:15:00"),
-    customerId : 1,
-    restaurantID : 4
+orderCollection.insert({
+        "menuItemId" : 1,
+        "quantity": 1,
+        "orderTime": "2019-02-05T00:15:00.000Z",
+        "customerId": 1,
+        "restaurantID": 2
 })
 
-ordersCollection.insert(
-        {
-            menuItem: {
-                        itemID: 3,
-                        itemName: "Fried Pork Chop",
-                        price: 10.99,
-                       description: "Fried pork chop with a side of rice",
-                      restaurantID: 1,
-                      type: "Appetizer"
-            },
-            quantity: 2,
-            orderTime: new Date("February 4, 2019 16:15:00"),
-            customerId : 2,
-            restaurantID : 1
-        })
+orderCollection.insert({
+        "menuItemId" : 2,
+        "quantity": 1,
+        "orderTime": "2019-02-05T00:15:00.000Z",
+        "customerId": 1,
+        "restaurantID": 2
+})
 
-        ordersCollection.insert(
-                {
-                    menuItem: {
-                        itemID: 1,
-                        itemName: "Item A",
-                        price: 5.99,
-                        description: "Cucumbers marinated in sauce",
-                        restaurantID: 2,
-                        type: "Appetizer"
-                    },
-                    quantity: 1,
-                    orderTime: new Date("February 4, 2019 16:15:00"),
-                    customerId : 3,
-                    restaurantID : 2
-                })
+orderCollection.insert({
+        "menuItemId" : 3,
+        "quantity": 1,
+        "orderTime": "2019-02-05T00:15:00.000Z",
+        "customerId": 1,
+        "restaurantID": 2
+})
+    
 
