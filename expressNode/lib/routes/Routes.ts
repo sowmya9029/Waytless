@@ -1,16 +1,18 @@
 import {Request, Response} from "express";
 import {WaitlistEntryModel} from "../models/waitlistEntryModel"
+import {MenuItemModel} from "../models/MenuItemModel"
 import { RestaurantModel } from "../models/RestaurantModel";
 
 
 export class Routes {       
 
     public waitlist:WaitlistEntryModel;
+    public menuItem:MenuItemModel;
     public restaurantlist:RestaurantModel;
 
     constructor(){
-
         this.waitlist = new WaitlistEntryModel();
+        this.menuItem = new MenuItemModel();
         this.restaurantlist = new RestaurantModel();
     }
 
@@ -31,15 +33,11 @@ export class Routes {
             this.waitlist.retrieveAllWaitlistEntriesPerRestaurant(res,{restaurantID:restuarantId});
         })
 
-
-
-      
-
-          //get all  restaurants 
+        //get all  restaurants 
         app.route('/restaurantlist').get((req: Request, res: Response) => {
-        console.log("Get all restaurants"+res);
-        this.restaurantlist.retrieveAllRestaurantsLists(res);
-    })
+            console.log("Get all restaurants"+res);
+            this.restaurantlist.retrieveAllRestaurantsLists(res);
+        })
 
  // to get all nearby restaurant
  app.route('/restaurantlist/:city').get((req: Request, res: Response) => {
@@ -99,6 +97,15 @@ app.route('/restaurantuser').post((req: Request, res: Response) => {
                 "confirmed":req.body.confirmed
             }
             this.waitlist.addToWaitlist(res,waitlist_entry);
+        })
+
+        // get menu of a particular restaurant
+        app.route('/menuitem/:restId').get((req: Request, res: Response) => {
+            var restID = parseInt(req.params.restId);
+
+            console.log("Get all menu items: " + restID);
+            
+            this.menuItem.retrieveMenu(res, {restaurantID: restID});
         })
 
     }

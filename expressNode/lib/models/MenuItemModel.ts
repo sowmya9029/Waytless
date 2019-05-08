@@ -2,7 +2,7 @@ import Mongoose = require("mongoose");
 import {DataAccess} from '../../DataAccess';
 import { IMenuItemModel } from "../interfaces/IMenuItemModel";
 import { MenuItemCategoryModel } from "./MenuItemCategoryModel";
-let mongooseConnection = DataAccess.mongooseConnection;
+let mongooseConnection = DataAccess.connect;
 let mongooseObj = DataAccess.mongooseInstance;
 
 class MenuItemModel {
@@ -17,32 +17,34 @@ class MenuItemModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                restaurantId:Number,
                 itemId: Number,
                 itemName: String,
-                itemCategory: [MenuItemCategoryModel],
+                price: Number,
                 description:String,
-                image: { data: Buffer, contentType: String },
-                price :Number
-            }, {collection: 'lists'}
+                restaurantId:Number,
+                type: String
+            }, {collection: 'menuitems'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IMenuItemModel>("Menu", this.schema);
+        this.model = Mongoose.model<IMenuItemModel>("menuitems", this.schema);
     }
    //retrieve menu based on menu category filter will have restaurantID and category
-    public retrieveMenuBasedOnCategory(response:any,filter:Object): any {
+    public retrieveMenuBasedOnCategory(response:any, filter:Object): any {
         var query = this.model.find(filter);
         query.exec( (err, itemArray) => {
             response.json(itemArray) ;
         });
     }
-    //retrieve all  menu of a restaurant filter will only have restaurantId
-    public retrieveAllMenu(response:any,filter:Object): any {
+    //retrieve all menu of a restaurant filter will only have restaurantId
+    public retrieveMenu(response:any, filter:Object): any {
+        var x = filter["restaurantID"];
+        console.log('vaa ' + x);
+
         var query = this.model.find(filter);
         query.exec( (err, itemArray) => {
-            response.json(itemArray) ;
+            response.json(itemArray);
         });
     }
 
