@@ -1,6 +1,6 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../../../DataAccess';
-import {waitlistEntryModel} from './waitlistEntryModel';
+import {WaitlistEntryModel} from './WaitlistEntryModel';
 import { IRestaurantModel } from "../interfaces/IRestaurantModel";
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;

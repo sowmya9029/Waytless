@@ -1,11 +1,12 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../../../DataAccess';
-import {IWaitListEntryModel} from '../interfaces/IWaitListEntryModel';
+import {IOrderModel} from '../interfaces/IOrderModel'
+import {MenuItemModel} from './MenuItemModel'
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
-class WaitlistEntryModel {
+class OrderModel {
     public schema:any;
     public model:any;
 
@@ -17,25 +18,24 @@ class WaitlistEntryModel {
     private createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                customerName: String,
-                restaurantID: Number,
-                groupSize: Number,
-                joinTime: Date,
-                email : String,
-                phone : String
-            }, {collection: 'waitlist'}
+                menuItem: MenuItemModel,
+                quantity: Number,
+                orderTime: Date,
+                customerId : Number,
+                restaurantId : Number
+            }, {collection: 'orders'}
         );
     }
 
     private createModel(): void {
-        this.model = mongooseConnection.model<IWaitListEntryModel>("waitlist", this.schema);
+        this.model = mongooseConnection.model<IOrderModel>("orders", this.schema);
     }
 
-    public retrieveAllWaitlistEntriesPerRestaurant(response:any, filter:Object) {
+    public retrieveOrderPerCustomer(response:any, filter:Object) {
         var query = this.model.findOne(filter);
         query.exec( (err, itemArray) => {
             response.json(itemArray);
         });
     }
 }
-export {WaitlistEntryModel};
+export {OrderModel};

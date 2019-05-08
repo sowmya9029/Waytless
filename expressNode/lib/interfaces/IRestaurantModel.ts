@@ -1,11 +1,11 @@
 import Mongoose = require("mongoose");
-import {waitlistEntryModel} from './../models/waitlistEntryModel';
+import {WaitlistEntryModel} from '../models/WaitlistEntryModel';
 interface IRestaurantModel extends Mongoose.Document {
     restaurantId: Number,
     name: String,
     address: String,
     phoneNumber: Number,
     rating:Number,
-    waitlingList: [waitlistEntryModel]
+    waitlingList: [WaitlistEntryModel]
 }
 export {IRestaurantModel};
