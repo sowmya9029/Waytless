@@ -3,4 +3,5 @@ export class MenuItem {
     name: string;
     price: number;
     description: string;
+    url?: string;
 }
