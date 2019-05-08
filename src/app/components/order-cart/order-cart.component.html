@@ -13,7 +13,7 @@
         </tr>
         <tr *ngFor="let order of orders">
           <td>{{order.name}}</td>
-          <td>{{order.price}}</td>
+          <td>${{order.price}}</td>
           <td>{{order.quantity}}</td>
           <td><i class="material-icons " (click) = "editOrder()">edit</i></td>
           <td><i class="material-icons " (click) = "deleteFromCart()">delete</i></td>
@@ -21,7 +21,7 @@
         </table>
       </mat-card-content>
       <div class = "total">
-        Total : $<span class = "totalprice">43</span>
+        Total : $<span class = "totalprice">15.55</span>
       </div>
 
       <mat-card-actions>
