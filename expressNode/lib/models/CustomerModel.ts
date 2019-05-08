@@ -28,7 +28,7 @@ class CustomerModel {
     }
 
     private createModel(): void {
-        this.model = mongooseConnection.model<ICustomerModel>("customer", this.schema);
+        this.model = Mongoose.model<ICustomerModel>("customer", this.schema);
     }
 
 }

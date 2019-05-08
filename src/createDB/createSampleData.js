@@ -8,7 +8,7 @@ restCollection.remove({})
 
 restCollection.insert(
 {
-        restaurantId = 1,
+        restaurantId : 1,
         name: "Din Tai Fung",
         address: {
                 "street": "Bellevue Way E",
@@ -23,7 +23,7 @@ restCollection.insert(
 )
 restCollection.insert(
         {
-                restaurantId = 2,
+                restaurantId : 2,
                 name: "Oliver Garden",
                 address: {
                         "street": "Kirkland Way E",
@@ -38,7 +38,7 @@ restCollection.insert(
 )
 restCollection.insert(
         {
-                restaurantId = 1,
+                restaurantId : 3,
                 name: "Southern Spice",
                 address: {
                         "street": "Redmond Way E",
@@ -54,7 +54,7 @@ restCollection.insert(
     
 restCollection.insert(
         {
-                restaurantId = 4,
+                restaurantId : 4,
                 name: "Mediterranean Kitchen",
                 address: {
                         "street": "Alderwood Way",

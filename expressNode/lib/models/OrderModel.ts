@@ -1,5 +1,5 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from '../../../DataAccess';
+import {DataAccess} from '../../DataAccess';
 import {IOrderModel} from '../interfaces/IOrderModel'
 import {MenuItemModel} from './MenuItemModel'
 
@@ -28,7 +28,7 @@ class OrderModel {
     }
 
     private createModel(): void {
-        this.model = mongooseConnection.model<IOrderModel>("orders", this.schema);
+        this.model = Mongoose.model<IOrderModel>("orders", this.schema);
     }
 
     public retrieveOrderPerCustomer(response:any, filter:Object) {

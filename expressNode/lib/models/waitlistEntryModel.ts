@@ -1,9 +1,8 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../../DataAccess';
+import {IWaitListEntryModel} from '../interfaces/IWaitListEntryModel';
 
-
-
-let mongooseConnection = DataAccess.mongooseConnection;
+let mongooseConnection = DataAccess.connect;
 let mongooseObj = DataAccess.mongooseInstance;
 
 class WaitlistEntryModel {
@@ -15,7 +14,7 @@ class WaitlistEntryModel {
         this.createModel();
     }
 
-    private createSchema(): void {
+    public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
                 customerName: String,
@@ -28,8 +27,8 @@ class WaitlistEntryModel {
         );
     }
 
-    private createModel(): void {
-        this.model = mongooseConnection.model<IWaitListEntryModel>("waitlist", this.schema);
+    public createModel(): void {
+        this.model = Mongoose.model<IWaitListEntryModel>("waitlist", this.schema);
     }
 
     public retrieveAllWaitlistEntriesPerRestaurant(response:any, filter:Object) {
