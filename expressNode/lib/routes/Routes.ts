@@ -29,5 +29,18 @@ export class Routes {
         })
 
         // add to waitlist of a particular restaurant
+        app.route('/waitlist').post((req: Request, res: Response) => {
+            var waitlist_entry = {
+                "customerName":req.body.customerName,
+                "restaurantID":req.body.restaurantID,
+                "groupSize":req.body.groupSize,
+                "joinTime": req.body.joinTime,
+                "email":req.body.email,
+                "phone":req.body.phone,
+                "notified":req.body.notified,
+                "confirmed":req.body.confirmed
+            }
+            this.waitlist.addToWaitlist(res,waitlist_entry);
+        })
     }
 }
