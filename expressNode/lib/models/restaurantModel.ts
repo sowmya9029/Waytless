@@ -20,10 +20,11 @@ class RestaurantModel {
             {
                 restaurantId:Number,
                 name:{type:String, required: true},
-                address:[this.addressSubschema],
+                address:this.addressSubschema,
                 phoneNumber: {type:Number, required: true},
                 rating:Number,
                 email:String,
+                cuisine:String,
              //   menu:[MenuItemModel],
                // image: { data: Buffer, contentType: String },
               //  waitlingList: [WaitlistEntryModel],
@@ -47,7 +48,15 @@ class RestaurantModel {
             response.json(itemArray) ;
         });
     }
+    public addToRestaurantList(response:any,jsonObject:any){
+        this.model.create(jsonObject,(err) =>{
+            if (err){
+                response.send("Error while adding to restaurantlist");
+            }
+            response.send("Addition successful!!");
+        });
 
+    }
     
 }
 export {RestaurantModel};

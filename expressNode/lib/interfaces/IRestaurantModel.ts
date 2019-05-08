@@ -7,5 +7,6 @@ interface IRestaurantModel extends Mongoose.Document {
                 phoneNumber: {type:Number, required: true},
                 rating:Number,
                 email:String,
+                cuisine:String
 }
 export {IRestaurantModel};
