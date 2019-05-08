@@ -1,12 +1,12 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../../DataAccess';
-
-
+import {ICustomerModel} from '../interfaces/ICustomerModel';
+import {AddressSchema} from './Address'
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
-class WaitlistEntryModel {
+class CustomerModel {
     public schema:any;
     public model:any;
 
@@ -15,28 +15,21 @@ class WaitlistEntryModel {
         this.createModel();
     }
 
-    public createSchema(): void {
+    private createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                name: String,
-                description: String,
-                listId: Number,
-                due: String,
-                state: String,
-                owner: String
-            }, {collection: 'lists'}
+                firstName : String,
+                lastName : String,
+                address : AddressSchema,
+                phone : Number,
+                email : String
+            }, {collection: 'customer'}
         );
     }
 
-    public createModel(): void {
-        
+    private createModel(): void {
+        this.model = mongooseConnection.model<ICustomerModel>("customer", this.schema);
     }
 
-    public retrieveAllLists(response:any): any {
-        var query = this.model.find({});
-        query.exec( (err, itemArray) => {
-            response.json(itemArray) ;
-        });
-    }
 }
-export {WaitlistEntryModel};
+export {CustomerModel};

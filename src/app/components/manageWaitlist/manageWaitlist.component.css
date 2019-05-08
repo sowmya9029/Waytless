@@ -1,0 +1,110 @@
+ .login-card {
+    max-width: 250px;
+    margin-left: 1100px;
+    margin-top: 20px;
+    align-content: center;
+    margin-right: 10px;
+  }
+  .example-card {
+    max-width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .example-full-width{
+    padding-left: 10px;
+  }
+  .right{
+    float: right;
+  }
+  .left{
+    float: left;
+  }
+  .mat-raised-button{
+      align-self: center;
+      width: 265px;
+      margin-left: 20px;
+      background-color: #FF6E40;    
+  }
+  .button-container{
+    display: flex;
+  }
+  .card-container {
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    align-self: center;
+    scroll-behavior: smooth;
+    display: flex;  
+    margin-top: 0px;
+    margin-right: 10px;
+    overflow-x: auto;
+    justify-content: space-between;
+    width: 97%;
+  }
+.card-container::-webkit-scrollbar { width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */ }
+.appTitle{
+  left : 47%;
+  margin-top: 0px;
+  position: absolute;
+}
+
+.mat-title
+{
+  margin-bottom: 0rem;
+  padding-bottom: -2rem;
+  padding-top: 0rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+}
+
+.mat-caption{
+  
+  font-size: 12px;
+}
+
+.mat-icon-button {
+  margin: 0 0.1rem;
+  height: 1rem;
+  min-width: 0;
+  line-height: 2rem;
+  padding-left: 0;
+  padding-right: 0;
+  width: 1rem;
+}
+
+.login-text{
+  margin-left : 10px;
+  font-size: 15px;
+  color: #FF6E40;
+  font-family: 'Roboto', sans-serif;
+}
+.mat-card-image{
+  width: 300px;
+  height: 200px;
+  align-self : center;
+  border: 2px;
+  border-color: black
+}
+.flex {
+  flex: 1 1 auto;
+}    
+
+.title{
+  font-size: 22px;
+  font-family: sans-serif;
+  margin-left: 20px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+
+}
+
+.div_body{
+  background-position-x: fixed;
+  font-family: 'Roboto', sans-serif;
+  margin:0px !important;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  }
+   
+ 

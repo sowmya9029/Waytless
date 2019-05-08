@@ -22,14 +22,14 @@ class RestaurantModel {
             {
                 restaurantId:Number,
                 name:{type:String, required: true},
-                address: [this.addressSubschema],
+                address:[this.addressSubschema],
                 phoneNumber: {type:Number, required: true},
                 rating:Number,
                 email:String,
                 menu:[MenuItemModel],
                 image: { data: Buffer, contentType: String },
                 waitlingList: [WaitlistEntryModel],
-            }, {collection: 'lists'}
+            }, {collection:'lists'}
         );
     }
 
