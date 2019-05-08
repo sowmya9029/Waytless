@@ -1,10 +1,8 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from '../../DataAccess';
 import {WaitlistEntryModel} from './WaitlistEntryModel';
 import { IRestaurantModel } from "../interfaces/IRestaurantModel";
 import {MenuItemModel} from "./MenuItemModel";
-let mongooseConnection = DataAccess.mongooseConnection;
-let mongooseObj = DataAccess.mongooseInstance;
+
 
 class RestaurantModel {
     public schema:any;
@@ -22,19 +20,20 @@ class RestaurantModel {
             {
                 restaurantId:Number,
                 name:{type:String, required: true},
-                address:[this.addressSubschema],
+                address:this.addressSubschema,
                 phoneNumber: {type:Number, required: true},
                 rating:Number,
                 email:String,
-                menu:[MenuItemModel],
-                image: { data: Buffer, contentType: String },
-                waitlingList: [WaitlistEntryModel],
-            }, {collection:'lists'}
+                cuisine:String,
+             //   menu:[MenuItemModel],
+               // image: { data: Buffer, contentType: String },
+              //  waitlingList: [WaitlistEntryModel],
+            }, {collection:'restaurants'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IRestaurantModel>("Restaurant", this.schema);
+        this.model = Mongoose.model<IRestaurantModel>("restaurants", this.schema);
     }
 
     public retrieveAllRestaurantsLists(response:any): any {
@@ -49,7 +48,15 @@ class RestaurantModel {
             response.json(itemArray) ;
         });
     }
+    public addToRestaurantList(response:any,jsonObject:any){
+        this.model.create(jsonObject,(err) =>{
+            if (err){
+                response.send("Error while adding to restaurantlist");
+            }
+            response.send("Addition successful!!");
+        });
 
+    }
     
 }
 export {RestaurantModel};

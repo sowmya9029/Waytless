@@ -10,6 +10,7 @@ restCollection.insert(
 {
         restaurantId : 1,
         name: "Din Tai Fung",
+        cuisine:"chinese",
         address: {
                 "street": "Bellevue Way E",
                 "number": "100", 
@@ -23,8 +24,25 @@ restCollection.insert(
 )
 restCollection.insert(
         {
+                restaurantId : 1,
+                name: "Ruchi",
+                cuisine:"Indian",
+                address: {
+                        "street": "Bellevue  SE",
+                        "number": "1002", 
+                        "zip": "98012",
+                        "city": "Bellevue"
+                },
+                phoneNumber: 4251112222,
+                email: "admin@ruchi.com",
+                rating: 5
+        }
+        )
+restCollection.insert(
+        {
                 restaurantId : 2,
                 name: "Oliver Garden",
+                cuisine:"Itallian",
                 address: {
                         "street": "Kirkland Way E",
                         "number": "200", 
@@ -38,8 +56,9 @@ restCollection.insert(
 )
 restCollection.insert(
         {
-                restaurantId : 3,
+                restaurantId : 1,
                 name: "Southern Spice",
+                cuisine:"Indian",
                 address: {
                         "street": "Redmond Way E",
                         "number": "300", 
@@ -54,8 +73,9 @@ restCollection.insert(
     
 restCollection.insert(
         {
-                restaurantId : 4,
+                restaurantId :4,
                 name: "Mediterranean Kitchen",
+                cuisine:"Mediterranean",
                 address: {
                         "street": "Alderwood Way",
                         "number": "500", 
@@ -249,6 +269,7 @@ waitlistCollection.insert(
         restaurantID: 1,
         groupSize: 3,
         joinTime: new Date("February 4, 2019 16:00:00"),
+        quotedtime: new Date("February 4, 2019 16:10:00"),
         email : "abc@abc.com",
         phone : "2062112222",
         notified: true,
@@ -262,6 +283,7 @@ waitlistCollection.insert(
         restaurantID: 2,
         groupSize: 2,
         jointime: new Date("February 4, 2019 16:10:00"),
+        quotedtime: new Date("February 4, 2019 16:10:00"),
         email : "abc@abc.com",
         phone : "2062112222",
         notified: true,
@@ -276,6 +298,7 @@ waitlistCollection.insert(
         restaurantID: 2,
         groupSize: 5,
         jointime: new Date("February 4, 2019 16:15:00"),
+        quotedtime: new Date("February 4, 2019 16:10:00"),
         email : "abc@abc.com",
         phone : "2062112222",
         notified: true,
@@ -289,6 +312,7 @@ waitlistCollection.insert(
                 restaurantID: 2,
                 groupSize: 3,
                 joinTime: new Date("February 4, 2019 16:00:00"),
+                quotedtime: new Date("February 4, 2019 16:10:00"),
                 email : "abc@abc.com",
                 phone : "2062112222",
                 notified: true,
@@ -302,6 +326,7 @@ waitlistCollection.insert(
                 restaurantID: 2,
                 groupSize: 2,
                 jointime: new Date("February 4, 2019 16:10:00"),
+                quotedtime: new Date("February 4, 2019 16:10:00"),
                 email : "abc@abc.com",
                 phone : "2062112222",
                 notified: true,
@@ -316,6 +341,7 @@ waitlistCollection.insert(
                 restaurantID: 3,
                 groupSize: 5,
                 jointime: new Date("February 4, 2019 16:15:00"),
+                quotedtime: new Date("February 4, 2019 16:10:00"),
                 email : "abc@abc.com",
                 phone : "2062112222",
                 notified: true,
@@ -329,6 +355,7 @@ waitlistCollection.insert(
                         restaurantID: 3,
                         groupSize: 3,
                         joinTime: new Date("February 4, 2019 16:00:00"),
+                        quotedtime: new Date("February 4, 2019 16:10:00"),
                         email : "abc@abc.com",
                         phone : "2062112222",
                         notified: true,
@@ -342,6 +369,7 @@ waitlistCollection.insert(
                         restaurantID: 3,
                         groupSize: 2,
                         jointime: new Date("February 4, 2019 16:10:00"),
+                        quotedtime: new Date("February 4, 2019 16:10:00"),
                         email : "abc@abc.com",
                         phone : "2062112222",
                         notified: true,
@@ -356,6 +384,7 @@ waitlistCollection.insert(
                         restaurantID: 3,
                         groupSize: 5,
                         jointime: new Date("February 4, 2019 16:15:00"),
+                        quotedtime: new Date("February 4, 2019 16:10:00"),
                         email : "abc@abc.com",
                         phone : "2062112222",
                         notified: true,

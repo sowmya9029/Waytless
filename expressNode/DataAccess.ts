@@ -19,7 +19,7 @@ class DataAccess {
             console.log("Connected to mongodb.");
         });
         
-        this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING);
+        this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING, { useNewUrlParser: true });
         console.log("here!");
         return this.mongooseInstance;
     }

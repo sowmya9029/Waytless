@@ -22,7 +22,9 @@ class WaitlistEntryModel {
                 groupSize: Number,
                 joinTime: Date,
                 email : String,
-                phone : String
+                phone : String,
+                notified: Boolean,
+                confirmed:Boolean
             }, {collection: 'waitlist'}
         );
     }
@@ -32,10 +34,23 @@ class WaitlistEntryModel {
     }
 
     public retrieveAllWaitlistEntriesPerRestaurant(response:any, filter:Object) {
-        var query = this.model.findOne(filter);
+        var query = this.model.find(filter);
         query.exec( (err, itemArray) => {
+            if(err){
+                response.send("Could not find records!")
+            }
             response.json(itemArray);
         });
+    }
+
+    public addToWaitlist(response:any,jsonObject:any){
+        this.model.create(jsonObject,(err) =>{
+            if (err){
+                response.send("Error while adding to waitlist");
+            }
+            response.send("Addition successful!!");
+        });
+
     }
 }
 export {WaitlistEntryModel};
