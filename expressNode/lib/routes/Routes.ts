@@ -5,6 +5,7 @@ import { RestaurantModel } from "../models/RestaurantModel";
 import {OrderModel} from "../models/OrderModel";
 
 
+
 export class Routes {       
 
     public waitlist:WaitlistEntryModel;
@@ -137,13 +138,21 @@ app.route('/restaurantuser').post((req: Request, res: Response) => {
             var menuItemId = req.body.menuItemId;
             var quantity = req.body.quantity;
 
-            var searchCriteria = {
+            const searchCriteria = {
                 "customerId" : customerId,
                 "restaurantID" : restaurantId,
                 "menuItemId" : menuItemId
             }
-            this.order.updateQuantity(res,searchCriteria,{quantity:quantity});
+
+            const toBeChanged = {
+                "$set": {
+                    "quantity": quantity
+                  }
+            }
+
+            this.order.updateQuantity(res,searchCriteria,toBeChanged);
         })
+
         // get menu of a particular restaurant
         app.route('/menuitem/:restId').get((req: Request, res: Response) => {
             var restID = parseInt(req.params.restId);

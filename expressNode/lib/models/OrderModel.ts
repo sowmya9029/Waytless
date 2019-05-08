@@ -47,16 +47,15 @@ class OrderModel {
         });
     }
 
-    public updateQuantity(response:any,search_criteria:Object,quantity:Object){
+    public updateQuantity(response:any,search_criteria:any,update:any){
 
-        console.log("Search criteria: " + search_criteria);
-        console.log("Quantity: " +quantity);
-        this.model.update(search_criteria,{$set : {quantity}},(err) =>{
-            if(err){
-                response.send("Update unsuccessful!");
-            }
-            response.send("Update successful! Quantity changed");
+        this.model.updateOne(search_criteria, update)
+        .then(result => {
+            
+            response.send('Successfully changed quantity');
+            
         });
+          
     }
 }
 export {OrderModel};
