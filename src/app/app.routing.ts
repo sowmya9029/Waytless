@@ -22,7 +22,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'waitlist-entry', component: WaitlistEntryComponent},
      { path: 'order-cart',component: OrderCartComponent}, 
-   { path: '', redirectTo: '/home', pathMatch: 'full'}
-   { path: 'manageWaitlist', component: manageWaitlistComponent},
+   { path: '', redirectTo: '/home', pathMatch: 'full'},
+   { path: 'manageWaitlist', component: manageWaitlistComponent}
   ];
 export const routing =  RouterModule.forRoot(routes);
