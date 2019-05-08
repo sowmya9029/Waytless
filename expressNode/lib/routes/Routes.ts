@@ -1,5 +1,7 @@
 import {Request, Response} from "express";
-import {WaitlistEntryModel} from "../models/waitlistEntryModel";
+import {WaitlistEntryModel} from "../models/waitlistEntryModel"
+import {MenuItemModel} from "../models/MenuItemModel"
+import { RestaurantModel } from "../models/RestaurantModel";
 import {OrderModel} from "../models/OrderModel";
 
 
@@ -8,12 +10,15 @@ export class Routes {
     public waitlist:WaitlistEntryModel;
     public order:OrderModel;
     //public menuItem:MenuItemModel;
+    public menuItem:MenuItemModel;
+    public restaurantlist:RestaurantModel;
 
     constructor(){
-
         this.waitlist = new WaitlistEntryModel();
         this.order = new OrderModel();
         //this.menuItem = new MenuItemModel();
+        this.menuItem = new MenuItemModel();
+        this.restaurantlist = new RestaurantModel();
     }
 
     public routes(app): void { 
@@ -33,7 +38,58 @@ export class Routes {
             this.waitlist.retrieveAllWaitlistEntriesPerRestaurant(res,{restaurantID:restuarantId});
         })
 
-        // add to waitlist of a particular restaurant
+        //get all  restaurants 
+        app.route('/restaurantlist').get((req: Request, res: Response) => {
+            console.log("Get all restaurants"+res);
+            this.restaurantlist.retrieveAllRestaurantsLists(res);
+        })
+
+ // to get all nearby restaurant
+ app.route('/restaurantlist/:city').get((req: Request, res: Response) => {
+    var city = req.params.city;
+    console.log("Get all restaurants  with city: " + city);
+    this.restaurantlist.retrieveAllRestaurantsListBasedOnLocation(res,{ "address.city": city });
+})
+
+// add to restaurant of a particular restaurant
+app.route('/restaurantlist').post((req: Request, res: Response) => {
+   
+    var restaurantlist = {
+                 restaurantId : req.body.restaurantID,
+                name: req.body.name,
+                address: {
+                        "street": req.body.street,
+                        "number": req.body.number, 
+                        "zip": req.body.zip,
+                        "city": req.body.city
+                },
+                phoneNumber: req.body.phoneNumber,
+                email: req.body.email,
+                rating: req.body.rating
+    }
+    this.waitlist.addToWaitlist(res,restaurantlist);
+})
+// add to restaurant of a particular restaurant
+app.route('/restaurantuser').post((req: Request, res: Response) => {
+   
+    var restaurantuser = {
+        
+                 restaurantId : req.body.restaurantID,
+                name: req.body.name,
+                address: {
+                        "street": req.body.street,
+                        "number": req.body.number, 
+                        "zip": req.body.zip,
+                        "city": req.body.city
+                },
+                phoneNumber: req.body.phoneNumber,
+                email: req.body.email,
+               
+    }
+    this.waitlist.addToWaitlist(res,restaurantuser);
+})
+
+  // add to waitlist of a particular restaurant
         app.route('/waitlist').post((req: Request, res: Response) => {
             var waitlist_entry = {
                 "customerName":req.body.customerName,
@@ -88,5 +144,14 @@ export class Routes {
             }
             this.order.updateQuantity(res,searchCriteria,{quantity:quantity});
         })
+        // get menu of a particular restaurant
+        app.route('/menuitem/:restId').get((req: Request, res: Response) => {
+            var restID = parseInt(req.params.restId);
+
+            console.log("Get all menu items: " + restID);
+            
+            this.menuItem.retrieveMenu(res, {restaurantID: restID});
+        })
+
     }
 }
