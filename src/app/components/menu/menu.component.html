@@ -4,86 +4,86 @@
   </mat-card-header>
   <mat-card-content>
 
-    <mat-toolbar>
-      <button (click)="scroll(appetizersTarget)" mat-button class="nav-bar-item">Appetizers</button>
-      <button (click)="scroll(entreesTarget)" mat-button class="nav-bar-item">Entrees</button>
-    </mat-toolbar>
-    
-    <div ></div>
-    <h3 #appetizersTarget class="center">Appetizers</h3>
-
-    <mat-grid-list cols="3" rowHeight="350px">
-      <mat-grid-tile
-        class="menu-item"
-        *ngFor="let a of appetizers">
-        <mat-card class="menu-item-body">          
-          <img mat-card-image src='{{a.url !== undefined ? a.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
-          <mat-card-content>
-            <div class="menu-top">
-              <span class="menu-item-name">{{a.name}}</span>
-              <span class="menu-item-price">${{a.price}} x {{orders.get(a.id) === undefined ? 0 : orders.get(a.id)}}</span>
-            </div>
-            <div class="menu-bottom">
-              <span>{{a.description}}</span><br/>
-            </div>
-          </mat-card-content>
-          <mat-card-actions>
-            <button (click)="addToCart(a)" mat-button>ADD</button>
-            <button (click)="deleteFromCart(a)" mat-button>REMOVE</button>
-          </mat-card-actions>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
-
-    <h3 #entreesTarget class="center">Entrees</h3>
-    <mat-grid-list cols="3" rowHeight="350px">
-      <mat-grid-tile
-        class="menu-item"
-        *ngFor="let e of entrees">
-        <mat-card class="menu-item-body">          
-            <img mat-card-image src='{{e.url !== undefined ? e.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
-            <mat-card-content>
-              <div class="menu-top">
-                <span class="menu-item-name">{{e.name}}</span>
-                <span class="menu-item-price">${{e.price}} x {{orders.get(e.id) === undefined ? 0 : orders.get(e.id)}}</span>
-              </div>
-              <div class="menu-bottom">
-                <span>{{e.description}}</span><br/>
-              </div>
-            </mat-card-content>
-            <mat-card-actions>
-              <button (click)="addToCart(e)" mat-button>ADD</button>
-              <button (click)="deleteFromCart(e)" mat-button>REMOVE</button>
-            </mat-card-actions>
-          </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
-
-    <h3 #entreesTarget class="center">Desserts</h3>
-    <mat-grid-list cols="3" rowHeight="350px">
-      <mat-grid-tile
-        class="menu-item"
-        *ngFor="let d of desserts">
-        <mat-card class="menu-item-body">          
-            <img mat-card-image src='{{d.url !== undefined ? d.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
-            <mat-card-content>
-              <div class="menu-top">
-                <span class="menu-item-name">{{d.name}}</span>
-                <span class="menu-item-price">${{d.price}} x {{orders.get(d.id) === undefined ? 0 : orders.get(d.id)}}</span>
-              </div>
-              <div class="menu-bottom">
-                <span>{{d.description}}</span><br/>
-              </div>
-            </mat-card-content>
-            <mat-card-actions>
-              <button (click)="addToCart(d)" mat-button>ADD</button>
-              <button (click)="deleteFromCart(d)" mat-button>REMOVE</button>
-            </mat-card-actions>
-          </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
-
-
+    <ngb-tabset>
+      <ngb-tab title="Appetizers">
+        <ng-template ngbTabContent>  
+          <mat-grid-list cols="3" rowHeight="350px">
+            <mat-grid-tile
+              class="menu-item"
+              *ngFor="let a of appetizers">
+              <mat-card class="menu-item-body">          
+                <img mat-card-image src='{{a.url !== undefined ? a.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
+                <mat-card-content>
+                  <div class="menu-top">
+                    <span class="menu-item-name">{{a.name}}</span>
+                    <span class="menu-item-price">${{a.price}} x {{orders.get(a.id) === undefined ? 0 : orders.get(a.id)}}</span>
+                  </div>
+                  <div class="menu-bottom">
+                    <span>{{a.description}}</span><br/>
+                  </div>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button (click)="addToCart(a)" mat-button>ADD</button>
+                  <button (click)="deleteFromCart(a)" mat-button>REMOVE</button>
+                </mat-card-actions>
+              </mat-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Entrees">
+        <ng-template ngbTabContent>
+          <mat-grid-list cols="3" rowHeight="350px">
+            <mat-grid-tile
+              class="menu-item"
+              *ngFor="let e of entrees">
+              <mat-card class="menu-item-body">          
+                  <img mat-card-image src='{{e.url !== undefined ? e.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
+                  <mat-card-content>
+                    <div class="menu-top">
+                      <span class="menu-item-name">{{e.name}}</span>
+                      <span class="menu-item-price">${{e.price}} x {{orders.get(e.id) === undefined ? 0 : orders.get(e.id)}}</span>
+                    </div>
+                    <div class="menu-bottom">
+                      <span>{{e.description}}</span><br/>
+                    </div>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button (click)="addToCart(e)" mat-button>ADD</button>
+                    <button (click)="deleteFromCart(e)" mat-button>REMOVE</button>
+                  </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Desserts">
+        <ng-template ngbTabContent>
+          <mat-grid-list cols="3" rowHeight="350px">
+            <mat-grid-tile
+              class="menu-item"
+              *ngFor="let d of desserts">
+              <mat-card class="menu-item-body">          
+                  <img mat-card-image src='{{d.url !== undefined ? d.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
+                  <mat-card-content>
+                    <div class="menu-top">
+                      <span class="menu-item-name">{{d.name}}</span>
+                      <span class="menu-item-price">${{d.price}} x {{orders.get(d.id) === undefined ? 0 : orders.get(d.id)}}</span>
+                    </div>
+                    <div class="menu-bottom">
+                      <span>{{d.description}}</span><br/>
+                    </div>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button (click)="addToCart(d)" mat-button>ADD</button>
+                    <button (click)="deleteFromCart(d)" mat-button>REMOVE</button>
+                  </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
   </mat-card-content>
 
   <div class = "total">

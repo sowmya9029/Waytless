@@ -6,6 +6,10 @@
     margin-right: auto;
 }
 
+::ng-deep a {
+    color: #FF6E40;
+}
+
 .nav-bar-item {
     margin-right: 10px;
     background-color: #FF6E40;
