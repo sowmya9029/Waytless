@@ -6,6 +6,6 @@ interface IOrderModel extends Mongoose.Document {
     quantity: Number,
     orderTime: Date,
     customerId : Number,
-    restaurantId : Number
+    restaurantID : Number
 }
 export {IOrderModel};

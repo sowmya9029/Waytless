@@ -237,6 +237,36 @@ menuitemsCollection.insert(
                                   type: "Appetizer"
                         }
                         )
+
+
+db.createCollection('orders')
+orderCollection = db.getCollection("orders")
+orderCollection.remove({})
+
+orderCollection.insert({
+        "menuItemId" : 1,
+        "quantity": 1,
+        "orderTime": "2019-02-05T00:15:00.000Z",
+        "customerId": 1,
+        "restaurantID": 2
+})
+
+orderCollection.insert({
+        "menuItemId" : 2,
+        "quantity": 1,
+        "orderTime": "2019-02-05T00:15:00.000Z",
+        "customerId": 1,
+        "restaurantID": 2
+})
+
+orderCollection.insert({
+        "menuItemId" : 3,
+        "quantity": 1,
+        "orderTime": "2019-02-05T00:15:00.000Z",
+        "customerId": 1,
+        "restaurantID": 2
+})
+                        
 // create a table for waitlist
 
 db.createCollection('waitlist')
