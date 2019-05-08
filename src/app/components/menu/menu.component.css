@@ -6,7 +6,7 @@
     margin-right: auto;
 }
 
-::ng-deep a {
+::ng-deep .mat-tab-label-content {
     color: #FF6E40;
 }
 
