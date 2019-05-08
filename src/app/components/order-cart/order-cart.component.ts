@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 export interface OrderDetail {
   name: string;
-  price: string;
+  price: number;
   quantity : number;
 }
 
@@ -20,21 +20,21 @@ export class OrderCartComponent implements OnInit {
 
   orders: OrderDetail[] = [
     {
-      name : 'Veg burrito',
-      price : '$10',
+      name : 'Cucumber Salad',
+      price : 2.31,
       quantity : 1
     },{
-      name : 'Chips & Salsa',
-      price : '$4',
+      name : 'Spring rolls',
+      price : 4.31,
       quantity : 1
     },{
-      name : 'Ceaser salad',
-      price : '$9',
+      name : 'Mashed potatoes',
+      price : 4.31,
       quantity : 1
     },
     {
-      name : 'Veggie taco',
-      price : '$10',
+      name : 'Spaghetti',
+      price : 2.31,
       quantity : 2
     }
   ];
