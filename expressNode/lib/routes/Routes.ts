@@ -2,26 +2,29 @@ import {Request, Response} from "express";
 import {WaitlistEntryModel} from "../models/waitlistEntryModel"
 import {MenuItemModel} from "../models/MenuItemModel"
 import { RestaurantModel } from "../models/RestaurantModel";
+import {CustomerModel} from "../models/CustomerModel";
+import { MenuItemCategoryModel } from "../models/MenuItemCategoryModel";
 import {OrderModel} from "../models/OrderModel";
-import{CustomerModel} from "../models/CustomerModel";
+
+
 
 
 export class Routes {       
 
     public waitlist:WaitlistEntryModel;
     public order:OrderModel;
-    //public menuItem:MenuItemModel;
-    public menuItem:MenuItemModel;
     public restaurantlist:RestaurantModel;
+    public menuitem:MenuItemModel;
+    public menuitemcat:MenuItemCategoryModel;
     public customerlist:CustomerModel;
-
     constructor(){
         this.waitlist = new WaitlistEntryModel();
         this.order = new OrderModel();
         //this.menuItem = new MenuItemModel();
-        this.menuItem = new MenuItemModel();
-        this.restaurantlist = new RestaurantModel();
         this.customerlist = new CustomerModel();
+        this.restaurantlist = new RestaurantModel();
+        this.menuitem = new MenuItemModel();
+        this.menuitemcat = new MenuItemCategoryModel();
     }
 
     public routes(app): void { 
@@ -32,6 +35,99 @@ export class Routes {
             })
         })          
         
+         //get all  menuItems 
+            app.route('/menuitems/:restId').get((req: Request, res: Response) => {
+                var restId = req.params.restId;
+                console.log("Get all menuItems for rest id :"+restId);
+                this.menuitem.retrieveAllMenuBasedOnRestaurant(res,{restaurantID:restId});
+           })
+
+           //get all  menuItems  by category
+            app.route('/menuitems/:restId/:categoryId').get((req: Request, res: Response) => {
+                var restId = req.params.restId;
+                var categoryId = req.params.categoryId;
+                console.log("Get all menuItems for rest id : "+restId + "category : "+categoryId);
+                this.menuitem.retrieveAllMenuBasedOnRestaurant(res,{restaurantID:restId,"itemCategory.categoryId": categoryId});
+       })
+            //add to menuItem of a particular restaurant
+            app.route('/menuitems').post((req: Request, res: Response) => {
+                var menuitems_entry = {
+                    "itemID":req.body.itemID,
+                    "itemName":req.body.itemName,
+                    "price":req.body.price,
+                    "description": req.body.description,
+                    "restaurantID":req.body.restaurantID,
+                    "itemCategory":
+                    {"categoryId":req.body.categoryId,
+                    "categoryName":req.body.categoryName,
+                    "description":req.body.description}
+                }
+                this.menuitem.addToMenuItem(res,menuitems_entry);
+            })
+
+              //add to menuItem category 
+              app.route('/menuitemcategory').post((req: Request, res: Response) => {
+                var menuitems_entry = {
+                    "categoryId":req.body.categoryId,
+                    "categoryName":req.body.categoryName,
+                    "description":req.body.description
+                }
+                this.menuitemcat.addToMenuItemCategory(res,menuitems_entry);
+            })
+
+            //delete  menuItem of a particular restaurant
+            app.route('/menuitems/:restId/:itemID').delete((req: Request, res: Response) => {
+                var restId = req.params.restId;
+                var itemID = req.params.itemID;
+                this.menuitem.deleteMenuBaseOnRestaurantAndMenuId(res,{"restaurantID":restId,"itemID":itemID});
+            })
+
+            //update
+            app.route('/menuitems').patch((req: Request, res: Response) => {
+                
+                var menuitems_entry = {
+                    "itemID":req.body.itemID,
+                    "itemName":req.body.itemName,
+                    "price":req.body.price,
+                    "description": req.body.description,
+                    "restaurantID":req.body.restaurantID,
+                    "itemCategory.categoryId"
+                    :req.body.categoryId,
+                    "itemCategory.categoryName":req.body.categoryName,
+                    "itemCategory.description":req.body.description
+                }
+
+               
+            var restaurantId = req.body.restaurantID;
+            var itemID = req.body.itemID;
+           
+
+            const searchCriteria = {
+               
+                "restaurantID" : restaurantId,
+                "itemID" : itemID
+            }
+
+            const toBeChanged = {
+                "$set": {
+                    "itemID":req.body.itemID,
+                    "itemName":req.body.itemName,
+                    "price":req.body.price,
+                    "description": req.body.description,
+                    "restaurantID":req.body.restaurantID,
+                    "itemCategory.categoryId"
+                    :req.body.itemCategory.categoryId,
+                    "itemCategory.categoryName":req.body.itemCategory.categoryName,
+                    "itemCategory.description":req.body.itemCategory.description
+                  }
+            }
+
+           
+
+                this.menuitem.updateMenuBaseOnRestaurantAndMenuId(res,searchCriteria,toBeChanged);
+            })
+
+
         // to get all the waitlist entries in a restaurant
         app.route('/waitlist/:restId').get((req: Request, res: Response) => {
             var restuarantId = req.params.restId;
@@ -43,75 +139,59 @@ export class Routes {
 
         //get all  restaurants 
         app.route('/restaurantlist').get((req: Request, res: Response) => {
-            console.log("Get all restaurants"+res);
-            this.restaurantlist.retrieveAllRestaurantsLists(res);
-        })
+        console.log("Get all restaurants"+res);
+        this.restaurantlist.retrieveAllRestaurantsLists(res);
+       })
 
         //get all customers
         app.route('/customers').get((req: Request, res: Response) => {
-            console.log("Get all customers"+res);
-            this.customerlist.getAllCustomers(res);
+        console.log("Get all customers"+res);
+        this.customerlist.getAllCustomers(res);
+    })
+
+        // to get all nearby restaurant
+        app.route('/restaurantlist/:city').get((req: Request, res: Response) => {
+            var city = req.params.city;
+            console.log("Get all restaurants  with city: " + city);
+            this.restaurantlist.retrieveAllRestaurantsListBasedOnLocation(res,{ "address.city": city });
         })
 
- // to get all nearby restaurant
- app.route('/restaurantlist/:city').get((req: Request, res: Response) => {
-    var city = req.params.city;
-    console.log("Get all restaurants  with city: " + city);
-    this.restaurantlist.retrieveAllRestaurantsListBasedOnLocation(res,{ "address.city": city });
-})
-
-// add to restaurant of a particular restaurant
-app.route('/restaurantlist').post((req: Request, res: Response) => {
-   
-    var restaurantlist = {
-                 restaurantId : req.body.restaurantID,
-                name: req.body.name,
-                address: {
-                        "street": req.body.street,
-                        "number": req.body.number, 
-                        "zip": req.body.zip,
-                        "city": req.body.city
-                },
-                phoneNumber: req.body.phoneNumber,
-                email: req.body.email,
-                rating: req.body.rating
-    }
-    this.waitlist.addToWaitlist(res,restaurantlist);
-})
-// add to restaurant of a particular restaurant
-app.route('/restaurantuser').post((req: Request, res: Response) => {
-   
-    var restaurantuser = {
-        
-                 restaurantId : req.body.restaurantID,
-                name: req.body.name,
-                address: {
-                        "street": req.body.street,
-                        "number": req.body.number, 
-                        "zip": req.body.zip,
-                        "city": req.body.city
-                },
-                phoneNumber: req.body.phoneNumber,
-                email: req.body.email,
-               
-    }
-    this.waitlist.addToWaitlist(res,restaurantuser);
-})
-
-  // add to waitlist of a particular restaurant
-        app.route('/waitlist').post((req: Request, res: Response) => {
-            var waitlist_entry = {
-                "customerName":req.body.customerName,
-                "restaurantID":req.body.restaurantID,
-                "groupSize":req.body.groupSize,
-                "joinTime": req.body.joinTime,
-                "email":req.body.email,
-                "phone":req.body.phone,
-                "notified":req.body.notified,
-                "confirmed":req.body.confirmed
+        // add to restaurant of a particular restaurant
+        app.route('/restaurantlist').post((req: Request, res: Response) => {   
+            var restaurantlist = {
+                "restaurantID" : req.body.restaurantID,
+                        "name": req.body.name,
+                        "address": {
+                                "street": req.body.street,
+                                "number": req.body.number, 
+                                "zip": req.body.zip,
+                                "city": req.body.city
+                        },
+                        "phoneNumber": req.body.phoneNumber,
+                        "email": req.body.email,
+                        "rating": req.body.rating
             }
-            this.waitlist.addToWaitlist(res,waitlist_entry);
+            this.waitlist.addToWaitlist(res,restaurantlist);
         })
+       
+
+        //add to waitlist of a particular restaurant
+                app.route('/waitlist').post((req: Request, res: Response) => {
+                    var waitlist_entry = {
+                        "customerName":req.body.customerName,
+                        "restaurantID":req.body.restaurantID,
+                        "groupSize":req.body.groupSize,
+                        "joinTime": req.body.joinTime,
+                        "email":req.body.email,
+                        "phone":req.body.phone,
+                        "notified":req.body.notified,
+                        "confirmed":req.body.confirmed
+                    }
+                    this.waitlist.addToWaitlist(res,waitlist_entry);
+                })
+
+
+
 
         // retrive order cart for a customer in a restaurant's cart
         app.route('/orders/:restaurantId/:customerId').get((req: Request, res: Response) =>{
@@ -129,7 +209,7 @@ app.route('/restaurantuser').post((req: Request, res: Response) => {
             
 
             var jsonObj = {
-                "menuItemId" : req.body.menuItemId,
+                "menuitemID" : req.body.menuitemID,
                 "quantity" : req.body.quantity,
                 "orderTime": req.body.orderTime,
                 "customerId" : req.body.customerId,
@@ -143,13 +223,13 @@ app.route('/restaurantuser').post((req: Request, res: Response) => {
         app.route('/orders').patch((req:Request,res:Response) => {
             var customerId = req.body.customerId;
             var restaurantId = req.body.restaurantID;
-            var menuItemId = req.body.menuItemId;
+            var menuitemID = req.body.menuitemID;
             var quantity = req.body.quantity;
 
             const searchCriteria = {
                 "customerId" : customerId,
                 "restaurantID" : restaurantId,
-                "menuItemId" : menuItemId
+                "menuitemID" : menuitemID
             }
 
             const toBeChanged = {
@@ -161,16 +241,6 @@ app.route('/restaurantuser').post((req: Request, res: Response) => {
             this.order.updateQuantity(res,searchCriteria,toBeChanged);
         })
 
-        // get menu of a particular restaurant
-        app.route('/menuitem/:restId').get((req: Request, res: Response) => {
-            var restID = parseInt(req.params.restId);
-
-            console.log("Get all menu items: " + restID);
-            
-            this.menuItem.retrieveMenu(res, {restaurantID: restID});
-        })
-
-        
-
+       
     }
 }
