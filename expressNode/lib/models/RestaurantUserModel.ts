@@ -3,10 +3,8 @@ import {DataAccess} from '../../DataAccess';
 import {WaitlistEntryModel} from './WaitlistEntryModel';
 import { IRestaurantUserModel } from "../interfaces/IRestaurantUserModel";
 import {MenuItemModel} from "./MenuItemModel";
-let mongooseConnection = DataAccess.mongooseConnection;
-let mongooseObj = DataAccess.mongooseInstance;
 
-class RestaurantModel {
+class RestaurantUserModel {
     public schema:any;
     public model:any;
 
@@ -25,13 +23,13 @@ class RestaurantModel {
                 address: [this.addressSubschema],
                 phoneNumber: {type:Number, required: true},
                 email:String,
-            }, {collection: 'lists'}
+            }, {collection: 'Restaurant'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IRestaurantUserModel>("Restaurant", this.schema);
+        this.model = Mongoose.model<IRestaurantUserModel>("Restaurant", this.schema);
     }
     //update restaurant 
 }
-export {RestaurantModel};
+export {RestaurantUserModel};

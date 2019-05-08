@@ -1,10 +1,8 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from '../../DataAccess';
 import {WaitlistEntryModel} from './WaitlistEntryModel';
 import { IRestaurantModel } from "../interfaces/IRestaurantModel";
 import {MenuItemModel} from "./MenuItemModel";
-let mongooseConnection = DataAccess.mongooseConnection;
-let mongooseObj = DataAccess.mongooseInstance;
+
 
 class RestaurantModel {
     public schema:any;
@@ -26,15 +24,15 @@ class RestaurantModel {
                 phoneNumber: {type:Number, required: true},
                 rating:Number,
                 email:String,
-                menu:[MenuItemModel],
-                image: { data: Buffer, contentType: String },
-                waitlingList: [WaitlistEntryModel],
-            }, {collection:'lists'}
+             //   menu:[MenuItemModel],
+               // image: { data: Buffer, contentType: String },
+              //  waitlingList: [WaitlistEntryModel],
+            }, {collection:'restaurants'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IRestaurantModel>("Restaurant", this.schema);
+        this.model = Mongoose.model<IRestaurantModel>("restaurants", this.schema);
     }
 
     public retrieveAllRestaurantsLists(response:any): any {
