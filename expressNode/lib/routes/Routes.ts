@@ -1,4 +1,6 @@
 import {Request, Response} from "express";
+import {RestaurantModel} from '../models/RestaurantModel';
+
 
 export class Routes {       
     public routes(app): void {          
