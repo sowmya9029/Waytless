@@ -6,6 +6,17 @@
     margin-right: auto;
 }
 
+.nav-bar-item {
+    margin-right: 10px;
+    background-color: #FF6E40;
+    color: white;
+}
+
+::ng-deep .mat-toolbar {
+    background-color:  rgb(255, 213, 200);
+    border-radius: 10px 10px 0 0;
+}
+
 .center {
     width: 700px;
     margin-left: auto;

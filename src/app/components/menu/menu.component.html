@@ -3,15 +3,21 @@
     <mat-card-title class="center">Menu for {{name}}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
+
+    <mat-toolbar>
+      <button (click)="scroll(appetizersTarget)" mat-button class="nav-bar-item">Appetizers</button>
+      <button (click)="scroll(entreesTarget)" mat-button class="nav-bar-item">Entrees</button>
+    </mat-toolbar>
     
-    <h3 class="center">Appetizers</h3>
+    <div ></div>
+    <h3 #appetizersTarget class="center">Appetizers</h3>
 
     <mat-grid-list cols="3" rowHeight="350px">
       <mat-grid-tile
         class="menu-item"
         *ngFor="let a of appetizers">
         <mat-card class="menu-item-body">          
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          <img mat-card-image src='{{a.url !== undefined ? a.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
           <mat-card-content>
             <div class="menu-top">
               <span class="menu-item-name">{{a.name}}</span>
@@ -29,13 +35,13 @@
       </mat-grid-tile>
     </mat-grid-list>
 
-    <h3 class="center">Entrees</h3>
+    <h3 #entreesTarget class="center">Entrees</h3>
     <mat-grid-list cols="3" rowHeight="350px">
       <mat-grid-tile
         class="menu-item"
         *ngFor="let e of entrees">
         <mat-card class="menu-item-body">          
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <img mat-card-image src='{{e.url !== undefined ? e.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
             <mat-card-content>
               <div class="menu-top">
                 <span class="menu-item-name">{{e.name}}</span>
@@ -60,6 +66,6 @@
   </div>
 
   <mat-card-actions>
-    <button mat-raised-button class = "confirmBtn" (click)="orderConfirm()" color="primary">Confirm order</button>
+    <button mat-raised-button class = "confirmBtn" routerLink="/order-cart" color="primary">Confirm order</button>
   </mat-card-actions>
 </mat-card>

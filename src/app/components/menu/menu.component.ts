@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
   private name: string;
   private appetizers: MenuItem[];
   private entrees: MenuItem[];
-  private orders: Map<number, number>;
+  private orders: Map<number, number>; // key: menuItem id, value: count
 
   private totalPrice: number;
 
@@ -47,6 +47,10 @@ export class MenuComponent implements OnInit {
 
   }
 
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+  }
+
   private addToCart(item: MenuItem) {
     if (this.orders.get(item.id) === undefined) {
       this.orders.set(item.id, 1);
@@ -67,10 +71,14 @@ export class MenuComponent implements OnInit {
   private getAppetizers(id: number): MenuItem[] {
     let items: MenuItem[];
     if (id == 1) {
-      const m1 = { id: 1, name: "Cucumber Salad", price: 2.31, description: "Cucumbers marinated in sauce" };
-      const m2 = { id: 2, name: "Soy Noodle Salad", price: 3.31, description: "Vegetarian cold salad" };
-      const m3 = { id: 3, name: "Fried Pork Chop", price: 4.31, description: "Fried pork" };
-      const m4 = { id: 4, name: "Spring Rolls", price: 4.31, description: "Fried and vegetarian" };
+      const m1 = { id: 1, name: "Cucumber Salad", price: 2.31, description: "Cucumbers marinated in sauce",
+                    url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_cucumber.jpg" };
+      const m2 = { id: 2, name: "Soy Noodle Salad", price: 3.31, description: "Vegetarian cold salad",
+                    url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_soynoodlesalad.jpg" };
+      const m3 = { id: 3, name: "Fried Pork Chop", price: 4.31, description: "Fried pork",
+                    url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_porkchop.jpg" };
+      const m4 = { id: 4, name: "Seaweed Salad", price: 4.31, description: "Seaweed and bean curd in a vinegar dressing",
+                    url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_seaweedsalad.jpg" };
       items = [m1, m2, m3, m4];
     } else if (id == 2) {
       const m1 = { id: 5, name: "Bread", price: 2.31, description: "Freshly toasted" };
@@ -94,9 +102,12 @@ export class MenuComponent implements OnInit {
   private getEntrees(id: number): MenuItem[] {
     let items: MenuItem[];
     if (id == 1) {
-      const m1 = { id: 14, name: "Shrimp Fried Rice", price: 2.31, description: "Shrimp and vegetables fried with rice" };
-      const m2 = { id: 15, name: "House Chicken Soup", price: 3.31, description: "Hot soup perfect for cold weather" };
-      const m3 = { id: 16, name: "Fried Pork Chop", price: 4.31, description: "Hearty meal which is great for dinner" };
+      const m1 = { id: 14, name: "Shrimp Fried Rice", price: 2.31, description: "Shrimp and vegetables fried with rice",
+                   url: "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg" };
+      const m2 = { id: 15, name: "House Chicken Soup", price: 3.31, description: "Hot soup perfect for cold weather",
+                   url: "https://dintaifungusa.com/wp-content/uploads/2015/01/house-chicken-noodle-soup.jpg" };
+      const m3 = { id: 16, name: "Pork Chop Noodle Soup", price: 4.31, description: "Pork broth with pork meat and noodles",
+                   url: "https://dintaifungusa.com/wp-content/uploads/2015/01/pork-chop-noodle-soup.jpg" };
       items = [m1, m2, m3];
     } else if (id == 2) {
       const m1 = { id: 17, name: "Spaghetti", price: 2.31, description: "Italian style dinner with tomato sauce" };
