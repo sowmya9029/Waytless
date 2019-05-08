@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { CustomMaterialModule } from './core/material.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -31,7 +32,8 @@ import { manageWaitlistComponent } from './components/manageWaitlist/manageWaitl
     routing,
     HttpModule,
     CustomMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
