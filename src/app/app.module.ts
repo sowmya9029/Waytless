@@ -12,7 +12,7 @@ import { routing }        from './app.routing';
 import { MenuComponent } from './components/menu/menu.component';
 import { WaitlistEntryComponent } from './components/waitlist-entry/waitlist-entry.component';
 import {OrderCartComponent} from './components/order-cart/order-cart.component'
-
+import { manageWaitlistComponent } from './components/manageWaitlist/manageWaitlist.component';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import {OrderCartComponent} from './components/order-cart/order-cart.component'
     RegistrationComponent,
     MenuComponent,
     WaitlistEntryComponent,
-    OrderCartComponent
+    OrderCartComponent,
+    manageWaitlistComponent
   ],
   imports: [
     BrowserModule,

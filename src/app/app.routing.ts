@@ -11,6 +11,7 @@ import { MenuComponent } from './components/menu/menu.component';
 
 import {OrderCartComponent} from './components/order-cart/order-cart.component'
 
+import { manageWaitlistComponent } from './components/manageWaitlist/manageWaitlist.component';
 
 const routes: Routes = [
   //{ path: 'create', component: CreateComponent },
@@ -22,5 +23,6 @@ const routes: Routes = [
     { path: 'waitlist-entry', component: WaitlistEntryComponent},
      { path: 'order-cart',component: OrderCartComponent}, 
    { path: '', redirectTo: '/home', pathMatch: 'full'}
+   { path: 'manageWaitlist', component: manageWaitlistComponent},
   ];
 export const routing =  RouterModule.forRoot(routes);
