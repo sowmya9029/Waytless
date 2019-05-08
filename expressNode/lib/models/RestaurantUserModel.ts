@@ -1,7 +1,7 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../../DataAccess';
 import {WaitlistEntryModel} from './WaitlistEntryModel';
-import { IRestaurantModel } from "../interfaces/IRestaurantModel";
+import { IRestaurantUserModel } from "../interfaces/IRestaurantUserModel";
 import {MenuItemModel} from "./MenuItemModel";
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
@@ -24,32 +24,14 @@ class RestaurantModel {
                 name:{type:String, required: true},
                 address: [this.addressSubschema],
                 phoneNumber: {type:Number, required: true},
-                rating:Number,
                 email:String,
-                menu:[MenuItemModel],
-                image: { data: Buffer, contentType: String },
-                waitlingList: [WaitlistEntryModel],
             }, {collection: 'lists'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IRestaurantModel>("Restaurant", this.schema);
+        this.model = mongooseConnection.model<IRestaurantUserModel>("Restaurant", this.schema);
     }
-
-    public retrieveAllRestaurantsLists(response:any): any {
-        var query = this.model.find({});
-        query.exec( (err, itemArray) => {
-            response.json(itemArray) ;
-        });
-    }
-    public retrieveAllRestaurantsListBasedOnLocation(response:any,filter:Object): any {
-        var query = this.model.find(filter);
-        query.exec( (err, itemArray) => {
-            response.json(itemArray) ;
-        });
-    }
-
-    
+    //update restaurant 
 }
 export {RestaurantModel};
