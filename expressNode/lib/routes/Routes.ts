@@ -2,16 +2,22 @@ import {Request, Response} from "express";
 import {WaitlistEntryModel} from "../models/waitlistEntryModel"
 import {MenuItemModel} from "../models/MenuItemModel"
 import { RestaurantModel } from "../models/RestaurantModel";
+import {OrderModel} from "../models/OrderModel";
+
 
 
 export class Routes {       
 
     public waitlist:WaitlistEntryModel;
+    public order:OrderModel;
+    //public menuItem:MenuItemModel;
     public menuItem:MenuItemModel;
     public restaurantlist:RestaurantModel;
 
     constructor(){
         this.waitlist = new WaitlistEntryModel();
+        this.order = new OrderModel();
+        //this.menuItem = new MenuItemModel();
         this.menuItem = new MenuItemModel();
         this.restaurantlist = new RestaurantModel();
     }
@@ -97,6 +103,54 @@ app.route('/restaurantuser').post((req: Request, res: Response) => {
                 "confirmed":req.body.confirmed
             }
             this.waitlist.addToWaitlist(res,waitlist_entry);
+        })
+
+        // retrive order cart for a customer in a restaurant's cart
+        app.route('/orders/:restaurantId/:customerId').get((req: Request, res: Response) =>{
+            var customerId = req.params.customerId;
+            var restaurantId = req.params.restaurantId;
+
+            this.order.retrieveOrderPerCustomer(res,{restaurantID:restaurantId,customerId:customerId});
+            
+        })
+
+        // add to orderCart
+        app.route('/orders').post((req: Request, res: Response) => {
+
+            console.log("Restaurant id:" + req.body.restaurantID);
+            
+
+            var jsonObj = {
+                "menuItemId" : req.body.menuItemId,
+                "quantity" : req.body.quantity,
+                "orderTime": req.body.orderTime,
+                "customerId" : req.body.customerId,
+                "restaurantID" : req.body.restaurantID
+            }
+
+            this.order.addToCart(res,[jsonObj]);
+        })
+
+        // edit the quantity of an order in the cart
+        app.route('/orders').patch((req:Request,res:Response) => {
+            var customerId = req.body.customerId;
+            var restaurantId = req.body.restaurantID;
+            var menuItemId = req.body.menuItemId;
+            var quantity = req.body.quantity;
+
+            const searchCriteria = {
+                "customerId" : customerId,
+                "restaurantID" : restaurantId,
+                "menuItemId" : menuItemId
+            }
+
+            const toBeChanged = {
+                "$set": {
+                    "quantity": quantity
+                  }
+            }
+
+            this.order.updateQuantity(res,searchCriteria,toBeChanged);
         })
 
         // get menu of a particular restaurant

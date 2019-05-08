@@ -11,16 +11,15 @@ class DataAccess {
     }
     
     static connect (): Mongoose.Connection {
-        console.log("Just entered connect1()");
+        
         if(this.mongooseInstance) return this.mongooseInstance;
-        console.log("Just entered connect()");
         this.mongooseConnection  = Mongoose.connection;
+
         this.mongooseConnection.on("open", () => {
             console.log("Connected to mongodb.");
         });
         
         this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING, { useNewUrlParser: true });
-        console.log("here!");
         return this.mongooseInstance;
     }
     
