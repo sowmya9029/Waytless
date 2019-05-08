@@ -106,5 +106,7 @@
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
   }
-   
- 
+
+  .editable {
+    padding: .5rem .5rem
+  }
