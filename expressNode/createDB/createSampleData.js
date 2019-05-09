@@ -48,7 +48,7 @@ restCollection.remove({})
                                 "zip": "98007",
                                 "city": "Kirkland"
                         },
-                        phoneNumber: "4251112222",
+                        phoneNumber: 4251112222,
                         email: "admin@og.com",
                         rating: 4
                 }
