@@ -1,10 +1,11 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from '../../DataAccess';
+//import {DataAccess} from '../../DataAccess';
+
 import {ICustomerModel} from '../interfaces/ICustomerModel';
 import {AddressSchema} from './Address'
 
-let mongooseConnection = DataAccess.mongooseConnection;
-let mongooseObj = DataAccess.mongooseInstance;
+//let mongooseConnection = DataAccess.mongooseConnection;
+//let mongooseObj = DataAccess.mongooseInstance;
 
 class CustomerModel {
     public schema:any;
@@ -21,7 +22,7 @@ class CustomerModel {
                 firstName : String,
                 lastName : String,
                 address : AddressSchema,
-                phone : Number,
+                phone : String,
                 email : String
             }, {collection: 'customer'}
         );
