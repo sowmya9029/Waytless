@@ -48,7 +48,7 @@ restCollection.remove({})
                                 "zip": "98007",
                                 "city": "Kirkland"
                         },
-                        phoneNumber: 4251112222,
+                        phoneNumber: "4251112222",
                         email: "admin@og.com",
                         rating: 4
                 }
@@ -472,7 +472,7 @@ customerCollection.insert(
                 "zip": "98005",
                 "city": "Bellevue"
         },
-        phone : 2062112222,
+        phone : "2062112222",
         email : "abc@abc.com"
 })
 
