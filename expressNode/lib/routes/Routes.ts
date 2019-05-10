@@ -149,6 +149,37 @@ export class Routes {
         this.customerlist.getAllCustomers(res);
     })
 
+        // get all customers with given last name
+        app.route('/customers/lastName/:lastName').get((req: Request, res: Response) => {
+            var lastName = req.params.lastName;
+            console.log("Get all customer(s) with last name: " + lastName);
+            this.customerlist.getAllCustomersOnFilter(res,{ "lastName": lastName });
+        })
+
+        // get all customers with given first name
+        app.route('/customers/firstName/:firstName').get((req: Request, res: Response) => {
+            var firstName = req.params.firstName;
+            console.log("Get all customer(s) with first name: " + firstName);
+            this.customerlist.getAllCustomersOnFilter(res,{ "firstName": firstName });
+        })
+
+        // add to customer to DB
+            app.route('/customers').post((req: Request, res: Response) => {   
+                var newCustomer = {
+                    "firstName" : req.body.firstName,
+                    "lastName" : req.body.lastName,
+                    "address": {
+                        "street": req.body.street,
+                        "number": req.body.number, 
+                        "zip": req.body.zip,
+                        "city": req.body.city
+                },
+                    "phoneNumber": req.body.phoneNumber,
+                    "email": req.body.email,
+                    }
+                this.customerlist.addCustomer(res, newCustomer);
+            })
+
         // to get all nearby restaurant
         app.route('/restaurantlist/:city').get((req: Request, res: Response) => {
             var city = req.params.city;

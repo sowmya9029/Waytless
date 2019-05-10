@@ -32,6 +32,7 @@ class CustomerModel {
         this.model = Mongoose.model<ICustomerModel>("customer", this.schema);
     }
 
+    // return all customers
     public getAllCustomers(response:any): any {
         var query = this.model.find({});
         query.exec( (err, itemArray) => {
@@ -45,5 +46,18 @@ class CustomerModel {
             response.json(itemArray) ;
         });
     }
+
+    // add customer to DB
+    public addCustomer(response:any,jsonObject:any){
+        this.model.create(jsonObject,(err) =>{
+            if (err){
+                response.send("Error while adding customer to DB");
+            }
+            response.send("Addition successful!!");
+        });
+
+    }
+
+
 }
 export {CustomerModel};
