@@ -425,7 +425,7 @@ customerCollection.insert(
 {
         firstName : "John",
         lastName : "Doe",
-        address : any,
+        address : "any",
         phone : 2062112222,
         email : "abc@abc.com"
 })
