@@ -466,10 +466,6 @@ customerCollection.insert(
 {
         firstName : "John",
         lastName : "Doe",
-<<<<<<< HEAD
-        address : "any",
-        phone : 2062112222,
-=======
         address: {
                 "street": "Bellevue Way E",
                 "number": "100", 
@@ -477,7 +473,6 @@ customerCollection.insert(
                 "city": "Bellevue"
         },
         phone : "2062112222",
->>>>>>> origin
         email : "abc@abc.com"
 })
 
