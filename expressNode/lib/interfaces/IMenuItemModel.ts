@@ -1,11 +1,15 @@
 import Mongoose = require("mongoose");
 import {IItemCategoryModel} from '../interfaces/IItemCategoryModel';
 interface IMenuItemModel extends Mongoose.Document {
-    itemID: Number,
-    itemName: String,
-    price :Number,
-    description:String,
+    itemId: Number,
     restaurantID:Number,
-    type: String
+    itemName: String,
+   // price :Number,
+    description:String,
+    //image:Buffer,
+    itemCategory: Object,
+    price :Number,
+
+   // type:String
 }
 export {IMenuItemModel};

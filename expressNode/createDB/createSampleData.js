@@ -5,92 +5,91 @@ db = db.getSiblingDB('waitlistSample')
 db.createCollection('restaurants')
 restCollection = db.getCollection("restaurants")
 restCollection.remove({})
-
-restCollection.insert(
-{
-        restaurantId : 1,
-        name: "Din Tai Fung",
-        cuisine:"chinese",
-        address: {
-                "street": "Bellevue Way E",
-                "number": "100", 
-                "zip": "98005",
-                "city": "Bellevue"
-        },
-        phoneNumber: 4251112222,
-        email: "admin@dintaifung.com",
-        rating: 5
-}
-)
-restCollection.insert(
-        {
-                restaurantId : 1,
-                name: "Ruchi",
-                cuisine:"Indian",
-                address: {
-                        "street": "Bellevue  SE",
-                        "number": "1002", 
-                        "zip": "98012",
-                        "city": "Bellevue"
-                },
-                phoneNumber: 4251112222,
-                email: "admin@ruchi.com",
-                rating: 5
-        }
+        restCollection.insert(
+                {
+                        restaurantID : 1,
+                        name: "Din Tai Fung",
+                        cuisine:"Chinese",
+                        address: {
+                                "street": "Bellevue Way E",
+                                "number": "700", 
+                                "zip": "98004",
+                                "city": "Bellevue"
+                        },
+                        phoneNumber: 4256981095,
+                        email: "admin@dintaifung.com",
+                        rating: 5
+                }
         )
-restCollection.insert(
-        {
-                restaurantId : 2,
-                name: "Oliver Garden",
-                cuisine:"Itallian",
-                address: {
-                        "street": "Kirkland Way E",
-                        "number": "200", 
-                        "zip": "98007",
-                        "city": "Kirkland"
-                },
-                phoneNumber: 4251112222,
-                email: "admin@og.com",
-                rating: 4
-        }
-)
-restCollection.insert(
-        {
-                restaurantId : 1,
-                name: "Southern Spice",
-                cuisine:"Indian",
-                address: {
-                        "street": "Redmond Way E",
-                        "number": "300", 
-                        "zip": "98008",
-                        "city": "Redmond"
-                },
-                phoneNumber: 4251112222,
-                email: "admin@og.com",
-                rating: 3
-        }
-    )
+       restCollection.insert(
+                {
+                        restaurantID : 1,
+                        name: "Ruchi Indian Restaurant",
+                        cuisine:"Indian",
+                        address: {
+                                "street": "156th Ave NE",
+                                "number": "1360", 
+                                "zip": "98007",
+                                "city": "Bellevue"
+                        },
+                        phoneNumber: 4257462144,
+                        email: "admin@ruchi.com",
+                        rating: 5
+                }
+        )
+        restCollection.insert(
+                {
+                        restaurantID : 2,
+                        name: "Olive Garden",
+                        cuisine:"Italian",
+                        address: {
+                                "street": "NE 124th St",
+                                "number": "11325", 
+                                "zip": "98034",
+                                "city": "Kirkland"
+                        },
+                        phoneNumber: 4258207740,
+                        email: "admin@olivegarden.com",
+                        rating: 4
+                }
+        )
+        restCollection.insert(
+                {
+                        restaurantID : 1,
+                        name: "Southern Spice",
+                        cuisine:"Indian",
+                        address: {
+                                "street": "E Lake Sammamish Pkwy NE",
+                                "number": "6536", 
+                                "zip": "98052",
+                                "city": "Redmond"
+                        },
+                        phoneNumber: 4257029192,
+                        email: "admin@southernspicewa.com",
+                        rating: 3
+                }
+        )
     
-restCollection.insert(
-        {
-                restaurantId :4,
-                name: "Mediterranean Kitchen",
-                cuisine:"Mediterranean",
-                address: {
-                        "street": "Alderwood Way",
-                        "number": "500", 
-                        "zip": "98009",
-                        "city": "Lynwood"
-                },
-                phoneNumber: 4251112222,
-                email: "admin@mk.com",
-                rating: 4
-        }
-)
+        restCollection.insert(
+                {
+                        restaurantID :4,
+                        name: "Mediterranean Kitchen",
+                        cuisine:"Mediterranean",
+                        address: {
+                                "street": "33rd Ave W",
+                                "number": "18415", 
+                                "zip": "98009",
+                                "city": "Lynwood"
+                        },
+                        phoneNumber: 4252457551,
+                        email: "admin@mediterraneankitchens.net",
+                        rating: 4
+                }
+        )
 
 // create a table 'itemCategory'
-db.createCollection('itemCategories')
-itemCategoryCollection = db.getCollection("itemCategories")
+db.createCollection('menucategory')
+itemCategoryCollection = db.getCollection("menucategory")
 itemCategoryCollection.remove({})
 
 itemCategoryCollection.insert({
@@ -111,6 +110,7 @@ categoryName:"Dessert",
 description:"Can't leave without trying out award winning desserts"
 })
 
+
 // create a table 'menu' items
 
 db.createCollection('menuitems')
@@ -119,12 +119,14 @@ menuitemsCollection.remove({})
 
 menuitemsCollection.insert(
 {       
-        itemID: 1,
+      itemID: 1,
       itemName: "Cucumber Salad",
       price: 5.99,
       description: "Cucumbers marinated in sauce",
       restaurantID: 1,
-      type: "Appetizer"
+      itemCategory:{categoryId:"1",
+              categoryName:"Appetizer",
+              description:'description here'}
 }
 )
 menuitemsCollection.insert(
@@ -134,7 +136,9 @@ menuitemsCollection.insert(
         price: 7.99,
         description: "Vegetarian cold salad",
         restaurantID: 1,
-        type: "Appetizer"
+        itemCategory:{categoryId:"1",
+              categoryName:"Appetizer",
+              description:'description here'}
 }
 )
 menuitemsCollection.insert(
@@ -144,28 +148,36 @@ menuitemsCollection.insert(
         price: 10.99,
       description: "Fried pork chop with a side of rice",
       restaurantID: 1,
-      type: "Appetizer"
+      itemCategory:{categoryId:"1",
+      categoryName:"Appetizer",
+      description:'description here'}
 }
 )
 menuitemsCollection.insert(
 {
-        itemID: 4,
-        itemName: "Spring Rolls",
+          itemID: 4,
+          itemName: "Spring Rolls",
           price: 5.99,
           description: "Cucumbers marinated in sauce",
           restaurantID: 1,
-          type: "Appetizer"
+          itemCategory:{categoryId:"2",
+              categoryName:"Entree",
+              description:'description here'}
 }
 )
 
-menuitemsCollection.insert(
+    menuitemsCollection.insert(
         {       
-                itemID: 1,
+              itemID: 1,
               itemName: "Item A",
               price: 5.99,
               description: "Cucumbers marinated in sauce",
               restaurantID: 2,
-              type: "Appetizer"
+              //type: "Appetizer"
+              itemCategory:{categoryId:"1",
+              categoryName:"Appetizer",
+              description:'description here'}
+              
         }
         )
         menuitemsCollection.insert(
@@ -174,8 +186,10 @@ menuitemsCollection.insert(
                 itemName: "Item B",
                 price: 7.99,
                 description: "Vegetarian cold salad",
-                restaurantID: 2,
-                type: "Appetizer"
+                restaurantID: 1,
+                itemCategory:{categoryId:"2",
+                categoryName:"Entree",
+                description:'description here'}
         }
         )
         menuitemsCollection.insert(
@@ -185,7 +199,10 @@ menuitemsCollection.insert(
                 price: 10.99,
               description: "Fried pork chop with a side of rice",
               restaurantID: 2,
-              type: "Appetizer"
+              //type: "Appetizer"
+              itemCategory:{categoryId:"1",
+                categoryName:"Appetizer",
+                description:'description here'}
         }
         )
         menuitemsCollection.insert(
@@ -195,7 +212,11 @@ menuitemsCollection.insert(
                   price: 5.99,
                   description: "Cucumbers marinated in sauce",
                   restaurantID: 2,
-                  type: "Appetizer"
+                  //type: "Appetizer",
+                  itemCategory:{categoryId:"2",
+                        categoryName:"Entree",
+                        description:'description here'}
+                  
         }
         )
 
@@ -206,7 +227,10 @@ menuitemsCollection.insert(
                       price: 5.99,
                       description: "Cucumbers marinated in sauce",
                       restaurantID: 3,
-                      type: "Appetizer"
+                     // type: "Appetizer"
+                      itemCategory:{categoryId:"2",
+                        categoryName:"Entree",
+                        description:'description here'}
                 }
                 )
                 menuitemsCollection.insert(
@@ -216,7 +240,10 @@ menuitemsCollection.insert(
                         price: 7.99,
                         description: "Vegetarian cold salad",
                         restaurantID: 3,
-                        type: "Appetizer"
+                       // type: "Entree"
+                        itemCategory:{categoryId:"2",
+                        categoryName:"Entree",
+                        description:'description here'}
                 }
                 )
                 menuitemsCollection.insert(
@@ -224,19 +251,25 @@ menuitemsCollection.insert(
                         itemID: 3,
                         itemName: "Item C",
                         price: 10.99,
-                      description: "Fried pork chop with a side of rice",
-                      restaurantID: 3,
-                      type: "Appetizer"
+                        description: "Fried pork chop with a side of rice",
+                        restaurantID: 3,
+                        //type: "Appetizer"
+                        itemCategory:{categoryId:"1",
+                        categoryName:"Appetizer",
+                        description:'description here'}
                 }
                 )
                 menuitemsCollection.insert(
                 {
                         itemID: 4,
                         itemName: "Item D",
-                          price: 5.99,
+                        price: 5.99,
                           description: "Cucumbers marinated in sauce",
                           restaurantID: 3,
-                          type: "Appetizer"
+                         // type: "Appetizer",
+                          itemCategory:{categoryId:"1",
+                                categoryName:"Appetizer",
+                                description:'description here'}
                 }
                 )
 
@@ -247,7 +280,9 @@ menuitemsCollection.insert(
                               price: 5.99,
                               description: "Cucumbers marinated in sauce",
                               restaurantID: 4,
-                              type: "Appetizer"
+                              itemCategory:{categoryId:"1",
+                              categoryName:"Appetizer",
+                              description:'description here'}
                         }
                         )
                         menuitemsCollection.insert(
@@ -257,7 +292,9 @@ menuitemsCollection.insert(
                                 price: 7.99,
                                 description: "Vegetarian cold salad",
                                 restaurantID: 4,
-                                type: "Appetizer"
+                                itemCategory:{categoryId:"1",
+                                categoryName:"Appetizer",
+                                description:'description here'}
                         }
                         )
                         menuitemsCollection.insert(
@@ -267,7 +304,9 @@ menuitemsCollection.insert(
                                 price: 10.99,
                               description: "Fried pork chop with a side of rice",
                               restaurantID: 4,
-                              type: "Appetizer"
+                              itemCategory:{categoryId:"2",
+                        categoryName:"Entree",
+                        description:'description here'}
                         }
                         )
                         menuitemsCollection.insert(
@@ -277,7 +316,9 @@ menuitemsCollection.insert(
                                   price: 5.99,
                                   description: "Cucumbers marinated in sauce",
                                   restaurantID: 4,
-                                  type: "Appetizer"
+                                  itemCategory:{categoryId:"2",
+                                  categoryName:"Entree",
+                                  description:'description here'}
                         }
                         )
 // create a table for waitlist
@@ -293,7 +334,7 @@ waitlistCollection.insert(
         groupSize: 3,
         joinTime: new Date("February 4, 2019 16:00:00"),
         quotedtime: new Date("February 4, 2019 16:10:00"),
-        email : "abc@abc.com",
+        email : "maryk@yahoo.com",
         phone : "2062112222",
         notified: true,
         confirmed: true
@@ -425,8 +466,18 @@ customerCollection.insert(
 {
         firstName : "John",
         lastName : "Doe",
+<<<<<<< HEAD
         address : "any",
         phone : 2062112222,
+=======
+        address: {
+                "street": "Bellevue Way E",
+                "number": "100", 
+                "zip": "98005",
+                "city": "Bellevue"
+        },
+        phone : "2062112222",
+>>>>>>> origin
         email : "abc@abc.com"
 })
 
@@ -434,7 +485,12 @@ customerCollection.insert(
         {
                 firstName : "Peter",
                 lastName : "Johnson",
-                address : "",
+                address: {
+                        "street": "Bellevue Way E",
+                        "number": "100", 
+                        "zip": "98005",
+                        "city": "Bellevue"
+                },
                 phone : "2062112222",
                 email : "abc@abc.com"
         })
@@ -443,25 +499,40 @@ customerCollection.insert(
         {
                 firstName : "Mary",
                 lastName : "Gates",
-                address : "",
+                address: {
+                        "street": "Bellevue Way E",
+                        "number": "100", 
+                        "zip": "98005",
+                        "city": "Bellevue"
+                },
                 phone : "2062112222",
                 email : "abc@abc.com"
         })
 
-customerCollection.insert(
+        customerCollection.insert(
         {
                 firstName : "John",
                 lastName : "Doe",
-                address : "",
+                address: {
+                        "street": "Bellevue Way E",
+                        "number": "628", 
+                        "zip": "98025",
+                        "city": "Bellevue"
+                },
                 phone : "2062112222",
                 email : "abc@abc.com"
         })
 
-customerCollection.insert(
+       customerCollection.insert(
                 {
                         firstName : "Bill",
                         lastName : "Gates",
-                        address : "",
+                        address: {
+                                "street": "Bellevue Way E",
+                                "number": "100", 
+                                "zip": "98005",
+                                "city": "Bellevue"
+                        },
                         phone : "2062112222",
                         email : "abc@abc.com"
                 })
@@ -469,54 +540,29 @@ customerCollection.insert(
 // create a table for orders
 
 db.createCollection('orders')
-ordersCollection = db.getCollection("orders")
-ordersCollection.remove({})
+orderCollection = db.getCollection("orders")
+orderCollection.remove({})
 
-ordersCollection.insert(
-{
-    menuItem: {
-        itemID: 3,
-        itemName: "Item C",
-        price: 10.99,
-      description: "Fried pork chop with a side of rice",
-      restaurantID: 4,
-      type: "Appetizer"
-    },
-    quantity: 1,
-    orderTime: new Date("February 4, 2019 16:15:00"),
-    customerId : 1,
-    restaurantID : 4
+orderCollection.insert({
+        "menuItemId" : 1,
+        "quantity": 1,
+        "orderTime": "2019-02-05T12:15:00.000Z",
+        "customerId": 1,
+        "restaurantID": 2
 })
 
-ordersCollection.insert(
-        {
-            menuItem: {
-                        itemID: 3,
-                        itemName: "Fried Pork Chop",
-                        price: 10.99,
-                      description: "Fried pork chop with a side of rice",
-                      restaurantID: 1,
-                      type: "Appetizer"
-            },
-            quantity: 2,
-            orderTime: new Date("February 4, 2019 16:15:00"),
-            customerId : 2,
-            restaurantID : 1
-        })
+orderCollection.insert({
+        "menuItemId" : 2,
+        "quantity": 1,
+        "orderTime": "2019-02-05T12:15:00.000Z",
+        "customerId": 1,
+        "restaurantID": 2
+})
 
-        ordersCollection.insert(
-                {
-                    menuItem: {
-                        itemID: 1,
-                        itemName: "Item A",
-                        price: 5.99,
-                        description: "Cucumbers marinated in sauce",
-                        restaurantID: 2,
-                        type: "Appetizer"
-                    },
-                    quantity: 1,
-                    orderTime: new Date("February 4, 2019 16:15:00"),
-                    customerId : 3,
-                    restaurantID : 2
-                })
-
+orderCollection.insert({
+        "menuItemId" : 3,
+        "quantity": 1,
+        "orderTime": "2019-02-05T12:15:00.000Z",
+        "customerId": 1,
+        "restaurantID": 2
+})
