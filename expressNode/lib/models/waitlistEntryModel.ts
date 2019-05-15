@@ -34,6 +34,13 @@ class WaitlistEntryModel {
         this.model = Mongoose.model<IWaitListEntryModel>("waitlist", this.schema);
     }
 
+    public retrieveAllWaitlists(response:any): any {
+        var query = this.model.find({});
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
+        });
+    }
+
     public retrieveAllWaitlistEntriesPerRestaurant(response:any, filter:Object) {
         var query = this.model.find(filter);
         query.exec( (err, itemArray) => {

@@ -130,12 +130,18 @@ export class Routes {
                 this.menuitem.updateMenuBaseOnRestaurantAndMenuId(res,searchCriteria,toBeChanged);
             })
 
+        // to get all the waitlist entries
+        app.route('/waitlist/').get((req: Request, res: Response) => {
+            console.log('Query all wait lists');
+
+            this.waitlist.retrieveAllWaitlists(res);
+        })
 
         // to get all the waitlist entries in a restaurant
         app.route('/waitlist/:restId').get((req: Request, res: Response) => {
             var restuarantId = req.params.restId;
             
-            console.log("Get all waitlist items from restaurant with id: " + restuarantId);
+            console.log("Query all waitlist items from restaurant with id: " + restuarantId);
 
             this.waitlist.retrieveAllWaitlistEntriesPerRestaurant(res,{restaurantID:restuarantId});
         })
