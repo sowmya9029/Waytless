@@ -189,40 +189,28 @@ export class Routes {
 
         // add to restaurant of a particular restaurant
         app.route('/restaurantlist').post((req: Request, res: Response) => {   
-            var restaurantlist = {
-                "restaurantID" : req.body.restaurantID,
-                        "name": req.body.name,
-                        "address": {
-                                "street": req.body.street,
-                                "number": req.body.number, 
-                                "zip": req.body.zip,
-                                "city": req.body.city
-                        },
-                        "phoneNumber": req.body.phoneNumber,
-                        "email": req.body.email,
-                        "rating": req.body.rating
-            }
-            this.waitlist.addToWaitlist(res,restaurantlist);
+            console.log(req.body);
+            var jsonObj = req.body;
+            this.restaurantlist.model.create([jsonObj], (err) => {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send("Restaurant Added.");
         })
        
 
         //add to waitlist of a particular restaurant
-                app.route('/waitlist').post((req: Request, res: Response) => {
-                    var waitlist_entry = {
-                        "customerName":req.body.customerName,
-                        "restaurantID":req.body.restaurantID,
-                        "groupSize":req.body.groupSize,
-                        "joinTime": req.body.joinTime,
-                        "email":req.body.email,
-                        "phone":req.body.phone,
-                        "notified":req.body.notified,
-                        "confirmed":req.body.confirmed
-                    }
-                    this.waitlist.addToWaitlist(res,waitlist_entry);
-                })
-
-
-
+        app.route('/waitlist').post((req: Request, res: Response) => {
+            console.log(req.body);
+            var jsonObj = req.body;
+            this.waitlist.model.create([jsonObj], (err) => {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send("You are added to the waitlist.");
+        })
 
         // retrive order cart for a customer in a restaurant's cart
         app.route('/orders/:restaurantId/:customerId').get((req: Request, res: Response) =>{
