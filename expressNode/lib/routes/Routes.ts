@@ -152,6 +152,13 @@ export class Routes {
         this.customerlist.getAllCustomers(res);
     })
 
+        // get all customer with given ID
+        app.route('/customers/:customerId').get((req: Request, res: Response) => {
+            var customerId = req.params.customerId;
+            console.log("Get all customer using ID: " + customerId);
+            this.customerlist.getAllCustomersOnFilter(res,{ "customerId": customerId });
+        })
+
         // get all customers with given last name
         app.route('/customers/lastName/:lastName').get((req: Request, res: Response) => {
             var lastName = req.params.lastName;
