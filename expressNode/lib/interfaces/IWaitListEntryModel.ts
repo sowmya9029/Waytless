@@ -5,6 +5,7 @@ interface IWaitListEntryModel extends Mongoose.Document {
         restaurantID: Number,
         groupSize: Number,
         joinTime: Date,
+        quotedtime: Date,
         email : String,
         phone : String,
         notified: Boolean,

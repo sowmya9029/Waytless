@@ -21,6 +21,7 @@ class WaitlistEntryModel {
                 restaurantID: Number,
                 groupSize: Number,
                 joinTime: Date,
+                quotedtime: Date,
                 email : String,
                 phone : String,
                 notified: Boolean,
@@ -43,14 +44,5 @@ class WaitlistEntryModel {
         });
     }
 
-    public addToWaitlist(response:any,jsonObject:any){
-        this.model.create(jsonObject,(err) =>{
-            if (err){
-                response.send("Error while adding to waitlist");
-            }
-            response.send("Addition successful!!");
-        });
-
-    }
 }
 export {WaitlistEntryModel};
