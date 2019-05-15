@@ -1,14 +1,14 @@
 ## To run server
 
-cd WaytLess\expressNode
+cd WaytLess\expressNode  
 npm run dev
 
 ## To run mongo DB
 
-cd WaytLess\expressNode
+cd WaytLess\expressNode  
 mongod -port 27017 -dbpath ".\db"
 
 ## To load sample data
-cd WaytLess\expressNode\createDB
-mongo
+cd WaytLess\expressNode\createDB  
+mongo  
 load('createSampleData.js')
