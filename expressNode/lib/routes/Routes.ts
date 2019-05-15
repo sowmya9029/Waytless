@@ -17,10 +17,13 @@ export class Routes {
     public menuitem:MenuItemModel;
     public menuitemcat:MenuItemCategoryModel;
     public customerlist:CustomerModel;
+    public idGenerator:number;
+
     constructor(){
         this.waitlist = new WaitlistEntryModel();
         this.order = new OrderModel();
         //this.menuItem = new MenuItemModel();
+        this.idGenerator = 100;
         this.customerlist = new CustomerModel();
         this.restaurantlist = new RestaurantModel();
         this.menuitem = new MenuItemModel();
@@ -164,20 +167,17 @@ export class Routes {
         })
 
         // add to customer to DB
-            app.route('/customers').post((req: Request, res: Response) => {   
-                var newCustomer = {
-                    "firstName" : req.body.firstName,
-                    "lastName" : req.body.lastName,
-                    "address": {
-                        "street": req.body.street,
-                        "number": req.body.number, 
-                        "zip": req.body.zip,
-                        "city": req.body.city
-                },
-                    "phoneNumber": req.body.phoneNumber,
-                    "email": req.body.email,
+            app.route('/customers').post((req: Request, res: Response) => {
+                console.log(req.body);
+                var jsonObj = req.body;
+                jsonObj.customerId = this.idGenerator;
+                this.customerlist.model.create([jsonObj], (err) => {
+                    if (err) {
+                        console.log('object creation failed');
                     }
-                this.customerlist.addCustomer(res, newCustomer);
+                });
+                res.send("Customer Added! customerID is " + this.idGenerator.toString());
+                this.idGenerator++;
             })
 
         // to get all nearby restaurant
