@@ -20,38 +20,18 @@ export class ApiService {
 
   public getAllMenuItems(restaurantID: number): Observable<MenuItem[]> {
     return this.http.get(API_URL + '/menuitems/' + restaurantID)
-    // .subscribe(res => {
-    //   return res;
-    // });
       .pipe(map((response) => {
         const items: MenuItem[] = response.json();
-        
-        console.log(items);
-
         return items;
-        // return items.map(i => {
-        //   console.log('hello ' + i);
-        //   return new MenuItem(i);
-        // });
-
-        // return new MenuItem(item());
       }));
-      // .catch(this.handleError);
   }
 
   // public getAllRestaurants() {
-  //   return this.http
-  //   .get(API_URL + '/restaurantlist')
-  //   .map(response => {
-  //     const todos = response.json();
-  //     return todos.map((todo) => new Todo(todo));
-  //   })
-  //   .catch(this.handleError);
-  // }
-
-  // private handleError (error: Response | any) {
-  //   console.error('ApiService::handleError', error);
-  //   return Observable.throw(error);
+  //   return this.http.get(API_URL + '/restaurantlist')
+  //   .pipe(map(response => {
+  //     const restaurants: Restaurant[] = response.json();
+  //     return restaurants.map((todo) => new Restaurant(todo));
+  //   }));
   // }
 
 }
