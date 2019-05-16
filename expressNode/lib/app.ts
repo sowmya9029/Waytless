@@ -2,6 +2,7 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import { Routes } from "./routes/Routes";
+var cors = require('cors');
 
 class App {
 
@@ -10,6 +11,7 @@ class App {
 
     constructor() {
         this.app = express();
+        this.app.use(cors());
         this.config();      
         this.routePrv.routes(this.app);    
         
