@@ -3,6 +3,7 @@ import Mongoose = require("mongoose");
 
 import {ICustomerModel} from '../interfaces/ICustomerModel';
 import {AddressSchema} from './Address'
+import { number } from "prop-types";
 
 //let mongooseConnection = DataAccess.mongooseConnection;
 //let mongooseObj = DataAccess.mongooseInstance;
@@ -19,6 +20,7 @@ class CustomerModel {
     private createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
+                customerId: Number,
                 firstName : String,
                 lastName : String,
                 address : AddressSchema,
@@ -46,18 +48,6 @@ class CustomerModel {
             response.json(itemArray) ;
         });
     }
-
-    // add customer to DB
-    public addCustomer(response:any,jsonObject:any){
-        this.model.create(jsonObject,(err) =>{
-            if (err){
-                response.send("Error while adding customer to DB");
-            }
-            response.send("Addition successful!!");
-        });
-
-    }
-
 
 }
 export {CustomerModel};

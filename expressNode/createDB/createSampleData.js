@@ -464,6 +464,7 @@ customerCollection.remove({})
 
 customerCollection.insert(
 {
+        customerId : 1,
         firstName : "John",
         lastName : "Doe",
         address: {
@@ -478,6 +479,7 @@ customerCollection.insert(
 
 customerCollection.insert(
         {
+                customerId : 2,
                 firstName : "Peter",
                 lastName : "Johnson",
                 address: {
@@ -492,6 +494,7 @@ customerCollection.insert(
 
 customerCollection.insert(
         {
+                customerId : 3,
                 firstName : "Mary",
                 lastName : "Gates",
                 address: {
@@ -506,6 +509,7 @@ customerCollection.insert(
 
         customerCollection.insert(
         {
+                customerId : 4,
                 firstName : "John",
                 lastName : "Doe",
                 address: {
@@ -520,6 +524,7 @@ customerCollection.insert(
 
        customerCollection.insert(
                 {
+                        customerId : 5,
                         firstName : "Bill",
                         lastName : "Gates",
                         address: {

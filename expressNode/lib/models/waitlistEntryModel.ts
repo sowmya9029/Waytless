@@ -21,6 +21,7 @@ class WaitlistEntryModel {
                 restaurantID: Number,
                 groupSize: Number,
                 joinTime: Date,
+                quotedtime: Date,
                 email : String,
                 phone : String,
                 notified: Boolean,
@@ -33,6 +34,13 @@ class WaitlistEntryModel {
         this.model = Mongoose.model<IWaitListEntryModel>("waitlist", this.schema);
     }
 
+    public retrieveAllWaitlists(response:any): any {
+        var query = this.model.find({});
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
+        });
+    }
+
     public retrieveAllWaitlistEntriesPerRestaurant(response:any, filter:Object) {
         var query = this.model.find(filter);
         query.exec( (err, itemArray) => {
@@ -43,14 +51,5 @@ class WaitlistEntryModel {
         });
     }
 
-    public addToWaitlist(response:any,jsonObject:any){
-        this.model.create(jsonObject,(err) =>{
-            if (err){
-                response.send("Error while adding to waitlist");
-            }
-            response.send("Addition successful!!");
-        });
-
-    }
 }
 export {WaitlistEntryModel};

@@ -17,10 +17,13 @@ export class Routes {
     public menuitem:MenuItemModel;
     public menuitemcat:MenuItemCategoryModel;
     public customerlist:CustomerModel;
+    public idGenerator:number;
+
     constructor(){
         this.waitlist = new WaitlistEntryModel();
         this.order = new OrderModel();
         //this.menuItem = new MenuItemModel();
+        this.idGenerator = 100;
         this.customerlist = new CustomerModel();
         this.restaurantlist = new RestaurantModel();
         this.menuitem = new MenuItemModel();
@@ -127,12 +130,18 @@ export class Routes {
                 this.menuitem.updateMenuBaseOnRestaurantAndMenuId(res,searchCriteria,toBeChanged);
             })
 
+        // to get all the waitlist entries
+        app.route('/waitlist/').get((req: Request, res: Response) => {
+            console.log('Query all wait lists');
+
+            this.waitlist.retrieveAllWaitlists(res);
+        })
 
         // to get all the waitlist entries in a restaurant
         app.route('/waitlist/:restId').get((req: Request, res: Response) => {
             var restuarantId = req.params.restId;
             
-            console.log("Get all waitlist items from restaurant with id: " + restuarantId);
+            console.log("Query all waitlist items from restaurant with id: " + restuarantId);
 
             this.waitlist.retrieveAllWaitlistEntriesPerRestaurant(res,{restaurantID:restuarantId});
         })
@@ -149,6 +158,13 @@ export class Routes {
         this.customerlist.getAllCustomers(res);
     })
 
+        // get all customer with given ID
+        app.route('/customers/:customerId').get((req: Request, res: Response) => {
+            var customerId = req.params.customerId;
+            console.log("Get all customer using ID: " + customerId);
+            this.customerlist.getAllCustomersOnFilter(res,{ "customerId": customerId });
+        })
+
         // get all customers with given last name
         app.route('/customers/lastName/:lastName').get((req: Request, res: Response) => {
             var lastName = req.params.lastName;
@@ -164,20 +180,17 @@ export class Routes {
         })
 
         // add to customer to DB
-            app.route('/customers').post((req: Request, res: Response) => {   
-                var newCustomer = {
-                    "firstName" : req.body.firstName,
-                    "lastName" : req.body.lastName,
-                    "address": {
-                        "street": req.body.street,
-                        "number": req.body.number, 
-                        "zip": req.body.zip,
-                        "city": req.body.city
-                },
-                    "phoneNumber": req.body.phoneNumber,
-                    "email": req.body.email,
+            app.route('/customers').post((req: Request, res: Response) => {
+                console.log(req.body);
+                var jsonObj = req.body;
+                jsonObj.customerId = this.idGenerator;
+                this.customerlist.model.create([jsonObj], (err) => {
+                    if (err) {
+                        console.log('object creation failed');
                     }
-                this.customerlist.addCustomer(res, newCustomer);
+                });
+                res.send("Customer Added! customerID is " + this.idGenerator.toString());
+                this.idGenerator++;
             })
 
         // to get all nearby restaurant
@@ -189,40 +202,28 @@ export class Routes {
 
         // add to restaurant of a particular restaurant
         app.route('/restaurantlist').post((req: Request, res: Response) => {   
-            var restaurantlist = {
-                "restaurantID" : req.body.restaurantID,
-                        "name": req.body.name,
-                        "address": {
-                                "street": req.body.street,
-                                "number": req.body.number, 
-                                "zip": req.body.zip,
-                                "city": req.body.city
-                        },
-                        "phoneNumber": req.body.phoneNumber,
-                        "email": req.body.email,
-                        "rating": req.body.rating
-            }
-            this.waitlist.addToWaitlist(res,restaurantlist);
+            console.log(req.body);
+            var jsonObj = req.body;
+            this.restaurantlist.model.create([jsonObj], (err) => {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send("Restaurant Added.");
         })
        
 
         //add to waitlist of a particular restaurant
-                app.route('/waitlist').post((req: Request, res: Response) => {
-                    var waitlist_entry = {
-                        "customerName":req.body.customerName,
-                        "restaurantID":req.body.restaurantID,
-                        "groupSize":req.body.groupSize,
-                        "joinTime": req.body.joinTime,
-                        "email":req.body.email,
-                        "phone":req.body.phone,
-                        "notified":req.body.notified,
-                        "confirmed":req.body.confirmed
-                    }
-                    this.waitlist.addToWaitlist(res,waitlist_entry);
-                })
-
-
-
+        app.route('/waitlist').post((req: Request, res: Response) => {
+            console.log(req.body);
+            var jsonObj = req.body;
+            this.waitlist.model.create([jsonObj], (err) => {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send("You are added to the waitlist.");
+        })
 
         // retrive order cart for a customer in a restaurant's cart
         app.route('/orders/:restaurantId/:customerId').get((req: Request, res: Response) =>{
