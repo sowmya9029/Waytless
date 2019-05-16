@@ -3,7 +3,7 @@ import Mongoose = require("mongoose");
 
 import {ICustomerModel} from '../interfaces/ICustomerModel';
 import {AddressSchema} from './Address'
-import { number } from "prop-types";
+// import { number } from "prop-types";
 
 //let mongooseConnection = DataAccess.mongooseConnection;
 //let mongooseObj = DataAccess.mongooseInstance;
