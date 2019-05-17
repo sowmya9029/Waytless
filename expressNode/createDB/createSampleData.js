@@ -9,14 +9,14 @@ restCollection.remove({})
                 {
                         restaurantID : 1,
                         name: "Din Tai Fung",
-                        cuisine:"chinese",
+                        cuisine:"Chinese",
                         address: {
                                 "street": "Bellevue Way E",
-                                "number": "100", 
-                                "zip": "98005",
+                                "number": "700", 
+                                "zip": "98004",
                                 "city": "Bellevue"
                         },
-                        phoneNumber: 4251112222,
+                        phoneNumber: 4256981095,
                         email: "admin@dintaifung.com",
                         rating: 5
                 }
@@ -24,15 +24,15 @@ restCollection.remove({})
        restCollection.insert(
                 {
                         restaurantID : 1,
-                        name: "Ruchi",
+                        name: "Ruchi Indian Restaurant",
                         cuisine:"Indian",
                         address: {
-                                "street": "Bellevue  SE",
-                                "number": "1002", 
-                                "zip": "98012",
+                                "street": "156th Ave NE",
+                                "number": "1360", 
+                                "zip": "98007",
                                 "city": "Bellevue"
                         },
-                        phoneNumber: 4251112222,
+                        phoneNumber: 4257462144,
                         email: "admin@ruchi.com",
                         rating: 5
                 }
@@ -40,16 +40,16 @@ restCollection.remove({})
         restCollection.insert(
                 {
                         restaurantID : 2,
-                        name: "Oliver Garden",
-                        cuisine:"Itallian",
+                        name: "Olive Garden",
+                        cuisine:"Italian",
                         address: {
-                                "street": "Kirkland Way E",
-                                "number": "200", 
-                                "zip": "98007",
+                                "street": "NE 124th St",
+                                "number": "11325", 
+                                "zip": "98034",
                                 "city": "Kirkland"
                         },
-                        phoneNumber: 4251112222,
-                        email: "admin@og.com",
+                        phoneNumber: 4258207740,
+                        email: "admin@olivegarden.com",
                         rating: 4
                 }
         )
@@ -59,13 +59,13 @@ restCollection.remove({})
                         name: "Southern Spice",
                         cuisine:"Indian",
                         address: {
-                                "street": "Redmond Way E",
-                                "number": "300", 
-                                "zip": "98008",
+                                "street": "E Lake Sammamish Pkwy NE",
+                                "number": "6536", 
+                                "zip": "98052",
                                 "city": "Redmond"
                         },
-                        phoneNumber: 4251112222,
-                        email: "admin@og.com",
+                        phoneNumber: 4257029192,
+                        email: "admin@southernspicewa.com",
                         rating: 3
                 }
         )
@@ -76,13 +76,13 @@ restCollection.remove({})
                         name: "Mediterranean Kitchen",
                         cuisine:"Mediterranean",
                         address: {
-                                "street": "Alderwood Way",
-                                "number": "500", 
+                                "street": "33rd Ave W",
+                                "number": "18415", 
                                 "zip": "98009",
                                 "city": "Lynwood"
                         },
-                        phoneNumber: 4251112222,
-                        email: "admin@mk.com",
+                        phoneNumber: 4252457551,
+                        email: "admin@mediterraneankitchens.net",
                         rating: 4
                 }
         )
@@ -336,7 +336,7 @@ waitlistCollection.insert(
         groupSize: 3,
         joinTime: new Date("February 4, 2019 16:00:00"),
         quotedtime: new Date("February 4, 2019 16:10:00"),
-        email : "abc@abc.com",
+        email : "maryk@yahoo.com",
         phone : "2062112222",
         notified: true,
         confirmed: true
@@ -466,6 +466,7 @@ customerCollection.remove({})
 
 customerCollection.insert(
 {
+        customerId : 1,
         firstName : "John",
         lastName : "Doe",
         address: {
@@ -474,12 +475,13 @@ customerCollection.insert(
                 "zip": "98005",
                 "city": "Bellevue"
         },
-        phone : 2062112222,
+        phone : "2062112222",
         email : "abc@abc.com"
 })
 
 customerCollection.insert(
         {
+                customerId : 2,
                 firstName : "Peter",
                 lastName : "Johnson",
                 address: {
@@ -494,6 +496,7 @@ customerCollection.insert(
 
 customerCollection.insert(
         {
+                customerId : 3,
                 firstName : "Mary",
                 lastName : "Gates",
                 address: {
@@ -508,6 +511,7 @@ customerCollection.insert(
 
         customerCollection.insert(
         {
+                customerId : 4,
                 firstName : "John",
                 lastName : "Doe",
                 address: {
@@ -522,6 +526,7 @@ customerCollection.insert(
 
        customerCollection.insert(
                 {
+                        customerId : 5,
                         firstName : "Bill",
                         lastName : "Gates",
                         address: {
@@ -543,7 +548,7 @@ orderCollection.remove({})
 orderCollection.insert({
         "menuItemId" : 1,
         "quantity": 1,
-        "orderTime": "2019-02-05T00:15:00.000Z",
+        "orderTime": "2019-02-05T12:15:00.000Z",
         "customerId": 1,
         "restaurantID": 2
 })
@@ -551,7 +556,7 @@ orderCollection.insert({
 orderCollection.insert({
         "menuItemId" : 2,
         "quantity": 1,
-        "orderTime": "2019-02-05T00:15:00.000Z",
+        "orderTime": "2019-02-05T12:15:00.000Z",
         "customerId": 1,
         "restaurantID": 2
 })
@@ -559,7 +564,7 @@ orderCollection.insert({
 orderCollection.insert({
         "menuItemId" : 3,
         "quantity": 1,
-        "orderTime": "2019-02-05T00:15:00.000Z",
+        "orderTime": "2019-02-05T12:15:00.000Z",
         "customerId": 1,
         "restaurantID": 2
 })
