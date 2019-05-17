@@ -1,5 +1,4 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from '../../DataAccess';
 import { IMenuItemModel } from "../interfaces/IMenuItemModel";
 
 

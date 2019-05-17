@@ -148,7 +148,9 @@ menuitemsCollection.insert(
         price: 10.99,
       description: "Fried pork chop with a side of rice",
       restaurantID: 1,
-      itemCategory:{categoryId:"1",
+      itemCategory:
+      {
+       categoryId:"1",
       categoryName:"Appetizer",
       description:'description here'}
 }

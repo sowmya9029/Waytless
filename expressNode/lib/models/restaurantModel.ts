@@ -1,7 +1,5 @@
 import Mongoose = require("mongoose");
-import {WaitlistEntryModel} from './WaitlistEntryModel';
 import { IRestaurantModel } from "../interfaces/IRestaurantModel";
-import {MenuItemModel} from "./MenuItemModel";
 import {AddressSchema} from './Address'
 
 
