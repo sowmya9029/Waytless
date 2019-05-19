@@ -170,7 +170,7 @@ menuitemsCollection.insert(
 
     menuitemsCollection.insert(
         {       
-              itemID: 1,
+              itemID: 5,
               itemName: "Item A",
               price: 5.99,
               description: "Cucumbers marinated in sauce",
@@ -184,11 +184,11 @@ menuitemsCollection.insert(
         )
         menuitemsCollection.insert(
         {
-                itemID: 2,
+                itemID: 6,
                 itemName: "Item B",
                 price: 7.99,
                 description: "Vegetarian cold salad",
-                restaurantID: 1,
+                restaurantID: 2,
                 itemCategory:{categoryId:"2",
                 categoryName:"Entree",
                 description:'description here'}
@@ -196,7 +196,7 @@ menuitemsCollection.insert(
         )
         menuitemsCollection.insert(
         {
-                itemID: 3,
+                itemID: 7,
                 itemName: "Item C",
                 price: 10.99,
               description: "Fried pork chop with a side of rice",
@@ -209,7 +209,7 @@ menuitemsCollection.insert(
         )
         menuitemsCollection.insert(
         {
-                itemID: 4,
+                itemID: 8,
                 itemName: "Item D",
                   price: 5.99,
                   description: "Cucumbers marinated in sauce",
@@ -224,7 +224,7 @@ menuitemsCollection.insert(
 
         menuitemsCollection.insert(
                 {       
-                        itemID: 1,
+                        itemID: 9,
                       itemName: "Item A",
                       price: 5.99,
                       description: "Cucumbers marinated in sauce",
@@ -237,7 +237,7 @@ menuitemsCollection.insert(
                 )
                 menuitemsCollection.insert(
                 {
-                        itemID: 2,
+                        itemID: 10,
                         itemName: "Item B",
                         price: 7.99,
                         description: "Vegetarian cold salad",
@@ -250,7 +250,7 @@ menuitemsCollection.insert(
                 )
                 menuitemsCollection.insert(
                 {
-                        itemID: 3,
+                        itemID: 11,
                         itemName: "Item C",
                         price: 10.99,
                         description: "Fried pork chop with a side of rice",
@@ -263,7 +263,7 @@ menuitemsCollection.insert(
                 )
                 menuitemsCollection.insert(
                 {
-                        itemID: 4,
+                        itemID: 12,
                         itemName: "Item D",
                         price: 5.99,
                           description: "Cucumbers marinated in sauce",
@@ -277,7 +277,7 @@ menuitemsCollection.insert(
 
                 menuitemsCollection.insert(
                         {       
-                                itemID: 1,
+                                itemID: 13,
                               itemName: "Item A",
                               price: 5.99,
                               description: "Cucumbers marinated in sauce",
@@ -289,7 +289,7 @@ menuitemsCollection.insert(
                         )
                         menuitemsCollection.insert(
                         {
-                                itemID: 2,
+                                itemID: 14,
                                 itemName: "Item B",
                                 price: 7.99,
                                 description: "Vegetarian cold salad",
@@ -301,7 +301,7 @@ menuitemsCollection.insert(
                         )
                         menuitemsCollection.insert(
                         {
-                                itemID: 3,
+                                itemID: 15,
                                 itemName: "Item C",
                                 price: 10.99,
                               description: "Fried pork chop with a side of rice",
@@ -313,7 +313,7 @@ menuitemsCollection.insert(
                         )
                         menuitemsCollection.insert(
                         {
-                                itemID: 4,
+                                itemID: 16,
                                 itemName: "Item D",
                                   price: 5.99,
                                   description: "Cucumbers marinated in sauce",

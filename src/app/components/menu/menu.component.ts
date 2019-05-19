@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'app/_models';
 import { ApiService } from 'app/api.service';
+import { Order } from 'app/_models/order';
 
 @Component({
   selector: 'app-menu',
@@ -11,6 +12,7 @@ import { ApiService } from 'app/api.service';
 export class MenuComponent implements OnInit {
 
   restaurantID: number;
+  customerNumber: number;
   private sub: any;
 
   private restaurantName: string;
@@ -22,10 +24,12 @@ export class MenuComponent implements OnInit {
   private totalPrice: number;
 
   constructor(
+    private router: Router,
     private apiService: ApiService,
     private route: ActivatedRoute) {
     this.restaurantID = 0;
     this.totalPrice = 0;
+    this.customerNumber = 2;
     this.sub = this.route.params.subscribe(params => {
       this.restaurantID += params['id'];
       
@@ -60,6 +64,7 @@ export class MenuComponent implements OnInit {
   }
 
   private addToCart(item: MenuItem) {
+    console.log('adding for: ' + item.itemID);
     if (this.orders.get(item.itemID) === undefined) {
       this.orders.set(item.itemID, 1);
     } else {
@@ -69,10 +74,35 @@ export class MenuComponent implements OnInit {
   }
 
   private deleteFromCart(item: MenuItem) {
-    let val = this.orders.get(item.itemID);
-    if (val !== undefined && val > 0) {
-      this.orders.set(item.itemID, this.orders.get(item.itemID) - 1);
-      this.totalPrice = Number.parseFloat((this.totalPrice - item.price).toFixed(2));
+    console.log('removing for: ' + item.itemID);
+    let count = this.orders.get(item.itemID);
+    if (count !== undefined) {
+      let newCount = count - 1;
+      if (newCount == 0) {
+        this.orders.delete(item.itemID);
+      } else {
+        this.orders.set(item.itemID, newCount);
+        this.totalPrice = Number.parseFloat((this.totalPrice - item.price).toFixed(2));
+      }
     }
+  }
+
+  private makeOrder() {
+    let confirmedOrders = [];
+    let m = this.orders;
+    console.log('make orders!');
+    m.forEach((k, v, m) => {
+      console.log(`key:${k} value:${v} map:${m}`);
+      confirmedOrders.push({
+        menuItemId: v,
+        quantity: k,
+        orderTime: new Date(),
+        customerId : this.customerNumber,
+        restaurantID : this.restaurantID
+      });
+    })
+    this.apiService.makeOrders(confirmedOrders);
+    console.log('done posting orders!');
+    this.router.navigate([`/order-cart/` + this.restaurantID]);
   }
 }

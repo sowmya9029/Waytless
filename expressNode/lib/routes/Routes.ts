@@ -241,7 +241,7 @@ export class Routes {
             
 
             var jsonObj = {
-                "menuitemID" : req.body.menuitemID,
+                "menuItemId" : req.body.menuitemId,
                 "quantity" : req.body.quantity,
                 "orderTime": req.body.orderTime,
                 "customerId" : req.body.customerId,
