@@ -21,7 +21,7 @@ const routes: Routes = [
   //{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'home', component: HomeComponent },
     { path: 'waitlist-entry', component: WaitlistEntryComponent},
-     { path: 'order-cart',component: OrderCartComponent}, 
+     { path: 'order-cart/:id',component: OrderCartComponent}, 
    { path: '', redirectTo: '/home', pathMatch: 'full'},
    { path: 'manageWaitlist', component: manageWaitlistComponent}
   ];

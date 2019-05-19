@@ -84,7 +84,7 @@
   </div>
 
   <mat-card-actions>
-    <button mat-raised-button class = "confirmBtn" routerLink="/order-cart" color="primary">Confirm order</button>
+    <button mat-raised-button class = "confirmBtn" (click)="makeOrder()" color="primary">Confirm order</button>
   </mat-card-actions>
   </mat-card-content>
 </mat-card>
