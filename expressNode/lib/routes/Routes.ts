@@ -137,6 +137,23 @@ export class Routes {
             this.waitlist.retrieveAllWaitlists(res);
         })
 
+
+        // set customer as notifed in waitlist
+        app.route('/waitlist/:restaurantID/notify/:queueID').get((req:Request,res:Response) => {
+            var restaurantId = req.params.restaurantID;
+            var queueID = req.params.queueID;
+            console.log("Set customer as notified for " + queueID + " in " + restaurantId);
+            this.waitlist.notifyRes(res, {restaurantID:restaurantId, queueID:queueID});
+        })
+
+        // set customer as confirmed in waitlist
+        app.route('/waitlist/:restaurantID/confirm/:queueID').get((req:Request,res:Response) => {
+            var restaurantId = req.params.restaurantID;
+            var queueID = req.params.queueID;
+            console.log("Set customer as confirmed for " + queueID + " in " + restaurantId);
+            this.waitlist.confirmRes(res, {restaurantID:restaurantId, queueID:queueID});
+        })
+
         // to get all the waitlist entries in a restaurant
         app.route('/waitlist/:restId').get((req: Request, res: Response) => {
             var restuarantId = req.params.restId;
@@ -218,7 +235,6 @@ export class Routes {
             res.send("Restaurant Added.");
         })
        
-
         //add to waitlist of a particular restaurant
         app.route('/waitlist').post((req: Request, res: Response) => {
             console.log(req.body);
