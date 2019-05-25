@@ -72,4 +72,9 @@ export class ApiService {
       }));
   }
 
+  public notifyCustomer(restaurantID: number, queueID: number) {
+    console.log("notifying customer..." + queueID);
+    return this.http.put(API_URL + '/waitlist/' + restaurantID + '/notify/' + queueID, {});
+  }
+
 }
