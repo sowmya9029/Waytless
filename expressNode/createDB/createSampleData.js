@@ -23,7 +23,7 @@ restCollection.remove({})
         )
        restCollection.insert(
                 {
-                        restaurantID : 1,
+                        restaurantID : 2,
                         name: "Ruchi Indian Restaurant",
                         cuisine:"Indian",
                         address: {
@@ -39,7 +39,7 @@ restCollection.remove({})
         )
         restCollection.insert(
                 {
-                        restaurantID : 2,
+                        restaurantID : 3,
                         name: "Olive Garden",
                         cuisine:"Italian",
                         address: {
@@ -55,7 +55,7 @@ restCollection.remove({})
         )
         restCollection.insert(
                 {
-                        restaurantID : 1,
+                        restaurantID : 4,
                         name: "Southern Spice",
                         cuisine:"Indian",
                         address: {
@@ -72,7 +72,7 @@ restCollection.remove({})
     
         restCollection.insert(
                 {
-                        restaurantID :4,
+                        restaurantID :5,
                         name: "Mediterranean Kitchen",
                         cuisine:"Mediterranean",
                         address: {

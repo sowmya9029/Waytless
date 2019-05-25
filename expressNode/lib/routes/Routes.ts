@@ -61,7 +61,7 @@ export class Routes {
                     "description": req.body.description,
                     "restaurantID":req.body.restaurantID,
                     "itemCategory":
-                    {"categoryId":req.body.categoryId,i
+                    {"categoryId":req.body.categoryId,
                     "categoryName":req.body.categoryName,
                     "description":req.body.description}
                 }
@@ -198,6 +198,13 @@ export class Routes {
             var city = req.params.city;
             console.log("Get all restaurants  with city: " + city);
             this.restaurantlist.retrieveAllRestaurantsListBasedOnLocation(res,{ "address.city": city });
+        })
+
+          // to restaurant by id
+          app.route('/restaurantlist/id/:id').get((req: Request, res: Response) => {
+            var id = req.params.id;
+            console.log("Get all restaurants  with id: " + id);
+            this.restaurantlist.retrieveAllRestaurantsListBasedOnId(res,{ "restaurantID": id });
         })
 
         app.route('/restaurantlist').post((req: Request, res: Response) => {   
