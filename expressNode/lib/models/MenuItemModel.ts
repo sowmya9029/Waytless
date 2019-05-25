@@ -1,8 +1,6 @@
 import Mongoose = require("mongoose");
 import { IMenuItemModel } from "../interfaces/IMenuItemModel";
 
-
-
 class MenuItemModel {
     public schema:any;
     public model:any;
@@ -60,7 +58,6 @@ public retrieveMenuBasedOnRestaurantAndCategory(response:any, filter:Object) {
             }
             response.send("Addition successful!!");
         });
-
     }
 
    

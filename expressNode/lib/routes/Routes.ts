@@ -61,7 +61,7 @@ export class Routes {
                     "description": req.body.description,
                     "restaurantID":req.body.restaurantID,
                     "itemCategory":
-                    {"categoryId":req.body.categoryId,
+                    {"categoryId":req.body.categoryId,i
                     "categoryName":req.body.categoryName,
                     "description":req.body.description}
                 }
@@ -200,7 +200,6 @@ export class Routes {
             this.restaurantlist.retrieveAllRestaurantsListBasedOnLocation(res,{ "address.city": city });
         })
 
-        // add to restaurant of a particular restaurant
         app.route('/restaurantlist').post((req: Request, res: Response) => {   
             console.log(req.body);
             var jsonObj = req.body;
