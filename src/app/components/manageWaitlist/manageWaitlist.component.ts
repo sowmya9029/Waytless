@@ -16,33 +16,12 @@ export class manageWaitlistComponent implements OnInit {
   editField: string;
   restaurantId: number;
   restaurantName: string;
+  waitlist: Waitlist[];
 
-  private waitlist: Waitlist[];
-
-/*
-  changeValue(id: number, property: string, event: any) {
-    this.editField = event.target.textContent;
+  private notify(queueID: number) {
+    console.log("notify" + queueID);
+    this.apiService.notifyCustomer(this.restaurantId, queueID);
   }
-
-  updateList(id: number, property: string, event: any) {
-    const editField = event.target.textContent;
-    this.entries[id][property] = editField;
-  }
-
-  remove(id: any) {
-    this.awaitingPersonList.push(this.entries[id]);
-    this.entries.splice(id, 1);
-  }
-
-  add() {
-    if (this.entries.length > 0) {
-      this.awaitingPersonList[0][1] = this.entries.length+1;
-      const person = this.awaitingPersonList[0];
-      this.entries.push(person);
-      this.awaitingPersonList.splice(0, 1);
-    }
-  }
-*/
 
   constructor(
     private router: Router,
