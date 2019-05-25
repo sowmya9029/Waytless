@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { MenuItem } from './_models';
 import { map } from "rxjs/operators";
 import { Order } from './_models/order';
+import { Restaurant } from './_models/restaurant';
+import { Waitlist } from './_models/waitlist';
 
 const API_URL = environment.apiUrl;
 
@@ -52,12 +54,22 @@ export class ApiService {
       }));
   }
 
-  // public getAllRestaurants() {
-  //   return this.http.get(API_URL + '/restaurantlist')
-  //   .pipe(map(response => {
-  //     const restaurants: Restaurant[] = response.json();
-  //     return restaurants.map((todo) => new Restaurant(todo));
-  //   }));
-  // }
+  public getAllRestaurants() {
+    return this.http.get(API_URL + '/restaurantlist')
+    .pipe(map(response => {
+      const restaurants: Restaurant[] = response.json();
+      console.log(restaurants);
+      return restaurants;
+    }));
+  }
+
+  public getWaitlist(restaurantID: number): Observable<Waitlist[]> {
+    return this.http.get(API_URL + '/waitlist/' + restaurantID)
+      .pipe(map((response) => {
+        const items: Waitlist[] = response.json();
+        console.log(Waitlist);
+        return items;
+      }));
+  }
 
 }

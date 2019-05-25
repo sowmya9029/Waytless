@@ -1,53 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
-
-interface Entry {
-  id: number,
-  name: string;
-  groupsize: number;
-  email: string;
-  phone: string;
-  jointime: Date;
-  quotedtime: Date;
-  notified: boolean;
-  confirmed: boolean;
-}
-
-const ENTRIES: Entry[] = [
-  {
-    id: 1,
-    name: "Mary",
-    groupsize: 3,
-    jointime: new Date("February 4, 2019 16:00:00"),
-    quotedtime: new Date("February 4, 2019 16:10:00"),
-    email : "abc@abc.com",
-    phone : "2062112222",
-    notified: true,
-    confirmed: true
-  },
-  {
-    id: 2,
-    name: "John",
-    groupsize: 2,
-    jointime: new Date("February 4, 2019 16:10:00"),
-    quotedtime: new Date("February 4, 2019 16:20:00"),
-    email : "abc@abc.com",
-    phone : "2062112222",
-    notified: true,
-    confirmed: true
-  },
-  {
-    id: 3,
-    name: "Austin",
-    groupsize: 3,
-    jointime: new Date("February 4, 2019 16:15:00"),
-    quotedtime: new Date("February 4, 2019 16:25:00"),
-    email : "abc@abc.com",
-    phone : "2062112222",
-    notified: true,
-    confirmed: true
-  }
-];
+import { ApiService } from 'app/api.service';
+import { Restaurant } from 'app/_models/restaurant';
+import { Waitlist } from 'app/_models/waitlist';
 
 @Component({
   selector: 'app-manageWaitlist',
@@ -58,34 +14,12 @@ const ENTRIES: Entry[] = [
 export class manageWaitlistComponent implements OnInit {
 
   editField: string;
-  entries = ENTRIES;
+  restaurantId: number;
+  restaurantName: string;
 
-  awaitingPersonList: Array<any> = [
-    {
-      id: 4,
-      name: "Bill Gates",
-      groupsize: 4,
-      jointime: new Date("February 4, 2019 17:15:00"),
-      quotedtime: new Date("February 4, 2019 17:25:00"),
-      email : "abc@abc.com",
-      phone : "2062112222",
-      notified: false,
-      confirmed: false
-    },
-    {
-      id: 5,
-      name: "Mary Gates",
-      groupsize: 5,
-      jointime: new Date("February 4, 2019 18:15:00"),
-      quotedtime: new Date("February 4, 2019 18:25:00"),
-      email : "abc@abc.com",
-      phone : "2062112222",
-      notified: false,
-      confirmed: false
-    }
-  ];
+  private waitlist: Waitlist[];
 
-
+/*
   changeValue(id: number, property: string, event: any) {
     this.editField = event.target.textContent;
   }
@@ -108,10 +42,25 @@ export class manageWaitlistComponent implements OnInit {
       this.awaitingPersonList.splice(0, 1);
     }
   }
+*/
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private apiService: ApiService,
+    private route: ActivatedRoute) {
+      this.route.params.subscribe(params => {
+        this.restaurantId = params['id'];
+        this.apiService.getAllRestaurants().subscribe(restItems => {
+          this.restaurantName = restItems[this.restaurantId].name;
+        })
+        this.apiService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
+          this.waitlist = waitlistItems;
+        })
+      }
+      )}
 
   ngOnInit() {
+
   }
 
 }
