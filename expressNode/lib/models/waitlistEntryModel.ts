@@ -17,6 +17,7 @@ class WaitlistEntryModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
+                queueID: Number,
                 customerName: String,
                 restaurantID: Number,
                 groupSize: Number,
@@ -39,6 +40,24 @@ class WaitlistEntryModel {
         query.exec( (err, itemArray) => {
             response.json(itemArray) ;
         });
+    }
+
+    public notifyRes(response:any,filter:Object): any {
+        this.model.findOneAndUpdate(filter, { $set: { notified: true} }, (err) =>{
+            if (err){
+                response.send("Error while set notified to true");
+            }
+            response.send("Mark customer as notified successful!");
+        })
+    }
+    
+    public confirmRes(response:any,filter:Object): any {
+        this.model.findOneAndUpdate(filter, { $set: { confirmed: true} }, (err) =>{
+            if (err){
+                response.send("Error while set confirmed to true");
+            }
+            response.send("Mark customer as confirmed successful!");
+        })
     }
 
     public retrieveAllWaitlistEntriesPerRestaurant(response:any, filter:Object) {

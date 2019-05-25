@@ -331,6 +331,7 @@ waitlistCollection.remove({})
 
 waitlistCollection.insert(
 {
+        queueID: 1,
         customerName: "Mary",
         restaurantID: 1,
         groupSize: 3,
@@ -338,13 +339,29 @@ waitlistCollection.insert(
         quotedtime: new Date("February 4, 2019 16:10:00"),
         email : "maryk@yahoo.com",
         phone : "2062112222",
-        notified: true,
-        confirmed: true
+        notified: false,
+        confirmed: false
 }
 )
 
 waitlistCollection.insert(
         {
+                queueID: 2,
+                customerName: "John",
+                restaurantID: 1,
+                groupSize: 3,
+                joinTime: new Date("February 4, 2019 16:10:00"),
+                quotedtime: new Date("February 4, 2019 16:20:00"),
+                email : "john@yahoo.com",
+                phone : "2062112222",
+                notified: false,
+                confirmed: false
+        }
+        )
+
+waitlistCollection.insert(
+        {
+        queueID: 1,
         customerName: "Ken",
         restaurantID: 2,
         groupSize: 2,
@@ -360,6 +377,7 @@ waitlistCollection.insert(
 
 waitlistCollection.insert(
 {
+        queueID: 2,
         customerName: "Doug",
         restaurantID: 2,
         groupSize: 5,
@@ -367,13 +385,14 @@ waitlistCollection.insert(
         quotedtime: new Date("February 4, 2019 16:10:00"),
         email : "abc@abc.com",
         phone : "2062112222",
-        notified: true,
-        confirmed: true
+        notified: false,
+        confirmed: false
 }
 )
 
 waitlistCollection.insert(
         {
+                queueID: 3,
                 customerName: "Darren",
                 restaurantID: 2,
                 groupSize: 3,
@@ -388,6 +407,7 @@ waitlistCollection.insert(
         
         waitlistCollection.insert(
                 {
+                queueID: 4,
                 customerName: "Lisa",
                 restaurantID: 2,
                 groupSize: 2,
@@ -395,14 +415,15 @@ waitlistCollection.insert(
                 quotedtime: new Date("February 4, 2019 16:10:00"),
                 email : "abc@abc.com",
                 phone : "2062112222",
-                notified: true,
-                confirmed: true
+                notified: false,
+                confirmed: false
                 }
                 )
         
         
         waitlistCollection.insert(
         {
+                queueID: 1,
                 customerName: "Nico",
                 restaurantID: 3,
                 groupSize: 5,
@@ -417,6 +438,7 @@ waitlistCollection.insert(
 
         waitlistCollection.insert(
                 {
+                        queueID: 2,
                         customerName: "Sam",
                         restaurantID: 3,
                         groupSize: 3,
@@ -431,6 +453,7 @@ waitlistCollection.insert(
                 
                 waitlistCollection.insert(
                         {
+                        queueID: 3,
                         customerName: "Tony",
                         restaurantID: 3,
                         groupSize: 2,
@@ -446,6 +469,7 @@ waitlistCollection.insert(
                 
                 waitlistCollection.insert(
                 {
+                        queueID: 4,
                         customerName: "May",
                         restaurantID: 3,
                         groupSize: 5,

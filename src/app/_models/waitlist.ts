@@ -1,6 +1,7 @@
 import { Time } from "@angular/common";
 
 export class Waitlist {
+    queueID: number;
     customerName: string;
     restaurantID: number;
     groupSize: number;

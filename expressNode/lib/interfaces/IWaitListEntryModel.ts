@@ -1,6 +1,7 @@
 import Mongoose = require("mongoose");
 
 interface IWaitListEntryModel extends Mongoose.Document {
+        queueID: Number,
         customerName: String,
         restaurantID: Number,
         groupSize: Number,
