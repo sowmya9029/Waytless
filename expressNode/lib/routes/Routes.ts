@@ -61,7 +61,7 @@ export class Routes {
                     "description": req.body.description,
                     "restaurantID":req.body.restaurantID,
                     "itemCategory":
-                    {"categoryId":req.body.categoryId,i
+                    {"categoryId":req.body.categoryId,
                     "categoryName":req.body.categoryName,
                     "description":req.body.description}
                 }
