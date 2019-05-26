@@ -10,7 +10,7 @@
           <h1 class="display-4"><a href="/menu/{{restaurantId}}">{{restaurantName}}</a> Waitlist</h1>
           <div class="row">
               <div class="col-lg-6"><p class="lead">Number of groups: <span class="badge badge-secondary badge-pill">{{ waitlist?.length }}</span></p></div>
-              <div class="col-lg-6"><p class="lead">Average Wait Time (in minutes): <span class="badge badge-secondary badge-pill">0</span></p></div>
+              <div class="col-lg-6"><p class="lead">Average Wait Time (in minutes): <span class="badge badge-secondary badge-pill">{{avgWaitMin}}</span></p></div>
           </div>
           
           <a mdbBtn color="primary" size="lg" routerLink="/waitlist-entry" role="button" mdbWavesEffect>Add to Waitlist</a>

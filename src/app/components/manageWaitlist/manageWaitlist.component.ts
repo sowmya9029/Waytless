@@ -17,6 +17,7 @@ export class manageWaitlistComponent implements OnInit {
   restaurantId: number;
   restaurantName: string;
   waitlist: Waitlist[];
+  avgWaitMin: number;
 
   notify(queueID: number) {
     console.log("notify" + queueID);
@@ -46,6 +47,20 @@ export class manageWaitlistComponent implements OnInit {
     this.apiService.updateGroupSize(this.restaurantId, queueID, editField);
   }
 
+  avgWaittime(wl : Waitlist[]): number{
+    var sum = 0;
+    wl.forEach(element => {
+        var eventStartTime = new Date(element.quotedtime);
+        var eventEndTime = new Date(element.joinTime);
+        var diff = eventEndTime.valueOf() - eventStartTime.valueOf();
+        var diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);
+        sum += diffMins;
+    });
+    console.log("sum" + sum);
+    console.log("avg "+ sum / wl.length);
+    return Math.abs(Math.round((sum / wl.length)));
+  }
+
   constructor(
     private router: Router,
     private apiService: ApiService,
@@ -57,12 +72,16 @@ export class manageWaitlistComponent implements OnInit {
         })
         this.apiService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
           this.waitlist = waitlistItems;
+          this.avgWaitMin = this.avgWaittime(this.waitlist);
         })
       }
       )}
 
   ngOnInit() {
-
+    
+  }
+  ngOnChanges() {
+    
   }
 
 }
