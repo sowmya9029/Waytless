@@ -5,10 +5,18 @@
 <div class="container-fluid">
 
   
-  <div class="row">
-    <h1>Waitlist for <a href="/menu/{{restaurantId}}">{{restaurantName}}</a></h1>
-  <p></p><p></p>
-  </div>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4"><a href="/menu/{{restaurantId}}">{{restaurantName}}</a> Waitlist</h1>
+          <div class="row">
+              <div class="col-lg-6"><p class="lead">Number of groups: <span class="badge badge-secondary badge-pill">{{ waitlist?.length }}</span></p></div>
+              <div class="col-lg-6"><p class="lead">Average Wait Time (in minutes): <span class="badge badge-secondary badge-pill">0</span></p></div>
+          </div>
+          
+          <a mdbBtn color="primary" size="lg" routerLink="/waitlist-entry" role="button" mdbWavesEffect>Add to Waitlist</a>
+        </div>
+      </div>
+
 
 
   <ng-template [ngIf]="waitlist?.length == 0">
@@ -23,32 +31,25 @@
   <ng-template [ngIf]="waitlist?.length > 0">
   <div class="row">
 
-    <div class="col-lg-2">
+    
+    <!-- <div class="col-lg-2">
       <h2>Filters</h2>
       <div class="form-group">
         <label for="usr">Search by name</label>
         <input type="text" class="form-control" id="name">
         </div>
-    </div>
+    </div> -->
 
-    <div class="col-lg-10">
-        <div class="queueStatus">
-          <div class="row">
-            <div class="col-lg-6">
-              <h4>Number of groups: <span class="badge badge-secondary badge-pill">{{ waitlist?.length }}</span></h4>
-            </div>
-            <div class="col-lg-5">
-              <h4>Average Wait Time (in minutes): <span class="badge badge-secondary badge-pill">0</span></h4>
-            </div>
-            <div class="col-lg-1">
-                <button mat-stroked-button color="green"><a routerLink="/waitlist-entry">Add</a></button>
-            </div>
-          </div>
+    <div class="col-lg-12">
+
+ 
     </div>
     <p>
     </p>
 
+    <div class="table-responsive">
 <table class="table table-striped text-center">
+  
   <thead>
   <tr>
     <th class="text-center" scope="col">#</th>
@@ -84,9 +85,9 @@
   </tr>
   </tbody>
 </table>
+</div>
   </div>    
 
-  </div>
 </ng-template>
  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
