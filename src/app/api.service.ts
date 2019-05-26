@@ -74,7 +74,22 @@ export class ApiService {
 
   public notifyCustomer(restaurantID: number, queueID: number) {
     console.log("notifying customer..." + queueID);
-    return this.http.put(API_URL + '/waitlist/' + restaurantID + '/notify/' + queueID, {});
+    return this.http.get(API_URL + '/waitlist/' + restaurantID + '/notify/' + queueID, {}).subscribe(response => {
+      console.log(response.status);
+      });
   }
 
+  public confirmCustomer(restaurantID: number, queueID: number) {
+    console.log("confirming customer..." + queueID);
+    return this.http.get(API_URL + '/waitlist/' + restaurantID + '/confirm/' + queueID, {}).subscribe(response => {
+      console.log(response.status);
+      });
+  }
+
+  public removeReservation(restaurantID: number, queueID: number) {
+    console.log("removing reservation..." + queueID);
+    return this.http.delete(API_URL + '/waitlist/' + restaurantID + '/' + queueID, {}).subscribe(response => {
+      console.log(response.status);
+      });
+  }
 }

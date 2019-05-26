@@ -60,6 +60,15 @@ class WaitlistEntryModel {
         })
     }
 
+    public deleteRes(response:any,filter:Object): any {
+        this.model.findOneAndDelete(filter, (err) =>{
+            if (err){
+                response.send("Error while removing reservation");
+            }
+            response.send("Removed Reservation.");
+        })
+    }
+
     public retrieveAllWaitlistEntriesPerRestaurant(response:any, filter:Object) {
         var query = this.model.find(filter);
         query.exec( (err, itemArray) => {

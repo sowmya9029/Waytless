@@ -153,6 +153,14 @@ export class Routes {
             console.log("Set customer as confirmed for " + queueID + " in " + restaurantId);
             this.waitlist.confirmRes(res, {restaurantID:restaurantId, queueID:queueID});
         })
+        
+        // remove reservation in waitlist
+        app.route('/waitlist/:restaurantID/:queueID').delete((req:Request,res:Response) => {
+            var restaurantId = req.params.restaurantID;
+            var queueID = req.params.queueID;
+            console.log("Removing reservation: " + queueID + " in " + restaurantId);
+            this.waitlist.deleteRes(res, {restaurantID:restaurantId, queueID:queueID});
+        })
 
         // to get all the waitlist entries in a restaurant
         app.route('/waitlist/:restId').get((req: Request, res: Response) => {
