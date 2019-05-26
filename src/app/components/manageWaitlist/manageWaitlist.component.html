@@ -66,10 +66,10 @@
   <tbody>
   <tr *ngFor="let reservation of waitlist; index as id">
     <td>{{reservation.queueID}}</td>
-    <td><span class="editable" contenteditable="true" (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)">{{reservation.customerName}}</span></td>
-    <td><span class="editable" contenteditable="true" (keyup)="changeValue(id, 'groupsize', $event)" (blur)="updateList(id, 'groupsize', $event)">{{reservation.groupSize}}</span></td>
-    <td><span class="editable" contenteditable="true" (keyup)="changeValue(id, 'phone', $event)" (blur)="updateList(id, 'phone', $event)">{{reservation.phone}}</span></td>
-    <td><span class="editable" contenteditable="true" (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(id, 'email', $event)">{{reservation.email}}</span></td>
+    <td>{{reservation.customerName}}</td>
+    <td><span class="editable" contenteditable="true" (keyup)="updateGroupSize(reservation.queueID, 'groupSize', $event)" (blur)="refreshTable(id, 'groupSize', $event)">{{reservation.groupSize}}</span></td>
+    <td>{{reservation.phone}}</td>
+    <td>{{reservation.email}}</td>
     <td>{{ reservation.joinTime | date:'shortTime' }}</td>
     <td>{{ reservation.quotedtime | date:'shortTime' }}</td>
     <td><div *ngIf="reservation.notified == true; else elseBlock"><i class="fa fa-check"></i></div><ng-template #elseBlock>

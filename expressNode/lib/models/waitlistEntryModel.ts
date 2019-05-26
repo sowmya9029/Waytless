@@ -78,6 +78,15 @@ class WaitlistEntryModel {
             response.json(itemArray);
         });
     }
+    
+    public updateGroupSize(response:any,search_criteria:any,update:any){
+        this.model.updateOne(search_criteria, update, (err) =>{
+            if (err){
+                response.send("Error while updating group size");
+            }
+            response.send("Updated group size for reservation.");
+        });
+    }
 
 }
 export {WaitlistEntryModel};

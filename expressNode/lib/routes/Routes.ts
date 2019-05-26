@@ -162,6 +162,26 @@ export class Routes {
             this.waitlist.deleteRes(res, {restaurantID:restaurantId, queueID:queueID});
         })
 
+        // update group size for reservation in waitlist
+        app.route('/waitlist/:restaurantID/:queueID').patch((req:Request,res:Response) => {
+            var restaurantId = req.params.restaurantID;
+            var queueID = req.params.queueID;
+            var groupSize = req.body.groupSize;
+
+            const searchCriteria = {
+                "restaurantID" : restaurantId,
+                "queueID" : queueID
+            }
+
+            const toBeChanged = {
+                "$set": {
+                    "groupSize": groupSize
+                  }
+            }
+            console.log("Updating group size for reservation: " + queueID + " in " + restaurantId);
+            this.waitlist.updateGroupSize(res, searchCriteria, toBeChanged);
+        })
+
         // to get all the waitlist entries in a restaurant
         app.route('/waitlist/:restId').get((req: Request, res: Response) => {
             var restuarantId = req.params.restId;

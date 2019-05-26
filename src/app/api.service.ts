@@ -92,4 +92,11 @@ export class ApiService {
       console.log(response.status);
       });
   }
+
+  public updateGroupSize(restaurantID: number, queueID: number, groupSize: number) {
+    console.log("Updating group gize for ..." + queueID + " in " + restaurantID);
+    return this.http.patch(API_URL + '/waitlist/' + restaurantID + '/' + queueID, {"groupSize" : groupSize}).subscribe(response => {
+      console.log(response.status);
+      });
+  }
 }
