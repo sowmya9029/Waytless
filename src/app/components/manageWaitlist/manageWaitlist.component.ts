@@ -21,6 +21,19 @@ export class manageWaitlistComponent implements OnInit {
   private notify(queueID: number) {
     console.log("notify" + queueID);
     this.apiService.notifyCustomer(this.restaurantId, queueID);
+    window.location.reload();
+  }
+
+  private confirm(queueID: number) {
+    console.log("confirm" + queueID);
+    this.apiService.confirmCustomer(this.restaurantId, queueID);
+    window.location.reload();
+  }
+
+  private remove(queueID: number) {
+    console.log("remove" + queueID);
+    this.apiService.removeReservation(this.restaurantId, queueID);
+    window.location.reload();
   }
 
   constructor(

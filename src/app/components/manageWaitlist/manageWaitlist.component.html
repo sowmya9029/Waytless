@@ -73,11 +73,14 @@
     <td>{{ reservation.joinTime | date:'shortTime' }}</td>
     <td>{{ reservation.quotedtime | date:'shortTime' }}</td>
     <td><div *ngIf="reservation.notified == true; else elseBlock"><i class="fa fa-check"></i></div><ng-template #elseBlock>
-      <i class="fa fa-times" aria-hidden="true"></i>
-      <button mat-stroked-button color="green" (click)="notify(reservation.queueID)"><i class="fa fa-bell"></i> Notify</button>
+      <i class="fa fa-times" aria-hidden="true"></i> &nbsp;
+      <button mat-flat-button color="primary" (click)="notify(reservation.queueID)"><i class="fa fa-bell"></i> Notify</button>
       </ng-template></td>
-    <td>{{reservation.confirmed}}</td>
-    <td><button mat-stroked-button color="warn" (click)="remove(id)">Remove</button></td>
+    <td><div *ngIf="reservation.confirmed == true; else elseBlock1"><i class="fa fa-check"></i></div><ng-template #elseBlock1>
+      <i class="fa fa-times" aria-hidden="true"></i> &nbsp;
+      <button mat-flat-button color="accent" (click)="confirm(reservation.queueID)"><i class="fa fa-check-circle"></i> Confirm</button>
+      </ng-template></td>
+    <td><button mat-flat-button color="warn" (click)="remove(reservation.queueID)"><i class="fa fa-trash" aria-hidden="true"></i> Remove</button></td>
   </tr>
   </tbody>
 </table>
