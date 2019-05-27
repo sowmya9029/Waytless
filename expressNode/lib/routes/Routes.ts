@@ -146,11 +146,7 @@ export class Routes {
             this.waitlist.retrieveAllWaitlistEntriesPerRestaurant(res,{restaurantID:restuarantId});
         })
 
-        //get all  restaurants 
-        app.route('/restaurantlist').get((req: Request, res: Response) => {
-        console.log("Get all restaurants"+res);
-        this.restaurantlist.retrieveAllRestaurantsLists(res);
-       })
+        
 
         //get all customers
         app.route('/customers').get((req: Request, res: Response) => {
@@ -193,6 +189,12 @@ export class Routes {
                 this.idGenerator++;
             })
 
+
+            //get all  restaurants 
+        app.route('/restaurantlist').get((req: Request, res: Response) => {
+            console.log("Get all restaurants"+res);
+            this.restaurantlist.retrieveAllRestaurantsLists(res);
+           })
         // to get all nearby restaurant
         app.route('/restaurantlist/:city').get((req: Request, res: Response) => {
             var city = req.params.city;

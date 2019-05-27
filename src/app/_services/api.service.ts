@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
-import { MenuItem } from './_models';
+import { MenuItem } from '../_models';
 import { map } from "rxjs/operators";
-import { Order } from './_models/order';
-import { Restaurant } from './_models/restaurant';
-import { Waitlist } from './_models/waitlist';
+import { Order } from '../_models/order';
+import { Restaurant } from '../_models/restaurant';
+import { Waitlist } from '../_models/waitlist';
 
 const API_URL = environment.apiUrl;
 
@@ -54,14 +54,7 @@ export class ApiService {
       }));
   }
 
-  public getAllRestaurants() {
-    return this.http.get(API_URL + '/restaurantlist')
-    .pipe(map(response => {
-      const restaurants: Restaurant[] = response.json();
-      console.log(restaurants);
-      return restaurants;
-    }));
-  }
+
 
   public getWaitlist(restaurantID: number): Observable<Waitlist[]> {
     return this.http.get(API_URL + '/waitlist/' + restaurantID)

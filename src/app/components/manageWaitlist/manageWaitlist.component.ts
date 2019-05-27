@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
-import { ApiService } from 'app/api.service';
+import { RestaurantAPIService } from 'app/_services/restaurant-api.service';
+import { ApiService } from 'app/_services/api.service';
 import { Restaurant } from 'app/_models/restaurant';
 import { Waitlist } from 'app/_models/waitlist';
 
@@ -47,10 +48,11 @@ export class manageWaitlistComponent implements OnInit {
   constructor(
     private router: Router,
     private apiService: ApiService,
+    private restaurantAPIService: RestaurantAPIService,
     private route: ActivatedRoute) {
       this.route.params.subscribe(params => {
         this.restaurantId = params['id'];
-        this.apiService.getAllRestaurants().subscribe(restItems => {
+        this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
           this.restaurantName = restItems[this.restaurantId].name;
         })
         this.apiService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
