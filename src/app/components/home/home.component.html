@@ -44,9 +44,48 @@
 	</div>
 <div class="div_body"><h3 class="title">Popular Restaurants NearBy</h3>
 <br>
-<div class="row" style="margin-left: 5px">
-    
-      <div class="card" style="width: 18rem;">
+   <mat-grid-tile
+          class="menu-item"
+          *ngFor="let e of entrees">        
+          <mat-card class="menu-item-body">          
+              <img mat-card-image src='{{e.url !== undefined ? e.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
+              <mat-card-content>
+                <div class="menu-top">
+                  <span class="menu-item-name">{{e.itemName}}</span>
+                  <span class="menu-item-price">${{e.price}} x {{orders.get(e.itemID) === undefined ? 0 : orders.get(e.itemID)}}</span>
+                </div>
+                <div class="menu-bottom">
+                  <span>{{e.description}}</span><br/>
+                </div>
+              </mat-card-content>
+              <mat-card-actions>
+                <button (click)="addToCart(e)" mat-button>ADD</button>
+                <button (click)="deleteFromCart(e)" mat-button>REMOVE</button>
+              </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+
+<div class="row" style="margin-left: 5px" >
+  <div class="card" style="width: 18rem;" (click)="onRestaurantClickEvent()" *ngFor="let r of restuarant">
+    <img src={{r.url}}  style="width: 290px;height: 200px">
+    <div class="card-body">
+      <span class="mat-title">{{r.name}}</span>       
+      <div layout="row" layout-align="start center">
+      <img class= "mat-icon-button" src="../assets/images/review_full.png">           
+      <img class= "mat-icon-button" src="../assets/images/review_full.png">
+      <img class= "mat-icon-button" src="../assets/images/review_full.png">
+      <img class= "mat-icon-button" src="../assets/images/review_full.png">
+      <img class= "mat-icon-button" src="../assets/images/review_empty.png">  
+      <span class="rating_text" >{{r.reviews}} Reviews</span>
+      </div>
+    <p class="text">{{r.cuisine}} . $$$ . {{r.address.city}}</p>
+    <p class="mat-body-2">Booked {{r.booked}} times</p> 
+    <a href="menu/1" class="mat-body-2">See menu</a> 
+   </div>
+ </div>  
+
+
+    <!--  <div class="card" style="width: 18rem;" (click)="onRestaurantClickEvent()">
         <img src="../assets/images/dinthaifung.png"  style="width: 290px;height: 200px">
         <div class="card-body">
           <span class="mat-title">Din Tai Fung</span>       
@@ -66,7 +105,7 @@
 
     <div class="card" style="width: 18rem;">
       <img src="../assets/images/imagetwo.jpg"  style="width: 290px;height: 200px">
-    <div class="card-body">
+    <div class="card-body" >
       <span class="mat-title">Olive Garden</span>       
       <div layout="row" layout-align="start center">
       <img class= "mat-icon-button" src="../assets/images/review_full.png">           
@@ -135,6 +174,6 @@
       <p class="mat-body-2">Booked 585 times</p> 
       <a href="menu/5" class="mat-body-2">See menu</a> 
     </div>
-    </div>
+    </div> -->
   
   </div>

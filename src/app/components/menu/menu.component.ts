@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'app/_models';
-import { ApiService } from 'app/api.service';
+import { ApiService } from 'app/_services/api.service';
 import { Order } from 'app/_models/order';
 
 @Component({
