@@ -22,6 +22,9 @@ class RestaurantModel {
                 rating:Number,
                 email:String,
                 cuisine:String,
+                reviews:Number,
+                booked:Number,
+                url:String
              //   menu:[MenuItemModel],
                // image: { data: Buffer, contentType: String },
               //  waitlingList: [WaitlistEntryModel],

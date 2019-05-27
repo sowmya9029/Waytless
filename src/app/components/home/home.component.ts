@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 editField: string;
 city: string;
   restaurantName: string;
+   restuarant:Restaurant[]
 
   private waitlist: Waitlist[];
   constructor(private router: Router,
@@ -23,6 +24,12 @@ city: string;
         this.city = params['city'];
         this.restaurantAPIService.getNearByRestaurants('Bellevue').subscribe(restItems => {
           //this.restaurantName = restItems[this.restaurantId].name;
+          this.restuarant = restItems.filter(i => i.address.city == 'Bellevue');
+          console.log(restItems);
+        })
+        this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
+          //this.restaurantName = restItems[this.restaurantId].name;
+          this.restuarant = restItems;
           console.log(restItems);
         })
        
