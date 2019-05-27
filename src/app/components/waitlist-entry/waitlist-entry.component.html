@@ -1,68 +1,64 @@
-<link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <br><br>
 <h2>DIN TAI FUNG</h2>
-
-<mat-card class="waitlist-entry-card">
-    <mat-card-header>
-        <mat-card-title>Add to waitlist!</mat-card-title>
-      </mat-card-header>
-  <mat-card-content>
-     <form class="waitlist-information">
-
-        <i class="material-icons">person</i>
-        <mat-form-field class="full-width">
-          <mat-label>Full Name</mat-label>
-          <input  matInput  placeholder="Full name"  id = "name" name="name"  required>
-        </mat-form-field>
-
-        <i class="material-icons">perm_phone_msg</i>
-        <mat-form-field class="full-width">
-          <mat-label>Phone number</mat-label>
-          <input  matInput  placeholder="Phone number" id = "phone" name="number"  required>
-        </mat-form-field>
-
-        <i class="material-icons">email</i>
-        <mat-form-field class="full-width">
-          <mat-label>Email</mat-label>
-          <input  matInput  placeholder="Email" id = "email" name="email">
-      </mat-form-field>
-
-      <i class="material-icons">group</i>
-      <mat-form-field class="full-width">
-        <mat-label>Group size</mat-label>
-        <input  matInput  placeholder="Group size"  id = "groupsize" name="groupSize" required>
-     </mat-form-field>
-
-     </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button class = "addBtn" (click)="addToWaitlist()" color="black">ADD</button>
-  </mat-card-actions>
-</mat-card>
-
-<mat-card class="customer-waitlist-information-card">
-    <mat-card-header>
-        <i class="material-icons">info</i>
-        <mat-card-title>Your waitlist information</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <div *ngIf="show; else notShow">
-            <b>Name : </b> <span id = "bookedName">Spoorthi</span> <br><br>
-            <b>Number : </b> <span id = "queuePosition">2</span><br><br>
-            <b>Booking time: </b><span id = "addedTime">2019-05-07 19:05</span> <br><br>
-            <b>Approximate wait time : </b><span id = "waitTime"></span><br><br>
-            <i class="material-icons" (click) = "editWaitList()">edit</i>
-            <i class="material-icons " (click) = "deleteFromWaitList()">delete</i>
+<br><br>
+<div class="waitlist-entry-card" style="width: 80rem;">
+  <div class="card-body">
+    <form>
+      <div class="input-group input-group-lg">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <!--<label for="FullName">Full Name <span class="glyphicon glyphicon-user"></span></label>-->
+        <input type="text" class="form-control" id="FullName" placeholder="Full name">
+        </div>
+        <br>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+          <!--<label for="phone">Phone number <span class="glyphicon glyphicon-phone"></span></label> -->
+          <input type="text" class="form-control" id="phone" placeholder="Phone number">
           </div>
-          
-          <ng-template #notShow>
-            <p style="color:grey;padding:10px;">
-              "Add yourself to waitlist to monitor your status."
-            </p>
-          </ng-template>
-    </mat-card-content>
-</mat-card>
+          <br>
+          <div class="input-group input-group-lg">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+              <!--<label for="email">Email address <span class="glyphicon glyphicon-envelope"></span></label>-->
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+              <!--<small id="emailHelp" class="form-text text-muted" >username@example.com</small>-->
+          </div><br>
+          <div class="input-group input-group-lg">
+              <span class="input-group-addon"><i class="fa fa-user-friends"></i></span>
+              <!--<label for="group">Group size <span class="glyphicon glyphicon-user"></span></label>-->
+              <input type="text" class="form-control" id="group" placeholder="Group size">
+          </div>
+      <br>
+      <button type="submit" class="btn btn-primary btn-lg" id = "addBtn" onclick="addToWaitlist()">Submit</button>
+    </form>
+  </div>
+</div>
+
+<div class="customer-waitlist-information-card" style="width: 60rem;">
+    <div class="card-body">
+      <h4 class="card-title"><b>Your waitlist information </b> <span class="glyphicon glyphicon-info-sign"></span></h4>
+      <div *ngIf="show; else notShow">
+          <b>Name : </b> <span id = "bookedName">Spoorthi</span> <br><br>
+          <b>Number : </b> <span id = "queuePosition">2</span><br><br>
+          <b>Booking time: </b><span id = "addedTime">2019-05-07 19:05</span> <br><br>
+          <b>Approximate wait time : </b><span id = "waitTime"></span><br><br>
+          <button type="button" class="btn btn-default btn-sm" onclick="editWaitList()">
+              <span class="glyphicon glyphicon-pencil"></span> 
+            </button>
+          <button type="button" class="btn btn-default btn-sm" onclick="deleteFromWaitList()">
+              <span class="glyphicon glyphicon-trash"></span> 
+            </button>
+          </div>
+        
+        <ng-template #notShow>
+          <p style="color:grey;padding:10px;">
+            "Add yourself to waitlist to monitor your status."
+          </p>
+        </ng-template>
+    </div>
+  </div>
+
 <br>
 <button class = "selectMenuBtn" mat-raised-button color="warn" routerLink="/menu/1">MENU</button>
 <mat-divider></mat-divider>

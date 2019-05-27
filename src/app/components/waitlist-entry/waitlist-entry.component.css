@@ -3,12 +3,17 @@ h2{
 }
 
 .waitlist-entry-card {
-  max-width: 550px;
+  max-width: 600px;
     justify-content: center;
     align-content: center;
     margin-left: 56px;
     margin-right: 10px;
+    position: relative;
     border: 1px solid #808080;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
 }
 
 .customer-waitlist-information-card {
@@ -16,11 +21,14 @@ h2{
    justify-content: center;
     align-content: center;
     border: 1px solid #808080; 
-    
     width : 40%;
     position: absolute;
-    top: 160px;
+    top: 200px;
     right: 60px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
 }
 
 .full-width {
@@ -28,7 +36,7 @@ h2{
     
   }
 
-  .addBtn{
+  #addBtn{
     background-color: #000000;
   color: white;
   border: none;
@@ -38,13 +46,12 @@ h2{
   border-radius: 8px;
 
   align-self: center;
-  width: 530px;
-  margin-left: 30px;
+  width: 570px;
     
 }
 
 
-.addBtn:hover {
+#addBtn:hover {
   background-color: #808080; 
   color: black;
 }
