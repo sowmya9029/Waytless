@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'app/_services/api.service';
+import { Order } from 'app/_models/order';
+import { MenuItem } from 'app/_models/menuItem';
+import { Router, ActivatedRoute } from '@angular/router';
 
 export interface OrderDetail {
   name: string;
@@ -13,30 +17,47 @@ export interface OrderDetail {
 })
 export class OrderCartComponent implements OnInit {
 
-  constructor() { }
+  private orderDetails: OrderDetail[];
+  private orders: Order[];
+  private menuItemsMap: Map<number, MenuItem>;
+  private totalPrice: number;
 
-  ngOnInit() {
+  private customerNumber;
+  private restaurantID;
+
+  constructor(private apiService: ApiService,
+              private route: ActivatedRoute) { 
+    this.customerNumber = 2;
+    this.restaurantID = 0;
+    this.menuItemsMap = new Map;
+    this.orderDetails = [];
+    this.totalPrice = 0;
+
+    this.route.params.subscribe(params => {
+      this.restaurantID += params['id'];
+
+      this.apiService.getAllMenuItems(this.restaurantID).subscribe(menuItems => {
+          menuItems.forEach(m => this.menuItemsMap.set(m.itemID, m));
+          this.apiService.getAllOrders(this.restaurantID, this.customerNumber).subscribe(allOrders => {
+              this.orders = allOrders;
+              this.orders.forEach(o => {
+                this.totalPrice += o.quantity * this.menuItemsMap.get(o.menuItemId).price;
+                this.orderDetails.push({
+                  name: this.menuItemsMap.get(o.menuItemId).itemName,
+                  price: this.menuItemsMap.get(o.menuItemId).price,
+                  quantity: o.quantity
+                });
+              });
+            }
+          );
+        }
+      );
+    });
   }
 
-  orders: OrderDetail[] = [
-    {
-      name : 'Cucumber Salad',
-      price : 2.31,
-      quantity : 1
-    },{
-      name : 'Spring rolls',
-      price : 4.31,
-      quantity : 1
-    },{
-      name : 'Mashed potatoes',
-      price : 4.31,
-      quantity : 1
-    },
-    {
-      name : 'Spaghetti',
-      price : 2.31,
-      quantity : 2
-    }
-  ];
+  ngOnInit() { }
 
+  public orderConfirm() {
+
+  }
 }

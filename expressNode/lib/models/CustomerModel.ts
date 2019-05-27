@@ -1,10 +1,12 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from '../../DataAccess';
+//import {DataAccess} from '../../DataAccess';
+
 import {ICustomerModel} from '../interfaces/ICustomerModel';
 import {AddressSchema} from './Address'
+// import { number } from "prop-types";
 
-let mongooseConnection = DataAccess.mongooseConnection;
-let mongooseObj = DataAccess.mongooseInstance;
+//let mongooseConnection = DataAccess.mongooseConnection;
+//let mongooseObj = DataAccess.mongooseInstance;
 
 class CustomerModel {
     public schema:any;
@@ -18,10 +20,11 @@ class CustomerModel {
     private createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
+                customerId: Number,
                 firstName : String,
                 lastName : String,
                 address : AddressSchema,
-                phone : Number,
+                phone : String,
                 email : String
             }, {collection: 'customer'}
         );
@@ -31,6 +34,7 @@ class CustomerModel {
         this.model = Mongoose.model<ICustomerModel>("customer", this.schema);
     }
 
+    // return all customers
     public getAllCustomers(response:any): any {
         var query = this.model.find({});
         query.exec( (err, itemArray) => {
@@ -44,5 +48,6 @@ class CustomerModel {
             response.json(itemArray) ;
         });
     }
+
 }
 export {CustomerModel};

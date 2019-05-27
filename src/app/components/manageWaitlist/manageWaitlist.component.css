@@ -110,3 +110,16 @@
   .editable {
     padding: .5rem .5rem
   }
+
+  #initials {
+    width: 70px;
+    border-radius: 50%;
+    border: gray solid 2px;
+    font-size: 30px;
+    line-height: 40px;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    margin: 0px 15px 0px 0px;
+    display: inline-flex;
+  }

@@ -1,7 +1,7 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../../DataAccess';
 import { IMenuItemModel } from "../interfaces/IMenuItemModel";
-import { IItemCategoryModel } from "interfaces/IItemCategoryModel";
+import { IItemCategoryModel } from "../interfaces/IItemCategoryModel";
 
 
 class MenuItemCategoryModel {

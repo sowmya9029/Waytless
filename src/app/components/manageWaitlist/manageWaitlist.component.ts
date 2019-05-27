@@ -1,53 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
-
-interface Entry {
-  id: number,
-  name: string;
-  groupsize: number;
-  email: string;
-  phone: string;
-  jointime: Date;
-  quotedtime: Date;
-  notified: boolean;
-  confirmed: boolean;
-}
-
-const ENTRIES: Entry[] = [
-  {
-    id: 1,
-    name: "Mary",
-    groupsize: 3,
-    jointime: new Date("February 4, 2019 16:00:00"),
-    quotedtime: new Date("February 4, 2019 16:10:00"),
-    email : "abc@abc.com",
-    phone : "2062112222",
-    notified: true,
-    confirmed: true
-  },
-  {
-    id: 2,
-    name: "John",
-    groupsize: 2,
-    jointime: new Date("February 4, 2019 16:10:00"),
-    quotedtime: new Date("February 4, 2019 16:20:00"),
-    email : "abc@abc.com",
-    phone : "2062112222",
-    notified: true,
-    confirmed: true
-  },
-  {
-    id: 3,
-    name: "Austin",
-    groupsize: 3,
-    jointime: new Date("February 4, 2019 16:15:00"),
-    quotedtime: new Date("February 4, 2019 16:25:00"),
-    email : "abc@abc.com",
-    phone : "2062112222",
-    notified: true,
-    confirmed: true
-  }
-];
+import { RestaurantAPIService } from 'app/_services/restaurant-api.service';
+import { ApiService } from 'app/_services/api.service';
+import { Restaurant } from 'app/_models/restaurant';
+import { Waitlist } from 'app/_models/waitlist';
 
 @Component({
   selector: 'app-manageWaitlist',
@@ -58,60 +15,75 @@ const ENTRIES: Entry[] = [
 export class manageWaitlistComponent implements OnInit {
 
   editField: string;
-  entries = ENTRIES;
+  restaurantId: number;
+  restaurantName: string;
+  waitlist: Waitlist[];
+  avgWaitMin: number;
 
-  awaitingPersonList: Array<any> = [
-    {
-      id: 4,
-      name: "Bill Gates",
-      groupsize: 4,
-      jointime: new Date("February 4, 2019 17:15:00"),
-      quotedtime: new Date("February 4, 2019 17:25:00"),
-      email : "abc@abc.com",
-      phone : "2062112222",
-      notified: false,
-      confirmed: false
-    },
-    {
-      id: 5,
-      name: "Mary Gates",
-      groupsize: 5,
-      jointime: new Date("February 4, 2019 18:15:00"),
-      quotedtime: new Date("February 4, 2019 18:25:00"),
-      email : "abc@abc.com",
-      phone : "2062112222",
-      notified: false,
-      confirmed: false
-    }
-  ];
+  notify(queueID: number) {
+    console.log("notify" + queueID);
+    this.apiService.notifyCustomer(this.restaurantId, queueID);
+    window.location.reload();
+  }
 
+  confirm(queueID: number) {
+    console.log("confirm" + queueID);
+    this.apiService.confirmCustomer(this.restaurantId, queueID);
+    window.location.reload();
+  }
 
-  changeValue(id: number, property: string, event: any) {
+  remove(queueID: number) {
+    console.log("remove" + queueID);
+    this.apiService.removeReservation(this.restaurantId, queueID);
+    window.location.reload();
+  }
+
+  refreshTable(queueID: number, property: string, event: any) {
     this.editField = event.target.textContent;
   }
 
-  updateList(id: number, property: string, event: any) {
+  updateGroupSize(queueID: number, property: string, event: any) {
+    console.log("updating group size" + queueID);
     const editField = event.target.textContent;
-    this.entries[id][property] = editField;
+    this.apiService.updateGroupSize(this.restaurantId, queueID, editField);
   }
 
-  remove(id: any) {
-    this.awaitingPersonList.push(this.entries[id]);
-    this.entries.splice(id, 1);
+  avgWaittime(wl : Waitlist[]): number{
+    var sum = 0;
+    wl.forEach(element => {
+        var eventStartTime = new Date(element.quotedtime);
+        var eventEndTime = new Date(element.joinTime);
+        var diff = eventEndTime.valueOf() - eventStartTime.valueOf();
+        var diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);
+        sum += diffMins;
+    });
+    console.log("sum" + sum);
+    console.log("avg "+ sum / wl.length);
+    return Math.abs(Math.round((sum / wl.length)));
   }
 
-  add() {
-    if (this.entries.length > 0) {
-      this.awaitingPersonList[0][1] = this.entries.length+1;
-      const person = this.awaitingPersonList[0];
-      this.entries.push(person);
-      this.awaitingPersonList.splice(0, 1);
-    }
-  }
-
-  constructor() { }
+  constructor(
+    private router: Router,
+    private apiService: ApiService,
+    private restaurantAPIService: RestaurantAPIService,
+    private route: ActivatedRoute) {
+      this.route.params.subscribe(params => {
+        this.restaurantId = params['id'];
+        this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
+          this.restaurantName = restItems[this.restaurantId].name;
+        })
+        this.apiService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
+          this.waitlist = waitlistItems;
+          this.avgWaitMin = this.avgWaittime(this.waitlist);
+        })
+      }
+      )}
 
   ngOnInit() {
+    
+  }
+  ngOnChanges() {
+    
   }
 
 }

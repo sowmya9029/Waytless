@@ -1,50 +1,41 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+<div class="bg-gradient-danger pb-8 pt-5 pt-md-8">
+
 <div class="container-fluid">
 
   
-  <div class="row">
-
-  <div class="mx-auto mt-md-5"><h1>DIN TAI FUNG</h1></div>
-  
-  <p></p>
-  </div>
-
-  <div class="row">
-
-    <div class="col-lg-2">
-      <h2>Filters</h2>
-      <div class="form-group">
-        <label for="usr">Search by name</label>
-        <input type="text" class="form-control" id="name">
-        </div>
-    </div>
-
-    <div class="col-lg-10">
-        <div class="queueStatus">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4"><a href="/menu/{{restaurantId}}">{{restaurantName}}</a> Waitlist</h1>
           <div class="row">
-            <div class="col-lg-6">
-              <h4>Number of groups: <span class="badge badge-secondary badge-pill">{{ entries?.length }}</span></h4>
-            </div>
-            <div class="col-lg-5">
-              <h4>Average Wait Time (in minutes): <span class="badge badge-secondary badge-pill">10</span></h4>
-            </div>
-            <div class="col-lg-1">
-                <button mat-stroked-button color="green" (click)="add()" mdbWavesEffect>Add</button>
-            </div>
+              <div class="col-lg-6"><p class="lead">Number of groups: <span class="badge badge-secondary badge-pill">{{ waitlist?.length }}</span></p></div>
+              <div class="col-lg-6"><p class="lead">Average Wait Time (in minutes): <span class="badge badge-secondary badge-pill">{{avgWaitMin}}</span></p></div>
           </div>
-    </div>
-    <p>
-    </p>
+          
+          <a mdbBtn color="primary" size="lg" routerLink="/waitlist-entry" role="button" mdbWavesEffect>Add to Waitlist</a>
+        </div>
+      </div>
 
-<table class="table table-striped text-center">
+</div>
+
+  <ng-template [ngIf]="waitlist?.length == 0">
+      <div class="container-fluid mt--7">
+            <h3>This restaurant does not have an active waitlist.</h3>
+      </div> 
+  </ng-template>
+
+
+  <ng-template [ngIf]="waitlist?.length > 0">
+    <div class="container-fluid">
+        <div class="table-responsive shadow p-3 mb-5 rounded">
+          <table class="table align-items-center table-flush">
+  
   <thead>
   <tr>
-    <th class="text-center" scope="col">#</th>
-    <th class="text-center" scope="col">Name</th>
-    <th class="text-center" scope="col">Group Size</th>
-    <th class="text-center" scope="col">Phone</th>
-    <th class="text-center" scope="col">Email</th>
+    <th class="text-center" scope="col">Reservation ID</th>
+    <th class="text-center" scope="col">Name & Group Size</th>
+    <th class="text-center" scope="col">Contact</th>
     <th class="text-center" scope="col">Time joined</th>
     <th class="text-center" scope="col">Quoted Time</th>
     <th class="text-center" scope="col">Notified</th>
@@ -53,23 +44,47 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let entry of entries; index as id">
-    <th scope="row">{{ entry.id }}</th>
-    <td><span class="editable" contenteditable="true" (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)">{{entry.name}}</span></td>
-    <td><span class="editable" contenteditable="true" (keyup)="changeValue(id, 'groupsize', $event)" (blur)="updateList(id, 'groupsize', $event)">{{entry.groupsize}}</span></td>
-    <td><span class="editable" contenteditable="true" (keyup)="changeValue(id, 'phone', $event)" (blur)="updateList(id, 'phone', $event)">{{entry.phone}}</span></td>
-    <td><span class="editable" contenteditable="true" (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(id, 'email', $event)">{{entry.email}}</span></td>
-    <td>{{ entry.jointime | date:'shortTime' }}</td>
-    <td>{{ entry.quotedtime | date:'shortTime' }}</td>
-    <td><span class="editable" contenteditable="true" (keyup)="changeValue(id, 'notified', $event)" (blur)="updateList(id, 'notified', $event)">{{entry.notified}}</span></td>
-    <td><span class="editable" contenteditable="true" (keyup)="changeValue(id, 'confirmed', $event)" (blur)="updateList(id, 'confirmed', $event)">{{entry.confirmed}}</span></td>
-    <td><button mat-stroked-button color="warn" (click)="remove(id)">Remove</button></td>
+  <tr *ngFor="let reservation of waitlist; index as id">
+    <td class="text-center">{{reservation.queueID}}</td>
+    <td>
+      <span id="initials">
+        <span class="editable" contenteditable="true" (keyup)="updateGroupSize(reservation.queueID, 'groupSize', $event)" (blur)="refreshTable(id, 'groupSize', $event)">
+          {{reservation.groupSize}}
+        </span></span>
+    <span class="align-middle"><strong>{{reservation.customerName}}</strong></span></td>
+    <td class="text-center" >{{reservation.phone}}<br><small>{{reservation.email}}</small></td>
+    <td class="text-center">{{ reservation.joinTime | date:'shortTime' }}</td>
+    <td class="text-center">{{ reservation.quotedtime | date:'shortTime' }}</td>
+    <td class="text-center"><div *ngIf="reservation.notified == true; else elseBlock"><i class="fa fa-check"></i></div><ng-template #elseBlock>
+      <i class="fa fa-times" aria-hidden="true"></i> &nbsp;
+      <button mat-flat-button color="primary" (click)="notify(reservation.queueID)" type="button" placement="top" ngbTooltip="Notify Customer"><i class="fa fa-bell"></i> Notify</button>
+      </ng-template></td>
+    <td class="text-center"><div *ngIf="reservation.confirmed == true; else elseBlock1"><i class="fa fa-check"></i></div><ng-template #elseBlock1>
+      <i class="fa fa-times" aria-hidden="true"></i> &nbsp;
+      <button mat-flat-button color="accent" (click)="confirm(reservation.queueID)"><i class="fa fa-check-circle"></i> Confirm</button>
+      </ng-template></td>
+    <td class="text-center"><button mat-flat-button color="warn" (click)="remove(reservation.queueID)"><i class="fa fa-trash" aria-hidden="true"></i> Remove</button></td>
   </tr>
   </tbody>
 </table>
-  </div>    
+    <!-- <div class="col-lg-2">
+      <h2>Filters</h2>
+      <div class="form-group">
+        <label for="usr">Search by name</label>
+        <input type="text" class="form-control" id="name">
+        </div>
+    </div> -->
 
+</div>
+</div>
+</ng-template>
+</div>
  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>

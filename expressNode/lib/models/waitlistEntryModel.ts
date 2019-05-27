@@ -17,10 +17,12 @@ class WaitlistEntryModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
+                queueID: Number,
                 customerName: String,
                 restaurantID: Number,
                 groupSize: Number,
                 joinTime: Date,
+                quotedtime: Date,
                 email : String,
                 phone : String,
                 notified: Boolean,
@@ -33,6 +35,40 @@ class WaitlistEntryModel {
         this.model = Mongoose.model<IWaitListEntryModel>("waitlist", this.schema);
     }
 
+    public retrieveAllWaitlists(response:any): any {
+        var query = this.model.find({});
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
+        });
+    }
+
+    public notifyRes(response:any,filter:Object): any {
+        this.model.findOneAndUpdate(filter, { $set: { notified: true} }, (err) =>{
+            if (err){
+                response.send("Error while set notified to true");
+            }
+            response.send("Mark customer as notified successful!");
+        })
+    }
+    
+    public confirmRes(response:any,filter:Object): any {
+        this.model.findOneAndUpdate(filter, { $set: { confirmed: true} }, (err) =>{
+            if (err){
+                response.send("Error while set confirmed to true");
+            }
+            response.send("Mark customer as confirmed successful!");
+        })
+    }
+
+    public deleteRes(response:any,filter:Object): any {
+        this.model.findOneAndDelete(filter, (err) =>{
+            if (err){
+                response.send("Error while removing reservation");
+            }
+            response.send("Removed Reservation.");
+        })
+    }
+
     public retrieveAllWaitlistEntriesPerRestaurant(response:any, filter:Object) {
         var query = this.model.find(filter);
         query.exec( (err, itemArray) => {
@@ -42,15 +78,15 @@ class WaitlistEntryModel {
             response.json(itemArray);
         });
     }
-
-    public addToWaitlist(response:any,jsonObject:any){
-        this.model.create(jsonObject,(err) =>{
+    
+    public updateGroupSize(response:any,search_criteria:any,update:any){
+        this.model.updateOne(search_criteria, update, (err) =>{
             if (err){
-                response.send("Error while adding to waitlist");
+                response.send("Error while updating group size");
             }
-            response.send("Addition successful!!");
+            response.send("Updated group size for reservation.");
         });
-
     }
+
 }
 export {WaitlistEntryModel};
