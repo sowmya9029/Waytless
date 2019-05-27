@@ -6,4 +6,7 @@ export class Restaurant {
     rating: number;
     email:string;
     cuisine:string;
+    reviews:number;
+    booked:number;
+    url:string;
 }

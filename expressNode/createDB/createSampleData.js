@@ -18,7 +18,10 @@ restCollection.remove({})
                         },
                         phoneNumber: 4256981095,
                         email: "admin@dintaifung.com",
-                        rating: 5
+                        rating: 5,
+                        reviews: 679,
+                        booked:980,
+                        url:"../assets/images/dinthaifung.png"
                 }
         )
        restCollection.insert(
@@ -34,7 +37,10 @@ restCollection.remove({})
                         },
                         phoneNumber: 4257462144,
                         email: "admin@ruchi.com",
-                        rating: 5
+                        rating: 5,
+                        reviews: 900,
+                        booked:432,
+                        url:"../assets/images/imagetwo.jpg"
                 }
         )
         restCollection.insert(
@@ -50,7 +56,13 @@ restCollection.remove({})
                         },
                         phoneNumber: 4258207740,
                         email: "admin@olivegarden.com",
-                        rating: 4
+                        rating: 4,
+                        reviews: "879",
+                        booked:100,
+                        url:"../assets/images/image3.jpg"
+                      
+
+                      
                 }
         )
         restCollection.insert(
@@ -66,7 +78,10 @@ restCollection.remove({})
                         },
                         phoneNumber: 4257029192,
                         email: "admin@southernspicewa.com",
-                        rating: 3
+                        rating: 3,
+                        reviews:768,
+                        booked:300,
+                        url:"../assets/images/image4.jpg"
                 }
         )
     
@@ -83,7 +98,9 @@ restCollection.remove({})
                         },
                         phoneNumber: 4252457551,
                         email: "admin@mediterraneankitchens.net",
-                        rating: 4
+                        rating: 4,
+                        reviews: "980 Reviews",
+                        url:"../assets/images/image5.jpg"
                 }
         )
 
