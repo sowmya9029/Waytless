@@ -185,6 +185,54 @@ menuitemsCollection.insert(
 }
 )
 
+menuitemsCollection.insert(
+        {
+                  itemID: 100,
+                  itemName: "Sweet Taro Bao",
+                  price: 3.99,
+                  description: "Tasty buns",
+                  restaurantID: 1,
+                  itemCategory:{categoryId:"3",
+                      categoryName:"Dessert",
+                      description:'description here'}
+        }
+)
+menuitemsCollection.insert(
+        {
+                  itemID: 101,
+                  itemName: "Red Bean Bao",
+                  price: 3.99,
+                  description: "Tasty buns",
+                  restaurantID: 2,
+                  itemCategory:{categoryId:"3",
+                      categoryName:"Dessert",
+                      description:'description here'}
+        }
+)
+menuitemsCollection.insert(
+        {
+                  itemID: 102,
+                  itemName: "Green Bean Bao",
+                  price: 3.99,
+                  description: "Tasty buns",
+                  restaurantID: 3,
+                  itemCategory:{categoryId:"3",
+                      categoryName:"Dessert",
+                      description:'description here'}
+        }
+)
+menuitemsCollection.insert(
+        {
+                  itemID: 103,
+                  itemName: "Beef Noodle",
+                  price: 3.99,
+                  description: "Tasty noodle",
+                  restaurantID: 2,
+                  itemCategory:{categoryId:"2",
+                      categoryName:"Dessert",
+                      description:'description here'}
+        }
+)
     menuitemsCollection.insert(
         {       
               itemID: 5,
