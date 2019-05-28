@@ -5,13 +5,15 @@ import { RestaurantAPIService } from 'app/_services/restaurant-api.service';
 import { ApiService } from 'app/_services/api.service';
 import { Restaurant } from 'app/_models/restaurant';
 import { Waitlist } from 'app/_models/waitlist';
+import { BrowserModule } from '@angular/platform-browser';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-manageWaitlist',
   templateUrl: './manageWaitlist.component.html',
   styleUrls: ['./manageWaitlist.component.css']
 })
-
 export class manageWaitlistComponent implements OnInit {
 
   editField: string;
