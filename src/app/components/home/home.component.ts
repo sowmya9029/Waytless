@@ -13,33 +13,45 @@ import { Waitlist } from 'app/_models/waitlist';
 export class HomeComponent implements OnInit {
 editField: string;
 city: string;
-  restaurantName: string;
-   restuarant:Restaurant[]
+search:string;
+restaurantName: string;
+restuarant:Restaurant[]
 
   private waitlist: Waitlist[];
   constructor(private router: Router,
     private restaurantAPIService: RestaurantAPIService,
     private route: ActivatedRoute) {
       this.route.params.subscribe(params => {
+        console.log("params"+params['city']);
         this.city = params['city'];
-        this.restaurantAPIService.getNearByRestaurants('Bellevue').subscribe(restItems => {
+       /* this.restaurantAPIService.getNearByRestaurants(this.city).subscribe(restItems => {
           //this.restaurantName = restItems[this.restaurantId].name;
-          this.restuarant = restItems.filter(i => i.address.city == 'Bellevue');
+          this.restuarant = restItems;
           console.log(restItems);
-        })
+        })*/
         this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
           //this.restaurantName = restItems[this.restaurantId].name;
           this.restuarant = restItems;
           console.log(restItems);
-        })
-       
+        })     
       }
       )
   }
-
+  keyDownFunction(event,value) {
+    if(event.keyCode == 13) {
+      this.route.params.subscribe(params => {
+        console.log("params"+this.search);
+       this.restaurantAPIService.getNearByRestaurants(this.search).subscribe(restItems => {
+          //this.restaurantName = restItems[this.restaurantId].name;
+          this.restuarant = restItems;
+          console.log("restItems :: "+restItems);
+        })
+      }
+      )
+    }
+  }
   ngOnInit() {
   }
-
   onRestaurantClickEvent(){
     this.router.navigate(['./waitlist-entry']);
   }

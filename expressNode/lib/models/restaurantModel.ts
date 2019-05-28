@@ -57,6 +57,13 @@ class RestaurantModel {
             response.json(itemArray) ;
         });
     }
+    public retrieveAllRestaurantsListBasedOnCityOrName(response:any,filter:Object): any {
+        var query = this.model.find(filter);
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
+        });
+    }
+
 
     public addToRestaurantList(response:any,jsonObject:any){
         this.model.create(jsonObject,(err) =>{

@@ -125,8 +125,6 @@ export class Routes {
                   }
             }
 
-           
-
                 this.menuitem.updateMenuBaseOnRestaurantAndMenuId(res,searchCriteria,toBeChanged);
             })
 
@@ -240,11 +238,12 @@ export class Routes {
             console.log("Get all restaurants"+res);
             this.restaurantlist.retrieveAllRestaurantsLists(res);
            })
-        // to get all nearby restaurant
-        app.route('/restaurantlist/:city').get((req: Request, res: Response) => {
-            var city = req.params.city;
-            console.log("Get all restaurants  with city: " + city);
-            this.restaurantlist.retrieveAllRestaurantsListBasedOnLocation(res,{ "address.city": city });
+        // to get restaurant by city or name
+        app.route('/restaurantlist/:param').get((req: Request, res: Response) => {
+            var param = req.params.param;
+            console.log("Get all restaurants  with city: " + param);
+            var regex_param = new RegExp(["^", param, "$"].join(""), "i");           
+            this.restaurantlist.retrieveAllRestaurantsListBasedOnCityOrName(res,{ $or :[{"address.city": regex_param },{"name":regex_param}]});
         })
 
           // to restaurant by id
