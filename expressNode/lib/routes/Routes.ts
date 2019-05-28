@@ -85,7 +85,7 @@ export class Routes {
                 this.menuitem.deleteMenuBaseOnRestaurantAndMenuId(res,{"restaurantID":restId,"itemID":itemID});
             })
 
-            //update
+            //update menu item
             app.route('/menuitems').patch((req: Request, res: Response) => {
                 
                 var menuitems_entry = {

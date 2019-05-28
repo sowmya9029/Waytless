@@ -349,11 +349,11 @@ waitlistCollection.remove({})
 waitlistCollection.insert(
 {
         queueID: 1,
-        customerName: "Mary",
+        customerName: "Mary Johnson",
         restaurantID: 1,
         groupSize: 3,
-        joinTime: new Date("February 4, 2019 16:00:00"),
-        quotedtime: new Date("February 4, 2019 16:10:00"),
+        joinTime: new Date("February 4, 2019 17:00:00"),
+        quotedtime: new Date("February 4, 2019 17:10:00"),
         email : "maryk@yahoo.com",
         phone : "2062112222",
         notified: false,
@@ -364,11 +364,11 @@ waitlistCollection.insert(
 waitlistCollection.insert(
         {
                 queueID: 2,
-                customerName: "John",
+                customerName: "John Jones",
                 restaurantID: 1,
                 groupSize: 3,
-                joinTime: new Date("February 4, 2019 16:10:00"),
-                quotedtime: new Date("February 4, 2019 16:20:00"),
+                joinTime: new Date("February 4, 2019 17:04:00"),
+                quotedtime: new Date("February 4, 2019 17:20:00"),
                 email : "john@yahoo.com",
                 phone : "2062112222",
                 notified: false,
@@ -376,6 +376,21 @@ waitlistCollection.insert(
         }
         )
 
+        waitlistCollection.insert(
+                {
+                        queueID: 3,
+                        customerName: "Peter Andrews",
+                        restaurantID: 1,
+                        groupSize: 3,
+                        joinTime: new Date("February 4, 2019 17:09:00"),
+                        quotedtime: new Date("February 4, 2019 17:25:00"),
+                        email : "john@yahoo.com",
+                        phone : "2062112222",
+                        notified: false,
+                        confirmed: false
+                }
+                )
+        
 waitlistCollection.insert(
         {
         queueID: 1,
