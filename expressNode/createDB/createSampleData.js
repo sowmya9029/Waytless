@@ -178,7 +178,7 @@ menuitemsCollection.insert(
 menuitemsCollection.insert(
         {
                 itemID: 104,
-                itemName: "Eight-Treasure Rice Cake",
+                itemName: "8 Treasure Rice Cake",
                 price: 8.99,
               description: "Sticky rice with eight-treatures.",
               restaurantID: 1,
@@ -223,7 +223,7 @@ menuitemsCollection.insert(
                 menuitemsCollection.insert(
                         {
                                 itemID: 107,
-                                itemName: "Crab & Pork XiaoLongBao",
+                                itemName: "Crab & Pork Bao",
                                 price: 10.99,
                                 description: "Crab & Pork xiaolongbao",
                                 restaurantID: 1,
