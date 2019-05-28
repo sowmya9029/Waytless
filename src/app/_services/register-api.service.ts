@@ -7,10 +7,11 @@ import { map } from "rxjs/operators";
 import { Customer } from '../_models/customer';
 import { Restaurant } from '../_models/restaurant';
 import { Waitlist } from '../_models/waitlist';
+const API_URL = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
-const API_URL = environment.apiUrl;
+
 export class RegisterApiService {
   constructor(
     private http: Http
