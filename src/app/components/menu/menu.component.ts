@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'app/_models';
 import { ApiService } from 'app/_services/api.service';
 import { Order } from 'app/_models/order';
+import { MenuApiService } from 'app/_services/menu-api.service';
 
 @Component({
   selector: 'app-menu',
@@ -26,6 +27,7 @@ export class MenuComponent implements OnInit {
   constructor(
     private router: Router,
     private apiService: ApiService,
+    private menuApiService: MenuApiService,
     private route: ActivatedRoute) {
     this.restaurantID = 0;
     this.totalPrice = 0;
@@ -46,7 +48,7 @@ export class MenuComponent implements OnInit {
         this.restaurantName = "PF Chang's";
       }
       
-      this.apiService.getAllMenuItems(this.restaurantID).subscribe(menuItems => {
+      this.menuApiService.getAllMenuItems(this.restaurantID).subscribe(menuItems => {
         this.appetizers = menuItems.filter(i => i.itemCategory.categoryId == 1);
         this.entrees = menuItems.filter(i => i.itemCategory.categoryId == 2);
         this.desserts = menuItems.filter(i => i.itemCategory.categoryId == 3);
