@@ -3,6 +3,7 @@ import { ApiService } from 'app/_services/api.service';
 import { Order } from 'app/_models/order';
 import { MenuItem } from 'app/_models/menuItem';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MenuApiService } from 'app/_services/menu-api.service';
 
 export interface OrderDetail {
   name: string;
@@ -26,6 +27,7 @@ export class OrderCartComponent implements OnInit {
   private restaurantID;
 
   constructor(private apiService: ApiService,
+              private menuApiService: MenuApiService,
               private route: ActivatedRoute) { 
     this.customerNumber = 2;
     this.restaurantID = 0;
@@ -36,7 +38,7 @@ export class OrderCartComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.restaurantID += params['id'];
 
-      this.apiService.getAllMenuItems(this.restaurantID).subscribe(menuItems => {
+      this.menuApiService.getAllMenuItems(this.restaurantID).subscribe(menuItems => {
           menuItems.forEach(m => this.menuItemsMap.set(m.itemID, m));
           this.apiService.getAllOrders(this.restaurantID, this.customerNumber).subscribe(allOrders => {
               this.orders = allOrders;
