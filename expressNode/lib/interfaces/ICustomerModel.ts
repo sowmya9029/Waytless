@@ -7,6 +7,8 @@ interface ICustomerModel extends Mongoose.Document {
     lastName : String,
     address:{street: String, number: String, zip: String, city: String},
     phone : String,
-    email : String
+    email : String,
+    username:String,
+    password:String
 }
 export {ICustomerModel};

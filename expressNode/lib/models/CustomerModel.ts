@@ -25,7 +25,9 @@ class CustomerModel {
                 lastName : String,
                 address : AddressSchema,
                 phone : String,
-                email : String
+                email : String,
+                username :String,
+                password:String
             }, {collection: 'customer'}
         );
     }
