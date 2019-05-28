@@ -57,7 +57,7 @@ restCollection.remove({})
                         phoneNumber: 4258207740,
                         email: "admin@olivegarden.com",
                         rating: 4,
-                        reviews: "879",
+                        reviews: 879,
                         booked:100,
                         url:"../assets/images/image3.jpg"
                       
@@ -99,7 +99,7 @@ restCollection.remove({})
                         phoneNumber: 4252457551,
                         email: "admin@mediterraneankitchens.net",
                         rating: 4,
-                        reviews: "980 Reviews",
+                        reviews: 980,
                         url:"../assets/images/image5.jpg"
                 }
         )
@@ -647,7 +647,10 @@ customerCollection.insert(
                 "city": "Bellevue"
         },
         phone : "2062112222",
-        email : "abc@abc.com"
+        email : "abc@abc.com",
+        username:"sowmya90",
+        password:"test123"
+        
 })
 
 customerCollection.insert(
@@ -662,7 +665,9 @@ customerCollection.insert(
                         "city": "Bellevue"
                 },
                 phone : "2062112222",
-                email : "abc@abc.com"
+                email : "abc@abc.com",
+                username:"sowmya390",
+                password:"test123"
         })
 
 customerCollection.insert(
@@ -677,7 +682,9 @@ customerCollection.insert(
                         "city": "Bellevue"
                 },
                 phone : "2062112222",
-                email : "abc@abc.com"
+                email : "abc@abc.com",
+                username:"sowmya190",
+                password:"test123"
         })
 
         customerCollection.insert(
@@ -692,7 +699,9 @@ customerCollection.insert(
                         "city": "Bellevue"
                 },
                 phone : "2062112222",
-                email : "abc@abc.com"
+                email : "abc@abc.com",
+                username:"sowmya290",
+                password:"test123"
         })
 
        customerCollection.insert(
@@ -707,7 +716,9 @@ customerCollection.insert(
                                 "city": "Bellevue"
                         },
                         phone : "2062112222",
-                        email : "abc@abc.com"
+                        email : "abc@abc.com",
+                        username:"sowmya3490",
+                        password:"test123"
                 })
 
 // create a table for orders
