@@ -23,6 +23,7 @@ const routes: Routes = [
     { path: 'waitlist-entry', component: WaitlistEntryComponent},
      { path: 'order-cart/:id',component: OrderCartComponent}, 
    { path: '', redirectTo: '/home', pathMatch: 'full'},
-   { path: 'manageWaitlist/:id', component: manageWaitlistComponent }
+   { path: 'manageWaitlist/:id', component: manageWaitlistComponent },
+   { path: 'manageWaitlist', component: manageWaitlistComponent }
   ];
 export const routing =  RouterModule.forRoot(routes);
