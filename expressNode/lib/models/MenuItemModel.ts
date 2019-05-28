@@ -20,7 +20,7 @@ class MenuItemModel {
                 itemCategory: Object,
                 description:String,
                 //type:String,
-                //image: { data: Buffer, contentType: String },
+                url: String,
                 price :Number
             }, {collection: 'menuitems'}
         );

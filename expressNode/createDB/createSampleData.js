@@ -141,6 +141,7 @@ menuitemsCollection.insert(
       price: 5.99,
       description: "Cucumbers marinated in sauce",
       restaurantID: 1,
+      url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_cucumber.jpg",
       itemCategory:{categoryId:"1",
               categoryName:"Appetizer",
               description:'description here'}
@@ -153,6 +154,7 @@ menuitemsCollection.insert(
         price: 7.99,
         description: "Vegetarian cold salad",
         restaurantID: 1,
+        url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_soynoodlesalad.jpg",
         itemCategory:{categoryId:"1",
               categoryName:"Appetizer",
               description:'description here'}
@@ -165,6 +167,7 @@ menuitemsCollection.insert(
         price: 10.99,
       description: "Fried pork chop with a side of rice",
       restaurantID: 1,
+      url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_porkchop.jpg",
       itemCategory:
       {
        categoryId:"1",
@@ -173,12 +176,73 @@ menuitemsCollection.insert(
 }
 )
 menuitemsCollection.insert(
+        {
+                itemID: 104,
+                itemName: "Eight-Treasure Rice Cake",
+                price: 8.99,
+              description: "Sticky rice with eight-treatures.",
+              restaurantID: 1,
+              url: "https://dintaifungusa.com/wp-content/uploads/2019/01/Eight-Treasure-Sticky-Rice.jpg",
+              itemCategory:
+              {
+               categoryId:"3",
+              categoryName:"Dessert",
+              description:'description here'}
+        }
+        )
+        menuitemsCollection.insert(
+                {
+                        itemID: 105,
+                        itemName: "Red Bean Rice Cake",
+                        price: 10.99,
+                      description: "Red Bean Rice Cake.",
+                      restaurantID: 1,
+                      url: "https://dintaifungusa.com/wp-content/uploads/2019/01/RedBeanRiceCake_frame.jpg",
+                      itemCategory:
+                      {
+                       categoryId:"3",
+                      categoryName:"Dessert",
+                      description:'description here'}
+                }
+                )
+                menuitemsCollection.insert(
+                        {
+                                itemID: 106,
+                                itemName: "Pork XiaoLongBao",
+                                price: 10.99,
+                              description: "Pork xiaolongbao",
+                              restaurantID: 1,
+                              url: "https://dintaifungusa.com/wp-content/uploads/2015/01/pork-soup-dumpling.jpg",
+                              itemCategory:
+                              {
+                               categoryId:"2",
+                              categoryName:"Entree",
+                              description:'description here'}
+                        }
+                )
+                menuitemsCollection.insert(
+                        {
+                                itemID: 107,
+                                itemName: "Crab & Pork XiaoLongBao",
+                                price: 10.99,
+                                description: "Crab & Pork xiaolongbao",
+                                restaurantID: 1,
+                                url: "https://dintaifungusa.com/wp-content/uploads/2015/01/pork-crab-soup-dumpling.jpg",
+                                itemCategory:
+                                {
+                                categoryId:"2",
+                                categoryName:"Entree",
+                                description:'description here'}
+                                }
+                )
+menuitemsCollection.insert(
 {
           itemID: 4,
           itemName: "Spring Rolls",
           price: 5.99,
           description: "Cucumbers marinated in sauce",
           restaurantID: 1,
+          url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_spareribs.jpg",
           itemCategory:{categoryId:"2",
               categoryName:"Entree",
               description:'description here'}
@@ -192,9 +256,11 @@ menuitemsCollection.insert(
                   price: 3.99,
                   description: "Tasty buns",
                   restaurantID: 1,
+                  url: "https://dintaifungusa.com/wp-content/uploads/2019/01/SweetTaroXLB_frame.jpg",
                   itemCategory:{categoryId:"3",
                       categoryName:"Dessert",
                       description:'description here'}
+                
         }
 )
 menuitemsCollection.insert(
@@ -204,6 +270,7 @@ menuitemsCollection.insert(
                   price: 3.99,
                   description: "Tasty buns",
                   restaurantID: 2,
+                  url: "https://dintaifungusa.com/wp-content/uploads/2019/01/SweetTaroXLB_frame.jpg",
                   itemCategory:{categoryId:"3",
                       categoryName:"Dessert",
                       description:'description here'}
