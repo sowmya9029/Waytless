@@ -13,34 +13,65 @@ import { Waitlist } from 'app/_models/waitlist';
 export class HomeComponent implements OnInit {
 editField: string;
 city: string;
-  restaurantName: string;
-   restuarant:Restaurant[]
+search:string;
+restaurantName: string;
+restuarant:Restaurant[]
+reviews:number[] = new Array() 
 
   private waitlist: Waitlist[];
   constructor(private router: Router,
     private restaurantAPIService: RestaurantAPIService,
     private route: ActivatedRoute) {
       this.route.params.subscribe(params => {
-        this.city = params['city'];
-        this.restaurantAPIService.getNearByRestaurants('Bellevue').subscribe(restItems => {
-          //this.restaurantName = restItems[this.restaurantId].name;
-          this.restuarant = restItems.filter(i => i.address.city == 'Bellevue');
-          console.log(restItems);
-        })
-        this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
+       /* this.restaurantAPIService.getNearByRestaurants(this.city).subscribe(restItems => {
           //this.restaurantName = restItems[this.restaurantId].name;
           this.restuarant = restItems;
           console.log(restItems);
+        })*/
+        this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
+          //this.restaurantName = restItems[this.restaurantId].name;
+          this.restuarant = restItems;
+          console.log("restItems"+this.restuarant);
+          for (var i = 0; i < restItems[i].rating; i++) {
+            this.reviews[restItems[i].rating] = i;
+            console.log(restItems[i].rating);
+         }
+        
         })
-       
+        
+        
       }
       )
   }
+  
+createStarArray(n) { 
+  return new Array(n);
+}
 
+createEmptyStarArray(n) {
+  return new Array((5-n));
+}
+  keyDownFunction(event) {
+    if(event.keyCode == 13) {
+      this.route.params.subscribe(params => {
+        console.log("params"+this.search);
+       this.restaurantAPIService.getNearByRestaurants(this.search).subscribe(restItems => {
+          //this.restaurantName = restItems[this.restaurantId].name;
+          this.restuarant = restItems;
+          console.log("restItems :: "+restItems);
+        })
+      }
+      )
+    }
+  }
   ngOnInit() {
   }
-
   onRestaurantClickEvent(){
+    this.router.navigate(['./waitlist-entry']);
+  }
+
+  onLoginClickEvent(){
+
     this.router.navigate(['./waitlist-entry']);
   }
 }

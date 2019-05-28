@@ -85,7 +85,7 @@
 .title{
   font-size: 22px;
   font-family: sans-serif;
-  margin-left: 20px;
+  margin-left: 15px;
   margin-bottom: 0px;
   margin-top: 0px;
 }
@@ -174,4 +174,15 @@
 }
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
   background-color: #c0392b !important;
+}
+
+
+.active-pink-4 input[type=text]:focus:not([readonly]) {
+  border: 1px solid #FF6E40;
+  padding: 0px;
+  box-shadow: 0 0 0 1px #FF6E40;
+}
+.active-pink-3 input[type=text] {
+  border: 1px solid #FF6E40;
+  box-shadow: 0 0 0 1px #FF6E40;
 }

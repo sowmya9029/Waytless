@@ -1,3 +1,4 @@
+
 <div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
@@ -27,13 +28,13 @@
 							</div>
 						</div>
 					</form>
-				</div>
+		</div>
 				<div class="d-flex justify-content-center mt-3 login_container">
-					<button type="button" name="button" class="btn login_btn">Login</button>
+					<button type="button" name="button" (click)="onLoginClickEvent()" class="btn login_btn">Login</button>
 				</div>
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+						Don't have an account? <a href="/register" class="ml-2">Sign Up</a>
 					</div>
 					<div class="d-flex justify-content-center links">
 						<a href="#">Forgot your password?</a>
@@ -41,41 +42,25 @@
 				</div>
 			</div>
 		</div>
-	</div>
-<div class="div_body"><h3 class="title">Popular Restaurants NearBy</h3>
-<br>
-   <mat-grid-tile
-          class="menu-item"
-          *ngFor="let e of entrees">        
-          <mat-card class="menu-item-body">          
-              <img mat-card-image src='{{e.url !== undefined ? e.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
-              <mat-card-content>
-                <div class="menu-top">
-                  <span class="menu-item-name">{{e.itemName}}</span>
-                  <span class="menu-item-price">${{e.price}} x {{orders.get(e.itemID) === undefined ? 0 : orders.get(e.itemID)}}</span>
-                </div>
-                <div class="menu-bottom">
-                  <span>{{e.description}}</span><br/>
-                </div>
-              </mat-card-content>
-              <mat-card-actions>
-                <button (click)="addToCart(e)" mat-button>ADD</button>
-                <button (click)="deleteFromCart(e)" mat-button>REMOVE</button>
-              </mat-card-actions>
-            </mat-card>
-        </mat-grid-tile>
+  </div>
 
+      <div class="active-pink-3 active-pink-4 mb-4" style="width:50%;margin :0 auto ;margin-top: 20px">
+          <input [(ngModel)]='search' (keydown)="keyDownFunction($event)" class="form-control" type="text" placeholder="Search Restaurant by Name or City" aria-label="Search">
+        </div>
+<div class="div_body">
+  
+
+  
+<br>
+<span class="title" >Popular Restaurants</span> 
 <div class="row" style="margin-left: 5px" >
   <div class="card" style="width: 18rem;" (click)="onRestaurantClickEvent()" *ngFor="let r of restuarant">
     <img src={{r.url}}  style="width: 290px;height: 200px">
     <div class="card-body">
       <span class="mat-title">{{r.name}}</span>       
-      <div layout="row" layout-align="start center">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">           
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_empty.png">  
+      <div layout="row" layout-align="start center"  >
+       <img class= "mat-icon-button" src="../assets/images/review_full.png" *ngFor= "let e of createStarArray(r.rating)">
+       <img class= "mat-icon-button" src="../assets/images/review_empty.png" *ngFor= "let e of createEmptyStarArray(r.rating)">           
       <span class="rating_text" >{{r.reviews}} Reviews</span>
       </div>
     <p class="text">{{r.cuisine}} . $$$ . {{r.address.city}}</p>
@@ -83,97 +68,4 @@
     <a href="menu/1" class="mat-body-2">See menu</a> 
    </div>
  </div>  
-
-
-    <!--  <div class="card" style="width: 18rem;" (click)="onRestaurantClickEvent()">
-        <img src="../assets/images/dinthaifung.png"  style="width: 290px;height: 200px">
-        <div class="card-body">
-          <span class="mat-title">Din Tai Fung</span>       
-          <div layout="row" layout-align="start center">
-          <img class= "mat-icon-button" src="../assets/images/review_full.png">           
-          <img class= "mat-icon-button" src="../assets/images/review_full.png">
-          <img class= "mat-icon-button" src="../assets/images/review_full.png">
-          <img class= "mat-icon-button" src="../assets/images/review_full.png">
-          <img class= "mat-icon-button" src="../assets/images/review_full.png">  
-          <span class="rating_text" >679 Reviews</span>
-          </div>
-        <p class="text">Chinese . $$$ . LinconSquare/Bellevue</p>
-        <p class="mat-body-2">Booked 900 times</p> 
-        <a href="menu/1" class="mat-body-2">See menu</a> 
-       </div>
-     </div>
-
-    <div class="card" style="width: 18rem;">
-      <img src="../assets/images/imagetwo.jpg"  style="width: 290px;height: 200px">
-    <div class="card-body" >
-      <span class="mat-title">Olive Garden</span>       
-      <div layout="row" layout-align="start center">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">           
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">  
-      <span class="rating_text" >630 Reviews</span>
-    </div>
-      <p class="text">Itallian . $$$ . LinconSquare/Bellevue</p>
-      <p class="mat-body-2">Booked 345 times</p> 
-      <a href="menu/2" class="mat-body-2">See menu</a> 
-    </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-      <img src="../assets/images/image3.jpg" style="width: 290px;height: 200px">
-    <div class="card-body">
-      <span class="mat-title">Southern Spice</span>          
-      <div layout="row" layout-align="start center">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">           
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_empty.png">
-      <img class= "mat-icon-button" src="../assets/images/review_empty.png"> 
-       
-      <span class="rating_text" >800 Reviews</span>
-      </div>
-      <p class="text">Indian . $$ . Redmond</p>
-      <p class="mat-body-2">Booked 985 times</p> 
-      <a href="menu/3" class="mat-body-2">See menu</a> 
-    </div>
- </div>
-
-    <div class="card" style="width: 18rem;">
-      <img src="../assets/images/image4.jpg" style="width: 290px;height: 200px">
-    <div class="card-body">
-      <span class="mat-title">Mediterrean Kitchen</span>          
-      <div layout="row" layout-align="start center">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">           
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_empty.png">
-      <img class= "mat-icon-button" src="../assets/images/review_empty.png">  
-      <span class="rating_text" >700 Reviews</span>
-      </div>
-      <p class="text"> Mediterrean . $$$$ . Bellevue, WA 98004</p>
-      <p class="mat-body-2">Booked 385 times</p> 
-      <a href="menu/4" class="mat-body-2">See menu</a> 
-    </div>
-   </div>
-
-    <div class="card" style="width: 18rem;">
-      <img src="../assets/images/image5.jpg" style="width: 290px ;height: 200px" >
-    <div class="card-body">
-      <span class="mat-title">PF Chang's</span>          
-      <div layout="row" layout-align="start center">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">           
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_full.png">
-      <img class= "mat-icon-button" src="../assets/images/review_empty.png">
-      <span class="rating_text" >890 Reviews</span>  
-      </div>
-      <p class="text"> Indo Chinese . $$$ . AlderwoodMall/Lynwood</p>
-      <p class="mat-body-2">Booked 585 times</p> 
-      <a href="menu/5" class="mat-body-2">See menu</a> 
-    </div>
-    </div> -->
-  
   </div>

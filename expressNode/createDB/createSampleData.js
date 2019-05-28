@@ -57,7 +57,7 @@ restCollection.remove({})
                         phoneNumber: 4258207740,
                         email: "admin@olivegarden.com",
                         rating: 4,
-                        reviews: "879",
+                        reviews: 879,
                         booked:100,
                         url:"../assets/images/image3.jpg"
                       
@@ -99,7 +99,7 @@ restCollection.remove({})
                         phoneNumber: 4252457551,
                         email: "admin@mediterraneankitchens.net",
                         rating: 4,
-                        reviews: "980 Reviews",
+                        reviews: 980,
                         url:"../assets/images/image5.jpg"
                 }
         )
@@ -141,6 +141,7 @@ menuitemsCollection.insert(
       price: 5.99,
       description: "Cucumbers marinated in sauce",
       restaurantID: 1,
+      url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_cucumber.jpg",
       itemCategory:{categoryId:"1",
               categoryName:"Appetizer",
               description:'description here'}
@@ -153,6 +154,7 @@ menuitemsCollection.insert(
         price: 7.99,
         description: "Vegetarian cold salad",
         restaurantID: 1,
+        url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_soynoodlesalad.jpg",
         itemCategory:{categoryId:"1",
               categoryName:"Appetizer",
               description:'description here'}
@@ -165,6 +167,7 @@ menuitemsCollection.insert(
         price: 10.99,
       description: "Fried pork chop with a side of rice",
       restaurantID: 1,
+      url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_porkchop.jpg",
       itemCategory:
       {
        categoryId:"1",
@@ -173,18 +176,130 @@ menuitemsCollection.insert(
 }
 )
 menuitemsCollection.insert(
+        {
+                itemID: 104,
+                itemName: "8 Treasure Rice Cake",
+                price: 8.99,
+              description: "Sticky rice with eight-treatures.",
+              restaurantID: 1,
+              url: "https://dintaifungusa.com/wp-content/uploads/2019/01/Eight-Treasure-Sticky-Rice.jpg",
+              itemCategory:
+              {
+               categoryId:"3",
+              categoryName:"Dessert",
+              description:'description here'}
+        }
+        )
+        menuitemsCollection.insert(
+                {
+                        itemID: 105,
+                        itemName: "Red Bean Rice Cake",
+                        price: 10.99,
+                      description: "Red Bean Rice Cake.",
+                      restaurantID: 1,
+                      url: "https://dintaifungusa.com/wp-content/uploads/2019/01/RedBeanRiceCake_frame.jpg",
+                      itemCategory:
+                      {
+                       categoryId:"3",
+                      categoryName:"Dessert",
+                      description:'description here'}
+                }
+                )
+                menuitemsCollection.insert(
+                        {
+                                itemID: 106,
+                                itemName: "Pork XiaoLongBao",
+                                price: 10.99,
+                              description: "Pork xiaolongbao",
+                              restaurantID: 1,
+                              url: "https://dintaifungusa.com/wp-content/uploads/2015/01/pork-soup-dumpling.jpg",
+                              itemCategory:
+                              {
+                               categoryId:"2",
+                              categoryName:"Entree",
+                              description:'description here'}
+                        }
+                )
+                menuitemsCollection.insert(
+                        {
+                                itemID: 107,
+                                itemName: "Crab & Pork Bao",
+                                price: 10.99,
+                                description: "Crab & Pork xiaolongbao",
+                                restaurantID: 1,
+                                url: "https://dintaifungusa.com/wp-content/uploads/2015/01/pork-crab-soup-dumpling.jpg",
+                                itemCategory:
+                                {
+                                categoryId:"2",
+                                categoryName:"Entree",
+                                description:'description here'}
+                                }
+                )
+menuitemsCollection.insert(
 {
           itemID: 4,
           itemName: "Spring Rolls",
           price: 5.99,
           description: "Cucumbers marinated in sauce",
           restaurantID: 1,
+          url: "https://dintaifungusa.com/wp-content/uploads/2014/05/DTF_MenuIcons_spareribs.jpg",
           itemCategory:{categoryId:"2",
               categoryName:"Entree",
               description:'description here'}
 }
 )
 
+menuitemsCollection.insert(
+        {
+                  itemID: 100,
+                  itemName: "Sweet Taro Bao",
+                  price: 3.99,
+                  description: "Tasty buns",
+                  restaurantID: 1,
+                  url: "https://dintaifungusa.com/wp-content/uploads/2019/01/SweetTaroXLB_frame.jpg",
+                  itemCategory:{categoryId:"3",
+                      categoryName:"Dessert",
+                      description:'description here'}
+                
+        }
+)
+menuitemsCollection.insert(
+        {
+                  itemID: 101,
+                  itemName: "Red Bean Bao",
+                  price: 3.99,
+                  description: "Tasty buns",
+                  restaurantID: 2,
+                  url: "https://dintaifungusa.com/wp-content/uploads/2019/01/SweetTaroXLB_frame.jpg",
+                  itemCategory:{categoryId:"3",
+                      categoryName:"Dessert",
+                      description:'description here'}
+        }
+)
+menuitemsCollection.insert(
+        {
+                  itemID: 102,
+                  itemName: "Green Bean Bao",
+                  price: 3.99,
+                  description: "Tasty buns",
+                  restaurantID: 3,
+                  itemCategory:{categoryId:"3",
+                      categoryName:"Dessert",
+                      description:'description here'}
+        }
+)
+menuitemsCollection.insert(
+        {
+                  itemID: 103,
+                  itemName: "Beef Noodle",
+                  price: 3.99,
+                  description: "Tasty noodle",
+                  restaurantID: 2,
+                  itemCategory:{categoryId:"2",
+                      categoryName:"Dessert",
+                      description:'description here'}
+        }
+)
     menuitemsCollection.insert(
         {       
               itemID: 5,

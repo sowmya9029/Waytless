@@ -32,10 +32,11 @@ export class RestaurantAPIService {
   }
 
   public getNearByRestaurants(city: String) {
+    console.log("restaurant API city "+ city);
     return this.http.get(API_URL + '/restaurantlist/'+city)
     .pipe(map(response => {
       const restaurants: Restaurant[] = response.json();
-      console.log(restaurants);
+      console.log("restaurants" + restaurants);
       return restaurants;
     }));
   }
