@@ -4,6 +4,7 @@ import { MenuItem } from 'app/_models';
 import { ApiService } from 'app/_services/api.service';
 import { Order } from 'app/_models/order';
 import { MenuApiService } from 'app/_services/menu-api.service';
+import {RestaurantAPIService} from '../../_services/restaurant-api.service';
 
 @Component({
   selector: 'app-menu',
@@ -28,26 +29,17 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private apiService: ApiService,
     private menuApiService: MenuApiService,
+    private restaurantService: RestaurantAPIService,
     private route: ActivatedRoute) {
     this.restaurantID = 0;
     this.totalPrice = 0;
     this.customerNumber = 2;
     this.sub = this.route.params.subscribe(params => {
       this.restaurantID += params['id'];
-      
-      // below should eventually be fetched from back-end server.
-      if (this.restaurantID == 1) {
-        this.restaurantName = "Din Tai Fung";
-      } else if (this.restaurantID == 2) {
-        this.restaurantName = "Olive Garden";
-      } else if (this.restaurantID == 3) {
-        this.restaurantName = "Southern Spice";
-      } else if (this.restaurantID == 4) {
-        this.restaurantName = "Mediterranean Kitchen";
-      } else {
-        this.restaurantName = "PF Chang's";
-      }
-      
+      this.restaurantService.getAllRestaurants().subscribe(restItems => {
+        this.restaurantName = restItems[this.restaurantID - 1].name;
+      })
+
       this.menuApiService.getAllMenuItems(this.restaurantID).subscribe(menuItems => {
         this.appetizers = menuItems.filter(i => i.itemCategory.categoryId == 1);
         this.entrees = menuItems.filter(i => i.itemCategory.categoryId == 2);
