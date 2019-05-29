@@ -29,8 +29,6 @@ export class WaitlistEntryComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.restaurantId = params['id'];
       this.restaurantSerice.getAllRestaurants().subscribe(restItems => {
-        console.log("Hello");
-        console.log(restItems);
         this.restaurantName = restItems[this.restaurantId - 1].name;
       })
 
