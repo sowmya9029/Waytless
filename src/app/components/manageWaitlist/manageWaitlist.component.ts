@@ -67,7 +67,7 @@ export class manageWaitlistComponent implements OnInit {
       this.route.params.subscribe(params => {
         this.restaurantId = params['id'];
         this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
-          this.restaurantName = restItems[this.restaurantId].name;
+          this.restaurantName = restItems[this.restaurantId - 1].name;
         })
         this.apiService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
           this.waitlist = waitlistItems;
