@@ -43,7 +43,15 @@ class CustomerModel {
             response.json(itemArray) ;
         });
     }
-    
+    public addToCustomer(response:any,jsonObject:any){
+        this.model.create(jsonObject,(err) =>{
+            if (err){
+                response.send("Error while adding to customer");
+            }
+            response.send("Addition successful!!");
+        });
+
+    }
     public getAllCustomersOnFilter(response:any,filter:Object): any {
         var query = this.model.find(filter);
         query.exec( (err, itemArray) => {

@@ -16,19 +16,35 @@
               <i class="material-icons">person</i>
               <mat-form-field class="example-full-width">               
                       <mat-label>Choose User</mat-label>
-                      <mat-select [(value)]="selected">
-                        <mat-option value="Owner">Owner</mat-option>
+                      <mat-select [(value)]="selected"  >
+                        <mat-option value="Owner" >Owner</mat-option>
                         <mat-option value="Customer">Customer</mat-option>
                       </mat-select>
               </mat-form-field>
                 
             </td>
           </tr>
+          <tr *ngIf="selected === 'Customer'">
+              <td>
+                  <i class="material-icons">person</i>
+                  <mat-form-field class="example-full-width">
+                  <input matInput placeholder="FirstName" [(ngModel)]="firstname" name="firstname" >
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr *ngIf="selected === 'Customer'">
+                  <td>
+                      <i class="material-icons">person</i>
+                      <mat-form-field class="example-full-width">
+                      <input matInput placeholder="LastName" [(ngModel)]="lastname" name="lastname" >
+                      </mat-form-field>
+                    </td>
+                  </tr>
           <tr>
             <td>
               <i class="material-icons">email</i>
               <mat-form-field class="example-full-width">
-              <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+              <input matInput placeholder="Email" [(ngModel)]="email" name="email" >
               </mat-form-field>
            </td>
         </tr>
@@ -36,36 +52,37 @@
             <td>
               <i class="material-icons">phone</i>
               <mat-form-field class="example-full-width">
-              <input matInput placeholder="Phone Number" [(ngModel)]="phone" name="email" required>
+              <input matInput placeholder="Phone Number" [(ngModel)]="phone" name="email" >
               </mat-form-field>
            </td>
         </tr>
-                <tr *ngIf="selected === 'Customer'">
-                    <td>
-                        <i class="material-icons">phone</i>
-                        <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Phone" [(ngModel)]="phone" name="phone" required>
-                        </mat-form-field>
-                      </td>
-                    </tr>
-            <tr>
+              
+            <tr >
               <td>
                 <i class="material-icons">person</i>
                 <mat-form-field class="example-full-width">
-                <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+                <input matInput placeholder="Username" [(ngModel)]="username" name="username" >
                 </mat-form-field>
               </td>
             </tr>
-          
-          <tr>
+            <tr >
+                <td>
+                  <i class="material-icons">person</i>
+                  <mat-form-field class="example-full-width">
+                  <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" >
+                  </mat-form-field>
+                </td>
+              </tr>
+            <tr *ngIf="selected === 'Owner'">
           <td>
             <i class="material-icons">restaurant</i>
             <mat-form-field class="example-full-width">
 
-            <input matInput placeholder="Restaurant Name" [(ngModel)]="restaurant" name="restaurant" required>
+            <input matInput placeholder="Restaurant Name" [(ngModel)]="restaurant" name="restaurant" >
           </mat-form-field></td>
         </tr>
-        <tr>
+        
+        <tr *ngIf="selected === 'Owner'">
             <td>
               <i class="material-icons">location_city</i>
               <mat-form-field class="example-full-width">
@@ -78,7 +95,7 @@
     </mat-card-content>
     
     <mat-card-actions>
-      <button mat-raised-button (click)="login()" color="primary">Submit</button>
+      <button mat-raised-button (click)="register()" color="primary">Submit</button>
     </mat-card-actions>
    
    
