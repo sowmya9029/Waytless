@@ -265,12 +265,64 @@ menuitemsCollection.insert(
 )
 menuitemsCollection.insert(
         {
-                  itemID: 101,
-                  itemName: "Red Bean Bao",
-                  price: 3.99,
-                  description: "Tasty buns",
+                  itemID: 201,
+                  itemName: "Chicken Biryani",
+                  price: 21.99,
+                  description: "Hyderabadi Dum Biryani",
                   restaurantID: 2,
-                  url: "https://dintaifungusa.com/wp-content/uploads/2019/01/SweetTaroXLB_frame.jpg",
+                  url: "https://ruchiindianrestaurant.com/images/blog/hyderabaddumbiriyani.jpg",
+                  itemCategory:{categoryId:"2",
+                      categoryName:"Entree",
+                      description:'description here'}
+        }
+)
+menuitemsCollection.insert(
+        {
+                  itemID: 202,
+                  itemName: "Tandoori Chicken",
+                  price: 8.49,
+                  description: "4 Pieces",
+                  restaurantID: 2,
+                  url: "https://ruchiindianrestaurant.com/images/blog/tandoor.jpg",
+                  itemCategory:{categoryId:"1",
+                      categoryName:"Appetizer",
+                      description:'description here'}
+        }
+)
+menuitemsCollection.insert(
+        {
+                  itemID: 203,
+                  itemName: "Poori (Chole & Bhaji)",
+                  price: 7.99,
+                  description: "Chole & Bhaji",
+                  restaurantID: 2,
+                  url: "https://ruchiindianrestaurant.com/images/blog/tiffins.jpg",
+                  itemCategory:{categoryId:"1",
+                      categoryName:"Appetizer",
+                      description:'description here'}
+        }
+)
+menuitemsCollection.insert(
+        {
+                  itemID: 204,
+                  itemName: "Naan",
+                  price: 2.49,
+                  description: "Plain/Butter/Garlic/Chili",
+                  restaurantID: 2,
+                  url: "https://ruchiindianrestaurant.com/images/blog/naans.jpg",
+                  itemCategory:{categoryId:"1",
+                      categoryName:"Appetizer",
+                      description:'description here'}
+        }
+)
+menuitemsCollection.insert(
+        {
+                  itemID: 205,
+                  itemName: "Dessert",
+                  price: 3.99,
+                  description: "Sweet",
+                  restaurantID: 2,
+                  url: "https://ruchiindianrestaurant.com/images/blog/sides.jpg",
                   itemCategory:{categoryId:"3",
                       categoryName:"Dessert",
                       description:'description here'}
@@ -288,71 +340,7 @@ menuitemsCollection.insert(
                       description:'description here'}
         }
 )
-menuitemsCollection.insert(
-        {
-                  itemID: 103,
-                  itemName: "Beef Noodle",
-                  price: 3.99,
-                  description: "Tasty noodle",
-                  restaurantID: 2,
-                  itemCategory:{categoryId:"2",
-                      categoryName:"Dessert",
-                      description:'description here'}
-        }
-)
-    menuitemsCollection.insert(
-        {       
-              itemID: 5,
-              itemName: "Item A",
-              price: 5.99,
-              description: "Cucumbers marinated in sauce",
-              restaurantID: 2,
-              //type: "Appetizer"
-              itemCategory:{categoryId:"1",
-              categoryName:"Appetizer",
-              description:'description here'}
-              
-        }
-        )
-        menuitemsCollection.insert(
-        {
-                itemID: 6,
-                itemName: "Item B",
-                price: 7.99,
-                description: "Vegetarian cold salad",
-                restaurantID: 2,
-                itemCategory:{categoryId:"2",
-                categoryName:"Entree",
-                description:'description here'}
-        }
-        )
-        menuitemsCollection.insert(
-        {
-                itemID: 7,
-                itemName: "Item C",
-                price: 10.99,
-              description: "Fried pork chop with a side of rice",
-              restaurantID: 2,
-              //type: "Appetizer"
-              itemCategory:{categoryId:"1",
-                categoryName:"Appetizer",
-                description:'description here'}
-        }
-        )
-        menuitemsCollection.insert(
-        {
-                itemID: 8,
-                itemName: "Item D",
-                  price: 5.99,
-                  description: "Cucumbers marinated in sauce",
-                  restaurantID: 2,
-                  //type: "Appetizer",
-                  itemCategory:{categoryId:"2",
-                        categoryName:"Entree",
-                        description:'description here'}
-                  
-        }
-        )
+
 
         menuitemsCollection.insert(
                 {       
