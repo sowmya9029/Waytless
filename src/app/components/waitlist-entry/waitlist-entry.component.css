@@ -2,6 +2,14 @@ h2{
   text-align : center;
 }
 
+body {
+  background-image: url("../../../assets/images/fadedTable.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  
+ }
+
 .brand_logo_container {
   position: absolute;
   height: 150px;
