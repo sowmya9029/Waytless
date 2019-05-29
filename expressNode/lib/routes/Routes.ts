@@ -223,12 +223,8 @@ export class Routes {
                 console.log(req.body);
                 var jsonObj = req.body;
                 jsonObj.customerId = this.idGenerator;
-                this.customerlist.model.create([jsonObj], (err) => {
-                    if (err) {
-                        console.log('object creation failed');
-                    }
-                });
                 res.send("Customer Added! customerID is " + this.idGenerator.toString());
+                this.customerlist.addToCustomer(res,jsonObj);
                 this.idGenerator++;
             })
 
