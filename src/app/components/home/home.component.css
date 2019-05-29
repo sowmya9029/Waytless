@@ -28,6 +28,10 @@
   .button-container{
     display: flex;
   }
+  
+.card:hover {
+    background-color:#c0392b;
+}
   .card-container {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;

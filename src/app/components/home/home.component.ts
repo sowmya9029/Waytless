@@ -56,7 +56,6 @@ createEmptyStarArray(n) {
       this.route.params.subscribe(params => {
         console.log("params"+this.search);
        this.restaurantAPIService.getNearByRestaurants(this.search).subscribe(restItems => {
-        
           this.restuarant = restItems;
           console.log("restItems :: "+restItems);
         })
@@ -67,7 +66,7 @@ createEmptyStarArray(n) {
   ngOnInit() {
   }
   onRestaurantClickEvent(resturantId){
-    console.log(resturantId.textContent);
+    console.log("resturantId---" +resturantId.textContent);
     this.router.navigate(['./waitlist-entry/'+resturantId.textContent]);
   }
 
