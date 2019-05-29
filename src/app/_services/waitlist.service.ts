@@ -39,6 +39,7 @@ export class WaitlistService {
 
   public updateGroupSize(restaurantID: number, queueID: number, groupSize: number) {
     console.log("Updating group gize for ..." + queueID + " in " + restaurantID);
+    console.log("New size " + groupSize);
     return this.http.patch(API_URL + '/waitlist/' + restaurantID + '/' + queueID, {"groupSize" : groupSize}).subscribe(response => {
       console.log(response.status);
       });

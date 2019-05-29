@@ -20,9 +20,10 @@ const routes: Routes = [
     { path: 'menu/:id', component: MenuComponent },
   //{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'home', component: HomeComponent },
-    { path: 'waitlist-entry', component: WaitlistEntryComponent},
+    { path: 'waitlist-entry/:id', component: WaitlistEntryComponent},
      { path: 'order-cart/:id',component: OrderCartComponent}, 
    { path: '', redirectTo: '/home', pathMatch: 'full'},
-   { path: 'manageWaitlist/:id', component: manageWaitlistComponent }
+   { path: 'manageWaitlist/:id', component: manageWaitlistComponent },
+   { path: 'manageWaitlist', component: manageWaitlistComponent }
   ];
 export const routing =  RouterModule.forRoot(routes);
