@@ -1,71 +1,43 @@
-
+<div class="brand_logo_container">
+    <img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo">
+  </div>
 <br><br>
-<h2>DIN TAI FUNG</h2>
-<br><br>
-
-<!--<mat-card class="waitlist-entry-card">
-    <mat-card-header>
-        <mat-card-title>Add to waitlist!</mat-card-title>
-      </mat-card-header>
-  <mat-card-content>
-     <form class="waitlist-information">
-
-        <i class="material-icons">person</i>
-        <mat-form-field class="full-width">
-          <mat-label>Full Name</mat-label>
-          <input  matInput  placeholder="Full name"  id = "name" name="name"  required>
-        </mat-form-field>
-
-        <i class="material-icons">perm_phone_msg</i>
-        <mat-form-field class="full-width">
-          <mat-label>Phone number</mat-label>
-          <input  matInput  placeholder="Phone number" id = "phone" name="number"  required>
-        </mat-form-field>
-
-        <i class="material-icons">email</i>
-        <mat-form-field class="full-width">
-          <mat-label>Email</mat-label>
-          <input  matInput  placeholder="Email" id = "email" name="email">
-      </mat-form-field>
-
-      <i class="material-icons">group</i>
-      <mat-form-field class="full-width">
-        <mat-label>Group size</mat-label>
-        <input  matInput  placeholder="Group size"  id = "group" name="groupSize" required>
-     </mat-form-field>
-
-     </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button class = "addBtn" (click)="addToWaitlist()" color="black">ADD</button>
-  </mat-card-actions>
-</mat-card> -->
+<h2>{{restaurantName}}</h2>
 
 <div class="waitlist-entry-card" style="width: 80rem;">
   <div class="card-body">
+      <h4 class="card-title"><b>Add to waitlist</b> </h4>
     <form>
       <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-user"></i></span>
+          </div>
         <input type="text" class="form-control" id="name" placeholder="Full name">
         </div>
         <br>
         <div class="input-group input-group-lg">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-mobile-alt"></i></span>
+            </div>
           <input type="text" class="form-control" id="phone" placeholder="Phone number">
           </div>
           <br>
           <div class="input-group input-group-lg">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+              <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-envelope"></i></span>
+              </div>
               <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
           </div><br>
           <div class="input-group input-group-lg">
-              <span class="input-group-addon"><i class="fa fa-user-friends"></i></span>
+              <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-user-friends"></i></span>
+              </div>
               <input type="text" class="form-control" id="group" placeholder="Group size">
           </div>
       <br>
       
     </form>
-    <button type="button" class="btn btn-primary btn-lg" id = "addBtn" onclick="addToWaitlist()">Submit</button>
+    <button type="button" class="btn btn-primary btn-lg" id = "addBtn" (click)="addToWaitlist(restaurantId)">Submit</button>
   </div>
 </div> 
 
@@ -73,15 +45,16 @@
     <div class="card-body">
       <h4 class="card-title"><b>Your waitlist information </b> <span class="glyphicon glyphicon-info-sign"></span></h4>
       <div [hidden] = "!show">
-          <b>Name : </b> <span id = "bookedName"></span> <br><br>
-          <b>Group size : </b> <span id = "groupSize"></span> <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#exampleModal">
-              <span class="glyphicon glyphicon-pencil"></span> 
-            </button><br><br>
+          <b>Name : </b> <span id = "bookedName">{{name}}</span> <br><br>
+          <b>Group size : </b> <span id = "groupSize">{{groupSize}}</span> 
+          <br><br>
           <b>Booking time: </b><span id = "addedTime"></span> <br><br>
           <b>Approximate wait time : </b><span id = "waitTime"></span><br><br>
-          
-          <button type="button" class="btn btn-default btn-sm" onclick="deleteFromWaitList()">
-              <span class="glyphicon glyphicon-trash"></span> 
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+              Edit<i class = "fas fa-edit"></i> 
+            </button>
+          <button type="button" class="btn btn-dark" (click)="deleteFromWaitList(restaurantId,queueID)">
+              Delete <i class="fas fa-trash-alt"></i>
             </button>
       </div>
       <div [hidden] = "show">
@@ -95,33 +68,27 @@
 
 <br>
 <button class = "selectMenuBtn" mat-raised-button color="warn" routerLink="/menu/1">MENU</button>
-<mat-divider></mat-divider>
 
-<div style="text-align: center"><br><br>
-<a href=manageWaitlist><i class="material-icons">&#xE87C;</i></a>
+<div style="text-align: center" class = "manageWait"><br><br>
+<a href="/manageWaitlist/{{restaurantId}}"><i class="material-icons">&#xE87C;</i></a>
 </div>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button>
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Edit group size</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <input type = "text" id = "newGroup" placeholder="New group size" >
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" (click) = "editWaitList(restaurantId,queueID)" data-dismiss="modal">Save changes</button>
         </div>
       </div>
     </div>
