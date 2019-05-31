@@ -69,10 +69,12 @@ export class manageWaitlistComponent implements OnInit {
         this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
           this.restaurantName = restItems[this.restaurantId - 1].name;
         })
-        this.apiService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
-          this.waitlist = waitlistItems;
-          this.avgWaitMin = this.avgWaittime(this.waitlist);
-        })
+        if(this.restaurantId) {
+            this.apiService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
+              this.waitlist = waitlistItems;
+              this.avgWaitMin = this.avgWaittime(this.waitlist);
+            })
+        }
       }
       )}
 
