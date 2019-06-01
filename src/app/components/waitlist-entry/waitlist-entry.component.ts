@@ -95,7 +95,7 @@ export class WaitlistEntryComponent implements OnInit {
 
   public deleteFromWaitList(resId:number,queueID:number){
     console.log("Queue in delete:" + queueID);
-    this.waitlistservice.removeFromWaitlist(resId,queueID);
+    this.waitlistservice.removeReservation(resId,queueID);
     this.show = false;
     
   }
