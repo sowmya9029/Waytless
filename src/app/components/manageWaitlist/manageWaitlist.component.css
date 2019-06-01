@@ -14,9 +14,7 @@
 
   #header {
     position: absolute;
-    top: 70px;
-    
-    min-height: 250px;
+    top: 50px;
   }
 
   #card {
