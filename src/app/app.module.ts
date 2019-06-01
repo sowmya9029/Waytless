@@ -13,6 +13,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { WaitlistEntryComponent } from './components/waitlist-entry/waitlist-entry.component';
 import {OrderCartComponent} from './components/order-cart/order-cart.component'
 import { manageWaitlistComponent } from './components/manageWaitlist/manageWaitlist.component';
+import { ConfirmReservationComponent } from './components/confirm-reservation/confirm-reservation.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { manageWaitlistComponent } from './components/manageWaitlist/manageWaitl
     MenuComponent,
     WaitlistEntryComponent,
     OrderCartComponent,
-    manageWaitlistComponent
+    manageWaitlistComponent,
+    ConfirmReservationComponent
   ],
   imports: [
     BrowserModule,

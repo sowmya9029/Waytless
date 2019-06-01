@@ -160,6 +160,15 @@ export class Routes {
             this.waitlist.deleteRes(res, {restaurantID:restaurantId, queueID:queueID});
         })
 
+        // complete a reservation in waitlist
+        app.route('/waitlist/:restaurantID/complete/:queueID').post((req:Request,res:Response) => {
+            var restaurantId = req.params.restaurantID;
+            var queueID = req.params.queueID;
+            console.log("Complete a reservation: " + queueID + " in " + restaurantId);
+            this.waitlist.completeRes(res, {restaurantID:restaurantId, queueID:queueID});
+        })
+
+
         // update group size for reservation in waitlist
         app.route('/waitlist/:restaurantID/:queueID').patch((req:Request,res:Response) => {
             var restaurantId = req.params.restaurantID;
@@ -183,13 +192,9 @@ export class Routes {
         // to get all the waitlist entries in a restaurant
         app.route('/waitlist/:restId').get((req: Request, res: Response) => {
             var restuarantId = req.params.restId;
-            
             console.log("Query all waitlist items from restaurant with id: " + restuarantId);
-
-            this.waitlist.retrieveAllWaitlistEntriesPerRestaurant(res,{restaurantID:restuarantId});
+            this.waitlist.retrieveAllWaitlistEntriesPerRestaurant(res, restuarantId);
         })
-
-        
 
         //get all customers
         app.route('/customers').get((req: Request, res: Response) => {
