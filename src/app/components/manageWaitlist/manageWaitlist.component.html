@@ -52,8 +52,7 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">Reservation ID</th>
-                <th scope="col">Name & Group Size</th>
-                <th scope="col">Contact</th>
+                <th scope="col">Guest & Group Size</th>
                 <th scope="col">Time joined</th>
                 <th scope="col">Quoted Time</th>
                 <th scope="col">Notified</th>
@@ -75,20 +74,12 @@
                                   {{reservation.groupSize}}
                                 </span></span>
                         </div>
-                        <div class="media-body text-left">
-                            <strong>{{reservation.customerName}}</strong>
+                        <div class="media-body text-left align-middle">
+                            <strong>{{reservation.customerName}}</strong><br>
+                            {{reservation.phone}}<br><small>{{reservation.email}}</small>
                         </div>
                       </div>
-
-
-                  <!--<span id="initials">
-                    <span class="editable" contenteditable="true"
-                      (keyup)="updateGroupSize(reservation.queueID, 'groupSize', $event)"
-                      (blur)="refreshTable(id, 'groupSize', $event)">
-                      {{reservation.groupSize}}
-                    </span></span>
-                  <span class="align-middle"><strong>{{reservation.customerName}}</strong></span>--></td>
-                <td class="text-center">{{reservation.phone}}<br><small>{{reservation.email}}</small></td>
+                    </td>
                 <td class="text-center">{{ reservation.joinTime | date:'shortTime' }}</td>
                 <td class="text-center">{{ reservation.quotedtime | date:'shortTime' }}</td>
                 <td class="text-center">
