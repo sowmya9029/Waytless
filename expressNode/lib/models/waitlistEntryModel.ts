@@ -26,7 +26,8 @@ class WaitlistEntryModel {
                 email : String,
                 phone : String,
                 notified: Boolean,
-                confirmed:Boolean
+                confirmed:Boolean,
+                completed: Boolean
             }, {collection: 'waitlist'}
         );
     }
@@ -60,6 +61,15 @@ class WaitlistEntryModel {
         })
     }
 
+    public completeRes(response:any,filter:Object): any {
+        this.model.findOneAndUpdate(filter, { $set: { completed: true} }, (err) =>{
+            if (err){
+                response.send("Error while set completed to true");
+            }
+            response.send("Complete a reservation successfully!");
+        })
+    }
+
     public deleteRes(response:any,filter:Object): any {
         this.model.findOneAndDelete(filter, (err) =>{
             if (err){
@@ -69,8 +79,8 @@ class WaitlistEntryModel {
         })
     }
 
-    public retrieveAllWaitlistEntriesPerRestaurant(response:any, filter:Object) {
-        var query = this.model.find(filter);
+    public retrieveAllWaitlistEntriesPerRestaurant(response:any, restaurantID:Number) {
+        var query = this.model.find({restaurantID: restaurantID, completed: false});
         query.exec( (err, itemArray) => {
             if(err){
                 response.send("Could not find records!")
