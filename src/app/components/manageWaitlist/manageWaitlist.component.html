@@ -1,20 +1,20 @@
 <a href="/home"><img src="../assets/images/LOGO.png" style="width: 110px;height: 110px"
-    class="mx-auto d-block img-responsive" id="siteIcon" alt="Back to Homepage"></a>
+  class="mx-auto d-block img-responsive" id="siteIcon" alt="Back to Homepage"></a>
 
-<div id="header" class="container-fluid">
+<div class="container bg-light mt-n5 p-5 shadow py-3 rounded">
     <ng-template [ngIf]="!restaurantName">
         <div class="text-secondary text-center">
-            <br><br><br><br><br><h3>This restaurant does not have an active waitlist.</h3>
+            <br><br><h3>This restaurant does not have an active waitlist.</h3><br><br>
           
         </div>
       </ng-template>
 
   <ng-template [ngIf]="restaurantName">
-    <div id="card" class="bg-white text-dark col-lg-8 mx-lg-auto px-4 shadow py-3 rounded">
+
       <div class="row">
         <div class="col-lg-10">
           <div class="row">
-            <h1 class="display-4">{{restaurantName}} Waitlist</h1>
+            <h2 class="text-dark"><b>{{restaurantName}}</b> Waitlist</h2>
           </div>
         </div>
 
@@ -65,13 +65,29 @@
               <tr *ngFor="let reservation of waitlist; index as id">
                 <th scope="row">{{reservation.queueID}}</th>
                 <td>
-                  <span id="initials">
+
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <span id="initials">
+                                <span class="editable media-object" contenteditable="true"
+                                  (keyup)="updateGroupSize(reservation.queueID, 'groupSize', $event)"
+                                  (blur)="refreshTable(id, 'groupSize', $event)">
+                                  {{reservation.groupSize}}
+                                </span></span>
+                        </div>
+                        <div class="media-body text-left">
+                            <strong>{{reservation.customerName}}</strong>
+                        </div>
+                      </div>
+
+
+                  <!--<span id="initials">
                     <span class="editable" contenteditable="true"
                       (keyup)="updateGroupSize(reservation.queueID, 'groupSize', $event)"
                       (blur)="refreshTable(id, 'groupSize', $event)">
                       {{reservation.groupSize}}
                     </span></span>
-                  <span class="align-middle"><strong>{{reservation.customerName}}</strong></span></td>
+                  <span class="align-middle"><strong>{{reservation.customerName}}</strong></span>--></td>
                 <td class="text-center">{{reservation.phone}}<br><small>{{reservation.email}}</small></td>
                 <td class="text-center">{{ reservation.joinTime | date:'shortTime' }}</td>
                 <td class="text-center">{{ reservation.quotedtime | date:'shortTime' }}</td>
@@ -108,7 +124,6 @@
         </div>
       </div>
 
-    </div>
   </ng-template>
 
 </div>
