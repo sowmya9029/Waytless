@@ -3,7 +3,7 @@
   class="mx-auto d-block img-responsive" id="siteIcon" alt="Back to Homepage"></a>
   
 
-<div class="container bg-light mt-n5 p-5 shadow py-3 rounded">
+<div class="container bg-light text-dark mt-n5 p-5 shadow py-3 rounded">
 
     <ng-template [ngIf]="!waitlist[index]">
       <div class="text-center">
@@ -22,13 +22,13 @@
       <div *ngIf="confirmed">
         <p>You have confirmed your reservation. Please head back to the restaurant.</p></div>
       <div *ngIf="!confirmed">
-        <p>Confirm your reservation by clicking here: <button class="btn btn-labeled btn-primary" (click)="confirm()" type="button">Confirm your Reservation</button></p>
+        <p>Confirm your reservation by clicking here: <button class="btn btn-labeled btn-primary" (click)="confirm(queueID)" type="button">Confirm your Reservation</button></p>
         
       </div>
       </ng-template>
     
       <ng-template [ngIf]="!notified">
-        <p>You have not been notified. Check back later</p>
+        <p>You have not been notified. Check back later!</p>
     
       </ng-template>
       <p>
