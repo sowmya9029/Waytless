@@ -2,13 +2,12 @@
     class="mx-auto d-block img-responsive" id="siteIcon" alt="Back to Homepage"></a>
 
 <div id="header" class="container-fluid">
-  <ng-template [ngIf]="!restaurantName">
-    <div class="text-secondary text-center">
-      <br><br><br><br><br>
-      <h3>This restaurant does not have an active waitlist.</h3>
-
-    </div>
-  </ng-template>
+    <ng-template [ngIf]="!restaurantName">
+        <div class="text-secondary text-center">
+            <br><br><br><br><br><h3>This restaurant does not have an active waitlist.</h3>
+          
+        </div>
+      </ng-template>
 
   <ng-template [ngIf]="restaurantName">
     <div id="card" class="bg-white text-dark col-lg-8 mx-lg-auto px-4 shadow py-3 rounded">
