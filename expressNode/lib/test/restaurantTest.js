@@ -7,6 +7,7 @@ var expect = chai.expect;
 var should = chai.should();
 
 var http = require('http');
+const url = "https://waytlessserver.azurewebsites.net/";
 chai.use(chaiHttp);
  /*
   * Test to get restaurant list object
@@ -16,7 +17,7 @@ describe('/GET Test fetch for restaurant list result', function () {
 	var response;
 		 
     before(function (done) {
-        chai.request("http://localhost:8080")
+        chai.request(url)
 			.get("/restaurantlist")
 			.end(function (err, res) {
 				requestResult = res.body;
@@ -60,7 +61,7 @@ describe('/GET Test fetch for restaurant list result', function () {
  describe('/restaurantlist/:city test', () => {
 	it('it should GET a restaurant list object by the given city', (done) => {
 		let city ='Bellevue';
-		  chai.request("http://localhost:8080")
+		  chai.request(url)
 		  .get('/restaurantlist/' + city)
 		  .end((err, res) => {
 			    expect(err).to.be.null;
@@ -92,7 +93,7 @@ describe('/GET Test fetch for restaurant list result', function () {
  describe('/restaurantlist/id:id test', () => {
 let response;
 	before(function (done) {
-		chai.request("http://localhost:8080")
+		chai.request(url)
 	.get("/restaurantlist/id/' + id")
 	.end(function (err, res) {
 		requestResult = res.body;
@@ -109,7 +110,7 @@ it('Should return an  object ', function () {
 
 	it('it should GET a restaurant object by the given id', (done) => {
 		let id =1;
-		  chai.request("http://localhost:8080")
+		  chai.request(url)
 		  .get('/restaurantlist/id/' + id)
 		  .end((err, res) => {
 			    expect(err).to.be.null;
@@ -154,7 +155,7 @@ it('Should return an  object ', function () {
 		url:"../assets/images/image3.jpg"
 	}
 		
-		chai.request("http://localhost:8080")
+		chai.request(url)
 				.post('/restaurantlist')
 				.send(restaurant)
 				.end((err, res) => {
