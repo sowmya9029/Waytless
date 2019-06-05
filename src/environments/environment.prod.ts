@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8080'
+  apiUrl: 'https://waytlessserver.azurewebsites.net/'
+  //apiUrl:'https://localhost:8080/'
+
 };

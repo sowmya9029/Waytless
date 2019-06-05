@@ -5,7 +5,7 @@ var async = require('async');
 var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should();
-
+const url = "https://waytlessserver.azurewebsites.net/";
 var http = require('http');
 chai.use(chaiHttp);
 
@@ -14,7 +14,7 @@ describe('Test fetch menu items result', function () {
 	var response;
 		 
     before(function (done) {
-        chai.request("http://localhost:8080")
+        chai.request(url)
 			.get("/menuitems/1")
 			.end(function (err, res) {
 				requestResult = res.body;
