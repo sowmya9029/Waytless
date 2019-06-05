@@ -70,7 +70,7 @@ describe('/POST Test to add to waitlist of a given restaurant', function (){
       };
 		 
     it('Test to add to waitlist',function (done) {
-        chai.request("http://localhost:8080")
+        chai.request(url)
 			.post("/waitlist").send(waitlistEntry)
 			.end(function (err, res) {
 				expect(err).to.be.null;
