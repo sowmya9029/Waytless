@@ -53,3 +53,29 @@ describe('/GET Test fetch for waitlist result for a given restaurant', function 
 			});
     });
 });
+
+describe('/POST Test to add to waitlist of a given restaurant', function (){
+
+    let waitlistEntry = {
+        "queueID" : 4,
+        "customerName": "Jon Snow",
+        "restaurantID": 3,
+        "groupSize": 2,
+        "joinTime": new Date("February 14, 2019 17:04:00"),
+        "quotedtime": new Date("February 14, 2019 17:20:00"),
+        "email" : "youknownothing@gmail.com",
+        "phone" : "2069678888",
+        "notified": false,
+        "confirmed": false
+      };
+		 
+    it('Test to add to waitlist',function (done) {
+        chai.request("http://localhost:8080")
+			.post("/waitlist").send(waitlistEntry)
+			.end(function (err, res) {
+				expect(err).to.be.null;
+                expect(res).to.have.status(200);
+				done();
+            });
+        });
+    });
