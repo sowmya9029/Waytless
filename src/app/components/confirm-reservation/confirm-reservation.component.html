@@ -1,0 +1,40 @@
+
+<a href="/home"><img src="../assets/images/LOGO.png" style="width: 110px;height: 110px"
+  class="mx-auto d-block img-responsive" id="siteIcon" alt="Back to Homepage"></a>
+  
+
+<div class="container bg-light text-dark mt-n5 p-5 shadow py-3 rounded">
+
+    <ng-template [ngIf]="!waitlist[index]">
+      <div class="text-center">
+        <br><br>
+          <h1>You do not have a valid reservation.</h1>
+      </div>
+        
+      </ng-template>
+
+      <ng-template [ngIf]="waitlist[index]">
+    <p> Hello <b>{{customerName}},</b></p>
+    <p> Welcome back to  {{restaurantName}}'s waitlist, your queue ID is <b>{{queueID}}.</b></p>
+    
+    <ng-template [ngIf]="notified">
+      
+      <div *ngIf="confirmed">
+        <p>You have confirmed your reservation. Please head back to the restaurant.</p></div>
+      <div *ngIf="!confirmed">
+        <p>Confirm your reservation by clicking here: <button class="btn btn-labeled btn-primary" (click)="confirm(queueID)" type="button">Confirm your Reservation</button></p>
+        
+      </div>
+      </ng-template>
+    
+      <ng-template [ngIf]="!notified">
+        <p>You have not been notified. Check back later!</p>
+    
+      </ng-template>
+      <p>
+      <a routerLink="/menu/{{restaurantId}}" role="button" class="btn btn-labeled btn-success"><i class="fa fa-bars"
+        aria-hidden="true"></i> Restaurant Menu</a>
+      </p>
+        </ng-template>
+</div>
+

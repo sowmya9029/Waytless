@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantAPIService } from 'app/_services/restaurant-api.service';
-import { ApiService } from 'app/_services/api.service';
+import { WaitlistService } from 'app/_services/waitlist.service';
 import { Waitlist } from 'app/_models/waitlist';
 
 @Component({
@@ -17,21 +17,48 @@ export class manageWaitlistComponent implements OnInit {
   waitlist: Waitlist[];
   avgWaitMin: number;
 
+  constructor(
+    private waitlistService: WaitlistService,
+    private restaurantAPIService: RestaurantAPIService,
+    private route: ActivatedRoute) {
+      this.route.params.subscribe(params => {
+        this.restaurantId = params['id'];
+        this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
+          this.restaurantName = restItems[this.restaurantId - 1].name;
+        })
+      }
+      )}
+
+  ngOnInit() {
+    if(this.restaurantId) {
+      this.waitlistService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
+        this.waitlist = waitlistItems;
+        this.avgWaitMin = this.avgWaittime(this.waitlist);
+      })
+  }
+  }
+
   notify(queueID: number) {
     console.log("notify" + queueID);
-    this.apiService.notifyCustomer(this.restaurantId, queueID);
+    this.waitlistService.notifyCustomer(this.restaurantId, queueID);
     window.location.reload();
   }
 
   confirm(queueID: number) {
     console.log("confirm" + queueID);
-    this.apiService.confirmCustomer(this.restaurantId, queueID);
+    this.waitlistService.confirmCustomer(this.restaurantId, queueID);
+    window.location.reload();
+  }
+
+  complete(queueID: number) {
+    console.log("complete" + queueID);
+    this.waitlistService.completeReservation(this.restaurantId, queueID);
     window.location.reload();
   }
 
   remove(queueID: number) {
     console.log("remove" + queueID);
-    this.apiService.removeReservation(this.restaurantId, queueID);
+    this.waitlistService.removeReservation(this.restaurantId, queueID);
     window.location.reload();
   }
 
@@ -42,7 +69,7 @@ export class manageWaitlistComponent implements OnInit {
   updateGroupSize(queueID: number, property: string, event: any) {
     console.log("updating group size" + queueID);
     const editField = event.target.textContent;
-    this.apiService.updateGroupSize(this.restaurantId, queueID, editField);
+    this.waitlistService.updateGroupSize(this.restaurantId, queueID, editField);
   }
 
   avgWaittime(wl : Waitlist[]): number{
@@ -59,31 +86,6 @@ export class manageWaitlistComponent implements OnInit {
     return Math.abs(Math.round((sum / wl.length)));
   }
 
-  constructor(
-    private router: Router,
-    private apiService: ApiService,
-    private restaurantAPIService: RestaurantAPIService,
-    private route: ActivatedRoute) {
-      this.route.params.subscribe(params => {
-        this.restaurantId = params['id'];
-        this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
-          this.restaurantName = restItems[this.restaurantId - 1].name;
-        })
-        if(this.restaurantId) {
-            this.apiService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
-              this.waitlist = waitlistItems;
-              this.avgWaitMin = this.avgWaittime(this.waitlist);
-            })
-        }
-      }
-      )}
-
-  ngOnInit() {
-    
-  }
-  ngOnChanges() {
-    
-  }
 
 }
 

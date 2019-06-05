@@ -10,6 +10,7 @@ interface IWaitListEntryModel extends Mongoose.Document {
         email : String,
         phone : String,
         notified: Boolean,
-        confirmed:Boolean
+        confirmed:Boolean,
+        completed: Boolean
 }
 export {IWaitListEntryModel};

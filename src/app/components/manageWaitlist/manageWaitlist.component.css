@@ -12,21 +12,3 @@
     display: inline-flex;
   }
 
-  #header {
-    position: absolute;
-    top: 70px;
-    
-    min-height: 250px;
-  }
-
-  #card {
-    bottom: -120px;
-    position: relative;
-  }
-
-  #siteIcon {
-    max-width: 150px;
-    top: -54px;
-    position: relative;
-    z-index: 99;
-  }

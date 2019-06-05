@@ -460,7 +460,8 @@ waitlistCollection.insert(
         email : "maryk@yahoo.com",
         phone : "2062112222",
         notified: false,
-        confirmed: false
+        confirmed: false,
+        completed: true
 }
 )
 
@@ -475,7 +476,8 @@ waitlistCollection.insert(
                 email : "john@yahoo.com",
                 phone : "2062112222",
                 notified: false,
-                confirmed: false
+                confirmed: false,
+                completed: false
         }
         )
 
@@ -490,7 +492,8 @@ waitlistCollection.insert(
                         email : "john@yahoo.com",
                         phone : "2062112222",
                         notified: false,
-                        confirmed: false
+                        confirmed: false,
+                        completed: false
                 }
                 )
         
@@ -505,7 +508,8 @@ waitlistCollection.insert(
         email : "abc@abc.com",
         phone : "2062112222",
         notified: true,
-        confirmed: true
+        confirmed: true,
+        completed: false
         }
         )
 
@@ -521,7 +525,8 @@ waitlistCollection.insert(
         email : "abc@abc.com",
         phone : "2062112222",
         notified: false,
-        confirmed: false
+        confirmed: false,
+        completed: false
 }
 )
 
@@ -536,7 +541,8 @@ waitlistCollection.insert(
                 email : "abc@abc.com",
                 phone : "2062112222",
                 notified: true,
-                confirmed: true
+                confirmed: true,
+                completed: false
         }
         )
         
@@ -551,7 +557,8 @@ waitlistCollection.insert(
                 email : "abc@abc.com",
                 phone : "2062112222",
                 notified: false,
-                confirmed: false
+                confirmed: false,
+                completed: false
                 }
                 )
         
@@ -567,7 +574,8 @@ waitlistCollection.insert(
                 email : "abc@abc.com",
                 phone : "2062112222",
                 notified: true,
-                confirmed: true
+                confirmed: true,
+                completed: false
         }
         )
 
@@ -577,12 +585,13 @@ waitlistCollection.insert(
                         customerName: "Sam",
                         restaurantID: 3,
                         groupSize: 3,
-                        joinTime: new Date("February 4, 2019 16:00:00"),
-                        quotedtime: new Date("February 4, 2019 16:10:00"),
+                        joinTime: new Date("February 4, 2019 13:55:00"),
+                        quotedtime: new Date("February 4, 2019 16:15:00"),
                         email : "abc@abc.com",
                         phone : "2062112222",
-                        notified: true,
-                        confirmed: true
+                        notified: false,
+                        confirmed: false,
+                        completed: false
                 }
                 )
                 
@@ -592,12 +601,13 @@ waitlistCollection.insert(
                         customerName: "Tony",
                         restaurantID: 3,
                         groupSize: 2,
-                        joinTime: new Date("February 4, 2019 16:10:00"),
-                        quotedtime: new Date("February 4, 2019 16:10:00"),
+                        joinTime: new Date("February 4, 2019 16:12:00"),
+                        quotedtime: new Date("February 4, 2019 16:30:00"),
                         email : "abc@abc.com",
                         phone : "2062112222",
-                        notified: true,
-                        confirmed: true
+                        notified: false,
+                        confirmed: false,
+                        completed: false
                         }
                         )
                 
@@ -609,11 +619,12 @@ waitlistCollection.insert(
                         restaurantID: 3,
                         groupSize: 5,
                         joinTime: new Date("February 4, 2019 16:15:00"),
-                        quotedtime: new Date("February 4, 2019 16:10:00"),
+                        quotedtime: new Date("February 4, 2019 16:30:00"),
                         email : "abc@abc.com",
                         phone : "2062112222",
-                        notified: true,
-                        confirmed: true
+                        notified: false,
+                        confirmed: false,
+                        completed: false
                 }
                 )
 
