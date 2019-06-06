@@ -9,7 +9,7 @@ import { Waitlist } from 'app/_models/waitlist';
   templateUrl: './manageWaitlist.component.html',
   styleUrls: ['./manageWaitlist.component.css']
 })
-export class manageWaitlistComponent implements OnInit {
+export class manageWaitlistComponent {
 
   editField: string;
   restaurantId: number;
