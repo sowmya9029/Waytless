@@ -19,6 +19,7 @@ export class ConfirmReservationComponent implements OnInit {
   customerName: string;
   waitlist: Waitlist[];
   restaurantName: string;
+  restIMG: string;
 
   constructor(private waitlistService: WaitlistService, private route: ActivatedRoute, private restaurantAPIService: RestaurantAPIService) {
     this.route.params.subscribe(params => {
@@ -26,6 +27,7 @@ export class ConfirmReservationComponent implements OnInit {
       this.queueID = params['queueId'];
       this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
         this.restaurantName = restItems[this.restaurantId - 1].name;
+        this.restIMG = restItems[this.restaurantId - 1].url;
       })
     }
     )

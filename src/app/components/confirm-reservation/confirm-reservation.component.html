@@ -1,9 +1,9 @@
+<div class="mt-n5 mb-1"><a href="/home"><img src="../assets/images/LOGO.png" style="width: 110px;height: 110px;"
+  class="mx-auto d-block" id="siteIcon" alt="Back to Homepage"></a></div>
 
-<a href="/home"><img src="../assets/images/LOGO.png" style="width: 110px;height: 110px"
-  class="mx-auto d-block img-responsive" id="siteIcon" alt="Back to Homepage"></a>
-  
+  <div class="container">
 
-<div class="container bg-light text-dark mt-n5 p-5 shadow py-3 rounded">
+<div class="col-lg-6 bg-light text-dark mx-auto mt-1 p-5 shadow py-3 rounded">
 
     <ng-template [ngIf]="!waitlist[index]">
       <div class="text-center">
@@ -16,7 +16,7 @@
       <ng-template [ngIf]="waitlist[index]">
     <p> Hello <b>{{customerName}},</b></p>
     <p> Welcome back to  {{restaurantName}}'s waitlist, your queue ID is <b>{{queueID}}.</b></p>
-    
+    <p><img src="{{restIMG}}" class="mx-auto rounded" alt="{{restaurantName}}"></p>
     <ng-template [ngIf]="notified">
       
       <div *ngIf="confirmed">
@@ -31,10 +31,11 @@
         <p>You have not been notified. Check back later!</p>
     
       </ng-template>
-      <p>
+      <p>You can start ordering by browsing the 
       <a routerLink="/menu/{{restaurantId}}" role="button" class="btn btn-labeled btn-success"><i class="fa fa-bars"
         aria-hidden="true"></i> Restaurant Menu</a>
       </p>
         </ng-template>
 </div>
 
+</div>
