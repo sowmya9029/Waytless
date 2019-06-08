@@ -7,6 +7,8 @@ import { MenuItemCategoryModel } from "../models/MenuItemCategoryModel";
 import {OrderModel} from "../models/OrderModel";
 import app from "app";
 
+var passport = require('passport');
+
 export class Routes {       
 
     public waitlist:WaitlistEntryModel;
@@ -35,11 +37,12 @@ export class Routes {
 
       }
 
-    public routes(app,passport): void { 
+    public routes(app): void { 
 
         
         app.get('/auth/google', 
         passport.authenticate('google', 
+            
             { scope: ['https://www.googleapis.com/auth/plus.login', 'email'] }
         )
     );

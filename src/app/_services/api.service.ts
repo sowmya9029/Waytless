@@ -16,12 +16,6 @@ export class ApiService {
 
   }
 
-  public authenticateLogin(){
-    return this.http.get(API_URL + '/auth/google', {}).subscribe(response => {
-      console.log("Google auth");
-      console.log(response.status);
-      });
-  }
 
   public makeOrders(orders: Order[]) {
     orders.forEach(o => {
