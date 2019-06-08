@@ -5,6 +5,10 @@
 
 export const environment = {
   production: false,
+  /**for running localy on our machine */
  // apiUrl:'https://localhost:8080/'
-  apiUrl: 'https://waytlessserver.azurewebsites.net/'
+ /**for running services from azure */
+  //apiUrl: 'https://waytlessserver.azurewebsites.net/'
+  /**for deploying on azure  */
+  apiUrl:''
 };
