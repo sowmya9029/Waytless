@@ -25,8 +25,8 @@ const routes: Routes = [
     { path: 'waitlist-entry/:id', component: WaitlistEntryComponent},
      { path: 'order-cart/:id',component: OrderCartComponent}, 
    { path: '', redirectTo: '/home', pathMatch: 'full'},
-   { path: 'manageWaitlist/:id', component: manageWaitlistComponent },
-   { path: 'manageWaitlist', component: manageWaitlistComponent },
+   { path: 'managewaitlist/:id', component: manageWaitlistComponent },
+   { path: 'managewaitlist', component: manageWaitlistComponent },
    { path: 'confirmRes/:restId/:queueId', component: ConfirmReservationComponent }
   ];
-export const routing =  RouterModule.forRoot(routes);
+export const routing =  RouterModule.forRoot(routes, {useHash:true});
