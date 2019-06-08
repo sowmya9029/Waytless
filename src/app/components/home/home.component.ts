@@ -70,9 +70,6 @@ createEmptyStarArray(n) {
     this.router.navigate(['./waitlist-entry/'+resturantId.textContent]);
   }
 
-  public  authenticateLogin(){
-      this.googleApiService.authenticateLogin();
-  }
 
   onLoginClickEvent(resturantId){
    
