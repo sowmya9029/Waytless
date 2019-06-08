@@ -5,9 +5,7 @@ import { RestaurantModel } from "../models/RestaurantModel";
 import {CustomerModel} from "../models/CustomerModel";
 import { MenuItemCategoryModel } from "../models/MenuItemCategoryModel";
 import {OrderModel} from "../models/OrderModel";
-
-
-
+import app from "app";
 
 export class Routes {       
 
@@ -30,7 +28,28 @@ export class Routes {
         this.menuitemcat = new MenuItemCategoryModel();
     }
 
-    public routes(app): void { 
+    private validateAuth(req, res, next):void {
+        if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
+        console.log("user is not authenticated");
+        res.redirect('/');
+
+      }
+
+    public routes(app,passport): void { 
+
+        
+        app.get('/auth/google', 
+        passport.authenticate('google', 
+            { scope: ['https://www.googleapis.com/auth/plus.login', 'email'] }
+        )
+    );
+
+    app.get('/auth/google/callback', 
+        passport.authenticate('google', 
+            { successRedirect: '/#/home', failureRedirect: '/'
+            }
+        )
+    );
 
         app.route('/').get((req: Request, res: Response) => {            
             res.status(200).send({

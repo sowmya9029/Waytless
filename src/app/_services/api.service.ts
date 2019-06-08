@@ -12,34 +12,13 @@ const API_URL = environment.apiUrl;
 })
 export class ApiService {
 
-  constructor(
-    private http: Http
-  ) { 
+  constructor(private http: Http) { 
 
   }
 
-  public makeOrders(orders: Order[]) {
-    orders.forEach(o => {
-      console.log('posting order!');
-      console.log(o);
-      let response = this.http.post(API_URL + '/orders', {
-        "menuitemId" : o.menuItemId,
-        "quantity" : o.quantity,
-        "orderTime": o.orderTime,
-        "customerId" : o.customerId,
-        "restaurantID" : o.restaurantID
+  public authenticateLogin(){
+    return this.http.get(API_URL + '/auth/google', {}).subscribe(response => {
+      console.log(response.status);
       });
-      response.subscribe(r => console.log(r));
-    });
   }
-
-  public getAllOrders(restaurantID: number, customerID: number): Observable<Order[]> {
-    return this.http.get(API_URL + '/orders/' + restaurantID + '/' + customerID)
-      .pipe(map((response) => {
-        const items: Order[] = response.json();
-        console.log(items);
-        return items;
-      }));
-  }
-
 }

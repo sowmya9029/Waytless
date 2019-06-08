@@ -21,7 +21,7 @@ reviews:number[] = new Array()
   private waitlist: Waitlist[];
   constructor(private router: Router,
     private restaurantAPIService: RestaurantAPIService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,private googleApiService : ApiService) {
       this.route.params.subscribe(params => {
        /* this.restaurantAPIService.getNearByRestaurants(this.city).subscribe(restItems => {
           //this.restaurantName = restItems[this.restaurantId].name;
@@ -68,6 +68,10 @@ createEmptyStarArray(n) {
   onRestaurantClickEvent(resturantId){
     console.log("resturantId---" +resturantId.textContent);
     this.router.navigate(['./waitlist-entry/'+resturantId.textContent]);
+  }
+
+  public  authenticateLogin(){
+      this.googleApiService.authenticateLogin();
   }
 
   onLoginClickEvent(resturantId){
