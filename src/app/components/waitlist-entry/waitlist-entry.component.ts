@@ -67,7 +67,8 @@ export class WaitlistEntryComponent implements OnInit {
       "email" : this.email,
       "phone" : this.phone,
       "notified": false,
-      "confirmed": false
+      "confirmed": false,
+      "completed" : false
     };
 
     
