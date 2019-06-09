@@ -54,7 +54,7 @@ public retrieveMenuBasedOnRestaurantAndCategory(response:any, filter:Object) {
     public addToMenuItem(response:any,jsonObject:any){
         this.model.create(jsonObject,(err) =>{
             if (err){
-                response.send("Error while adding to waitlist");
+                response.send("Error while adding menu item");
             }
             response.send("Addition successful!!");
         });
@@ -66,9 +66,9 @@ public retrieveMenuBasedOnRestaurantAndCategory(response:any, filter:Object) {
        
         this.model.deleteOne(filter, function (err) {
             if (err){
-                response.send("Error while deleting to waitlist");
+                response.send("Error while deleting menu item");
             }
-            response.send("Addition successful!!");
+            response.send("Deletion successful!!");
     
         });
     }
