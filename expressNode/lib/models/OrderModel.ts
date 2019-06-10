@@ -18,6 +18,7 @@ class OrderModel {
     private createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
+                orderId: String,
                 menuItemId: Number,
                 quantity: Number,
                 orderTime: Date,

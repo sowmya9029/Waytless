@@ -1,4 +1,5 @@
 export class Order {
+    orderId: String;
     menuItemId: number;
     quantity: number;
     orderTime: Date;

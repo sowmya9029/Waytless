@@ -728,6 +728,7 @@ orderCollection = db.getCollection("orders")
 orderCollection.remove({})
 
 orderCollection.insert({
+        "orderId": 1,
         "menuItemId" : 1,
         "quantity": 1,
         "orderTime": "2019-02-05T12:15:00.000Z",
@@ -736,6 +737,7 @@ orderCollection.insert({
 })
 
 orderCollection.insert({
+        "orderId": 1,
         "menuItemId" : 2,
         "quantity": 1,
         "orderTime": "2019-02-05T12:15:00.000Z",
@@ -744,6 +746,7 @@ orderCollection.insert({
 })
 
 orderCollection.insert({
+        "orderId": 1,
         "menuItemId" : 3,
         "quantity": 1,
         "orderTime": "2019-02-05T12:15:00.000Z",

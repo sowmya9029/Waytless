@@ -1,102 +1,104 @@
-
 <div class="d-flex justify-content-center">
-    <div class="brand_logo_container">
-      <img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo" style="width: 100px">
-    </div>
+  <div class="brand_logo_container">
+    <img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo" style="width: 100px">
   </div>
-<mat-card class="registration-card" style="background-color:#f39c12;" >
-    <mat-card-header>
-      <mat-card-title>Register Here!</mat-card-title>
-    </mat-card-header>
-    <mat-card-content >
-      <form class="example-form" >
-        <table class="example-full-width" cellspacing="0">
-          <tr>
-            <td>
-              <i class="material-icons">person</i>
-              <mat-form-field class="example-full-width">               
-                      <mat-label>Choose User</mat-label>
-                      <mat-select [(value)]="selected"  >
-                        <mat-option value="Owner" >Owner</mat-option>
-                        <mat-option value="Customer">Customer</mat-option>
-                      </mat-select>
-              </mat-form-field>
-                
-            </td>
-          </tr>
-          <tr *ngIf="selected === 'Customer'">
-              <td>
-                  <i class="material-icons">person</i>
-                  <mat-form-field class="example-full-width">
-                  <input matInput placeholder="FirstName" [(ngModel)]="firstname" name="firstname" >
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr *ngIf="selected === 'Customer'">
-                  <td>
-                      <i class="material-icons">person</i>
-                      <mat-form-field class="example-full-width">
-                      <input matInput placeholder="LastName" [(ngModel)]="lastname" name="lastname" >
-                      </mat-form-field>
-                    </td>
-                  </tr>
-          <tr>
-            <td>
-              <i class="material-icons">email</i>
-              <mat-form-field class="example-full-width">
-              <input matInput placeholder="Email" [(ngModel)]="email" name="email" >
-              </mat-form-field>
-           </td>
+</div>
+<mat-card class="registration-card" style="background-color:#f39c12;">
+  <mat-card-header>
+    <mat-card-title>Register Here!</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <i class="material-icons">person</i>
+            <mat-form-field class="example-full-width">
+              <mat-label>Choose User</mat-label>
+              <mat-select [(value)]="selected">
+                <mat-option value="Owner">Owner</mat-option>
+                <mat-option value="Customer">Customer</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </td>
+        </tr>
+        <tr *ngIf="selected === 'Customer'">
+          <td>
+            <i class="material-icons">person</i>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="FirstName" [(ngModel)]="firstname" name="firstname">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr *ngIf="selected === 'Customer'">
+          <td>
+            <i class="material-icons">person</i>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="LastName" [(ngModel)]="lastname" name="lastname">
+            </mat-form-field>
+          </td>
         </tr>
         <tr>
-            <td>
-              <i class="material-icons">phone</i>
-              <mat-form-field class="example-full-width">
-              <input matInput placeholder="Phone Number" [(ngModel)]="phone" name="email" >
-              </mat-form-field>
-           </td>
+          <td>
+            <i class="material-icons">email</i>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email" [(ngModel)]="email" name="email">
+            </mat-form-field>
+          </td>
         </tr>
-              
-            <tr >
-              <td>
-                <i class="material-icons">person</i>
-                <mat-form-field class="example-full-width">
-                <input matInput placeholder="Username" [(ngModel)]="username" name="username" >
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr >
-                <td>
-                  <i class="material-icons">person</i>
-                  <mat-form-field class="example-full-width">
-                  <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" >
-                  </mat-form-field>
-                </td>
-              </tr>
-            <tr *ngIf="selected === 'Owner'">
+        <tr>
+          <td>
+            <i class="material-icons">phone</i>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Phone Number" [(ngModel)]="phone" name="email">
+            </mat-form-field>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <i class="material-icons">person</i>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <i class="material-icons">person</i>
+            <mat-form-field class="example-full-width">
+              <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr *ngIf="selected === 'Owner'">
           <td>
             <i class="material-icons">restaurant</i>
             <mat-form-field class="example-full-width">
 
-            <input matInput placeholder="Restaurant Name" [(ngModel)]="restaurant" name="restaurant" >
-          </mat-form-field></td>
+              <input matInput placeholder="Restaurant Name" [(ngModel)]="restaurant" name="restaurant">
+            </mat-form-field>
+          </td>
         </tr>
-        
+
         <tr *ngIf="selected === 'Owner'">
-            <td>
-              <i class="material-icons">location_city</i>
-              <mat-form-field class="example-full-width">
-  
-              <input matInput placeholder="Location" [(ngModel)]="location" name="location" >
-            </mat-form-field></td>
-          </tr></table>
-      </form>
-      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-    </mat-card-content>
-    
-    <mat-card-actions>
-      <button mat-raised-button (click)="register()" color="primary">Submit</button>
-    </mat-card-actions>
-   
-   
-  </mat-card>
+          <td>
+            <i class="material-icons">location_city</i>
+            <mat-form-field class="example-full-width">
+
+              <input matInput placeholder="Location" [(ngModel)]="location" name="location">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button (click)="register()" color="primary">Submit</button>
+  </mat-card-actions>
+
+
+</mat-card>

@@ -18,27 +18,27 @@ export class RestaurantAPIService {
 
   constructor(
     private http: Http
-  ) { 
+  ) {
 
   }
 
   public getAllRestaurants() {
     return this.http.get(API_URL + '/restaurantlist')
-    .pipe(map(response => {
-      const restaurants: Restaurant[] = response.json();
-      console.log(restaurants);
-      return restaurants;
-    }));
+      .pipe(map(response => {
+        const restaurants: Restaurant[] = response.json();
+        console.log(restaurants);
+        return restaurants;
+      }));
   }
 
   public getNearByRestaurants(city: String) {
-    console.log("restaurant API city "+ city);
-    return this.http.get(API_URL + '/restaurantlist/'+city)
-    .pipe(map(response => {
-      const restaurants: Restaurant[] = response.json();
-      console.log("restaurants" + restaurants);
-      return restaurants;
-    }));
+    console.log("restaurant API city " + city);
+    return this.http.get(API_URL + '/restaurantlist/' + city)
+      .pipe(map(response => {
+        const restaurants: Restaurant[] = response.json();
+        console.log("restaurants" + restaurants);
+        return restaurants;
+      }));
   }
 
 }
