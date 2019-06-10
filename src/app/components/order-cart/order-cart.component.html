@@ -1,27 +1,27 @@
 <div class="brand_logo_container">
-    <img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo">
-  </div>
-<mat-card class = "order-cart-card">
-    <mat-card-header>
-      <mat-card-title>Your order has been confirmed!</mat-card-title>
-    </mat-card-header>
+  <img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo">
+</div>
+<mat-card class="order-cart-card">
+  <mat-card-header>
+    <mat-card-title>Your order has been confirmed!</mat-card-title>
+  </mat-card-header>
 
-    <mat-card-content>
-      <br>
-      <table class = "orders">
-        <tr>
-          <th>Order name</th>
-          <th>Price</th>
-          <th>Quantity</th>
-        </tr>
-        <tr *ngFor="let order of orderDetails">
-          <td>{{order.name}}</td>
-          <td>${{order.price}}</td>
-          <td>{{order.quantity}}</td>
-        </tr>
-      </table>
-    </mat-card-content>
-    <div class = "total">
-      Total : $<span class = "totalprice">{{ totalPrice }}</span>
-    </div>
+  <mat-card-content>
+    <br>
+    <table class="orders">
+      <tr>
+        <th>Order name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+      <tr *ngFor="let order of orderDetails">
+        <td>{{order.name}}</td>
+        <td>${{order.price}}</td>
+        <td>{{order.quantity}}</td>
+      </tr>
+    </table>
+  </mat-card-content>
+  <div class="total">
+    Total : $<span class="totalprice">{{ totalPrice }}</span>
+  </div>
 </mat-card>

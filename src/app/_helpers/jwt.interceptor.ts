@@ -9,7 +9,7 @@ export class JwtInterceptor implements HttpInterceptor {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {
             request = request.clone({
-                setHeaders: { 
+                setHeaders: {
                     Authorization: `Bearer ${currentUser.token}`
                 }
             });

@@ -8,7 +8,7 @@ import { MenuApiService } from 'app/_services/menu-api.service';
 export interface OrderDetail {
   name: string;
   price: number;
-  quantity : number;
+  quantity: number;
 }
 
 @Component({
@@ -26,8 +26,8 @@ export class OrderCartComponent implements OnInit {
   private orderId;
 
   constructor(private apiService: ApiService,
-              private menuApiService: MenuApiService,
-              private route: ActivatedRoute) { 
+    private menuApiService: MenuApiService,
+    private route: ActivatedRoute) {
     this.orderId = "";
     this.menuItemsMap = new Map;
     this.orderDetails = [];
@@ -45,19 +45,19 @@ export class OrderCartComponent implements OnInit {
         console.log("done loading: ");
 
         this.menuApiService.getAllMenuItems(allOrders[0].restaurantID).subscribe(menuItems => {
-            menuItems.forEach(m => this.menuItemsMap.set(m.itemID, m));   
-            this.orders.forEach(o => {
-              this.orderDetails.push({
-                name: this.menuItemsMap.get(o.menuItemId).itemName,
-                price: this.menuItemsMap.get(o.menuItemId).price,
-                quantity: o.quantity
-              });
-              this.totalPrice += o.quantity * this.menuItemsMap.get(o.menuItemId).price;
+          menuItems.forEach(m => this.menuItemsMap.set(m.itemID, m));
+          this.orders.forEach(o => {
+            this.orderDetails.push({
+              name: this.menuItemsMap.get(o.menuItemId).itemName,
+              price: this.menuItemsMap.get(o.menuItemId).price,
+              quantity: o.quantity
             });
-          }
+            this.totalPrice += o.quantity * this.menuItemsMap.get(o.menuItemId).price;
+          });
+        }
         );
       }
-    );
+      );
 
     });
   }

@@ -34,7 +34,7 @@ export class ConfirmReservationComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.restaurantId) {
+    if (this.restaurantId) {
       this.waitlistService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
         this.waitlist = waitlistItems;
         console.log(this.waitlist);
@@ -44,7 +44,7 @@ export class ConfirmReservationComponent implements OnInit {
         this.confirmed = this.waitlist[this.index].confirmed;
         this.customerName = this.waitlist[this.index].customerName;
       })
-  }
+    }
   }
 
   confirm(queueID: number) {

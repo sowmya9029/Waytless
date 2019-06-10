@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantAPIService } from 'app/_services/restaurant-api.service';
 import { WaitlistService } from 'app/_services/waitlist.service';
@@ -14,7 +14,7 @@ export class manageWaitlistComponent {
   editField: string;
   restaurantId: number;
   restaurantName: string;
-  
+
   waitlist: Waitlist[];
   avgWaitMin: number;
 
@@ -22,27 +22,28 @@ export class manageWaitlistComponent {
     private waitlistService: WaitlistService,
     private restaurantAPIService: RestaurantAPIService,
     private route: ActivatedRoute) {
-      this.route.params.subscribe(params => {
-        this.restaurantId = params['id'];
-        this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
-          this.restaurantName = restItems[this.restaurantId - 1].name;
-        })
-      }
-      )}
+    this.route.params.subscribe(params => {
+      this.restaurantId = params['id'];
+      this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
+        this.restaurantName = restItems[this.restaurantId - 1].name;
+      })
+    }
+    )
+  }
 
   ngOnInit() {
     this.getWaitlist();
     //this.avgWaitMin = this.avgWaittime(this.waitlist);
   }
 
-  avgWaittime(wl : Waitlist[]): number{
+  avgWaittime(wl: Waitlist[]): number {
     var sum = 0;
     wl.forEach(element => {
-        var eventStartTime = new Date(element.quotedtime);
-        var eventEndTime = new Date(element.joinTime);
-        var diff = eventEndTime.valueOf() - eventStartTime.valueOf();
-        var diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);
-        sum += diffMins;
+      var eventStartTime = new Date(element.quotedtime);
+      var eventEndTime = new Date(element.joinTime);
+      var diff = eventEndTime.valueOf() - eventStartTime.valueOf();
+      var diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);
+      sum += diffMins;
     });
     //console.log("sum" + sum);
     //console.log("avg "+ sum / wl.length);
@@ -83,14 +84,14 @@ export class manageWaitlistComponent {
     this.waitlistService.updateGroupSize(this.restaurantId, queueID, editField);
   }
 
-  getWaitlist(){
-    if(this.restaurantId) {
+  getWaitlist() {
+    if (this.restaurantId) {
       this.waitlistService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
         this.waitlist = waitlistItems;
         this.avgWaitMin = this.avgWaittime(this.waitlist);
       });
-  }
+    }
 
-}
+  }
 
 }

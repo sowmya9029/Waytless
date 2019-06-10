@@ -12,7 +12,7 @@ const API_URL = environment.apiUrl;
 })
 export class ApiService {
 
-  constructor(private http: Http) { 
+  constructor(private http: Http) {
 
   }
 
@@ -22,12 +22,12 @@ export class ApiService {
       console.log('posting order!');
       console.log(o);
       let response = this.http.post(API_URL + '/orders', {
-        "orderId" : o.orderId,
-        "menuitemId" : o.menuItemId,
-        "quantity" : o.quantity,
+        "orderId": o.orderId,
+        "menuitemId": o.menuItemId,
+        "quantity": o.quantity,
         "orderTime": o.orderTime,
-        "customerId" : o.customerId,
-        "restaurantID" : o.restaurantID
+        "customerId": o.customerId,
+        "restaurantID": o.restaurantID
       });
       list.push(response);
     });

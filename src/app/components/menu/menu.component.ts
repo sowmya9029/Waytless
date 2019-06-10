@@ -4,7 +4,7 @@ import { MenuItem } from 'app/_models';
 import { ApiService } from 'app/_services/api.service';
 import { Order } from 'app/_models/order';
 import { MenuApiService } from 'app/_services/menu-api.service';
-import {RestaurantAPIService} from '../../_services/restaurant-api.service';
+import { RestaurantAPIService } from '../../_services/restaurant-api.service';
 import * as uuid from 'uuid';
 import { forkJoin } from 'rxjs';
 
@@ -83,7 +83,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
-   private makeOrder() {
+  private makeOrder() {
     let confirmedOrders = [];
     let m = this.orders;
     let orderId = uuid.v4();
@@ -95,8 +95,8 @@ export class MenuComponent implements OnInit {
         menuItemId: v,
         quantity: k,
         orderTime: new Date(),
-        customerId : this.customerNumber,
-        restaurantID : this.restaurantID
+        customerId: this.customerNumber,
+        restaurantID: this.restaurantID
       });
     })
     var responses = this.apiService.makeOrders(confirmedOrders);

@@ -11,53 +11,53 @@ import { Waitlist } from 'app/_models/waitlist';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-editField: string;
-city: string;
-search:string;
-restaurantName: string;
-restuarant:Restaurant[]
-reviews:number[] = new Array() 
+  editField: string;
+  city: string;
+  search: string;
+  restaurantName: string;
+  restuarant: Restaurant[]
+  reviews: number[] = new Array()
 
   private waitlist: Waitlist[];
   constructor(private router: Router,
     private restaurantAPIService: RestaurantAPIService,
-    private route: ActivatedRoute,private googleApiService : ApiService) {
-      this.route.params.subscribe(params => {
-       /* this.restaurantAPIService.getNearByRestaurants(this.city).subscribe(restItems => {
-          //this.restaurantName = restItems[this.restaurantId].name;
-          this.restuarant = restItems;
-          console.log(restItems);
-        })*/
-        this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
-          //this.restaurantName = restItems[this.restaurantId].name;
-          this.restuarant = restItems;
-          console.log("restItems"+this.restuarant);
-          for (var i = 0; i < restItems[i].rating; i++) {
-            this.reviews[restItems[i].rating] = i;
-            console.log(restItems[i].rating);
-         }
-        
-        })
-        
-        
-      }
-      )
-  }
-  
-createStarArray(n) { 
-  return new Array(n);
-}
+    private route: ActivatedRoute, private googleApiService: ApiService) {
+    this.route.params.subscribe(params => {
+      /* this.restaurantAPIService.getNearByRestaurants(this.city).subscribe(restItems => {
+         //this.restaurantName = restItems[this.restaurantId].name;
+         this.restuarant = restItems;
+         console.log(restItems);
+       })*/
+      this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
+        //this.restaurantName = restItems[this.restaurantId].name;
+        this.restuarant = restItems;
+        console.log("restItems" + this.restuarant);
+        for (var i = 0; i < restItems[i].rating; i++) {
+          this.reviews[restItems[i].rating] = i;
+          console.log(restItems[i].rating);
+        }
 
-createEmptyStarArray(n) {
-  return new Array((5-n));
-}
+      })
+
+
+    }
+    )
+  }
+
+  createStarArray(n) {
+    return new Array(n);
+  }
+
+  createEmptyStarArray(n) {
+    return new Array((5 - n));
+  }
   keyDownFunction(event) {
-    if(event.keyCode == 13) {
+    if (event.keyCode == 13) {
       this.route.params.subscribe(params => {
-        console.log("params"+this.search);
-       this.restaurantAPIService.getNearByRestaurants(this.search).subscribe(restItems => {
+        console.log("params" + this.search);
+        this.restaurantAPIService.getNearByRestaurants(this.search).subscribe(restItems => {
           this.restuarant = restItems;
-          console.log("restItems :: "+restItems);
+          console.log("restItems :: " + restItems);
         })
       }
       )
@@ -65,13 +65,13 @@ createEmptyStarArray(n) {
   }
   ngOnInit() {
   }
-  onRestaurantClickEvent(resturantId){
-    console.log("resturantId---" +resturantId.textContent);
-    this.router.navigate(['./waitlist-entry/'+resturantId.textContent]);
+  onRestaurantClickEvent(resturantId) {
+    console.log("resturantId---" + resturantId.textContent);
+    this.router.navigate(['./waitlist-entry/' + resturantId.textContent]);
   }
 
 
-  onLoginClickEvent(resturantId){
-   
+  onLoginClickEvent(resturantId) {
+
   }
 }
