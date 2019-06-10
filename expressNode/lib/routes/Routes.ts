@@ -5,9 +5,11 @@ import { RestaurantModel } from "../models/RestaurantModel";
 import {CustomerModel} from "../models/CustomerModel";
 import { MenuItemCategoryModel } from "../models/MenuItemCategoryModel";
 import {OrderModel} from "../models/OrderModel";
-import app from "app";
+
+import * as express from 'express';
 
 var passport = require('passport');
+
 
 export class Routes {       
 
@@ -29,8 +31,8 @@ export class Routes {
         this.menuitem = new MenuItemModel();
         this.menuitemcat = new MenuItemCategoryModel();
     }
-
-    private validateAuth(req, res, next):void {
+	
+	private validateAuth(req, res, next):void {
         if (req.isAuthenticated()) { console.log("user is authenticated"); return next(); }
         console.log("user is not authenticated");
         res.redirect('/');
@@ -39,8 +41,9 @@ export class Routes {
 
     public routes(app): void { 
 
-        
-        app.get('/auth/google', 
+        app.use('/', express.static(__dirname+'/angularDist'));
+		
+		app.get('/auth/google', 
         passport.authenticate('google', 
             
             { scope: ['https://www.googleapis.com/auth/plus.login', 'email'] }
@@ -54,12 +57,11 @@ export class Routes {
         )
     );
 
-        app.route('/').get((req: Request, res: Response) => {            
-            res.status(200).send({
-                message: 'Waytless!!!!'
-            })
-        })          
-        
+    app.get('/user/details', this.validateAuth,function(req,res){
+        res.json(req.user);
+    })
+
+
          //get all  menuItems 
             app.route('/menuitems/:restId').get((req: Request, res: Response) => {
                 var restId = req.params.restId;
@@ -153,7 +155,6 @@ export class Routes {
         // to get all the waitlist entries
         app.route('/waitlist/').get((req: Request, res: Response) => {
             console.log('Query all wait lists');
-
             this.waitlist.retrieveAllWaitlists(res);
         })
 
