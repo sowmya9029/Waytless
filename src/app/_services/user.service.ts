@@ -21,4 +21,15 @@ export class UserService {
         return user.displayName;
     }));  
   }
+
+  public getUserdetails(): Observable<string[]>{
+    return this.http.get(API_URL + '/user/details').pipe(map((response) => {
+        const user = response.json();
+        console.log("name " + user.displayName);
+        console.log("email " + user.emails[0].value);
+        console.log("photo " + user.photos[0].value);
+        var result: string[] = [user.displayName, user.emails[0].value, user.photos[0].value];
+        return result;
+    }));  
+  }
 }

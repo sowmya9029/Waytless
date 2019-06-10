@@ -1,6 +1,8 @@
 <a routerLink="/home"><img src="../assets/images/LOGO.png" style="width: 110px;height: 110px"
     class="mx-auto d-block img-responsive" id="siteIcon" alt="Back to Homepage"></a>
 
+
+
 <div class="container bg-light mt-n5 p-5 shadow py-3 rounded">
   <ng-template [ngIf]="!restaurantName">
     <div class="text-secondary text-center">
@@ -15,7 +17,8 @@
     <div class="row">
       <div class="col-lg-10">
         <div class="row">
-          <h2 class="text-dark"><b>{{restaurantName}}</b> Waitlist</h2>
+          <h2 class="text-dark"><b>{{restaurantName}}</b> Waitlist</h2><br>
+          <small>Welcome back {{displayName}}, your login is {{username}}.</small>
         </div>
       </div>
 
