@@ -1,119 +1,116 @@
 <a routerLink="/home"><img src="../assets/images/LOGO.png" style="width: 110px;height: 110px"
-  class="mx-auto d-block img-responsive" id="siteIcon" alt="Back to Homepage"></a>
+    class="mx-auto d-block img-responsive" id="siteIcon" alt="Back to Homepage"></a>
 
 <div class="container bg-light mt-n5 p-5 shadow py-3 rounded">
-    <ng-template [ngIf]="!restaurantName">
-        <div class="text-secondary text-center">
-            <br><br><h3>This restaurant does not have an active waitlist.</h3><br><br>
-          
-        </div>
-      </ng-template>
+  <ng-template [ngIf]="!restaurantName">
+    <div class="text-secondary text-center">
+      <br><br>
+      <h3>This restaurant does not have an active waitlist.</h3><br><br>
+
+    </div>
+  </ng-template>
 
   <ng-template [ngIf]="restaurantName">
 
-      <div class="row">
-        <div class="col-lg-10">
-          <div class="row">
-            <h2 class="text-dark"><b>{{restaurantName}}</b> Waitlist</h2>
-          </div>
-        </div>
-
-        <div class="col-lg-2">
-          <div class="btn-group-vertical">
-            <a routerLink="/waitlist-entry/{{restaurantId}}" role="button" class="btn btn-labeled btn-light"><i class="fa fa-plus"
-                aria-hidden="true"></i> Add to
-              Waitlist</a>
-            <a routerLink="/menu/{{restaurantId}}" role="button" class="btn btn-labeled btn-light"><i class="fa fa-bars"
-                aria-hidden="true"></i> Restaurant Menu</a>
-          </div>
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="row">
+          <h2 class="text-dark"><b>{{restaurantName}}</b> Waitlist</h2>
         </div>
       </div>
 
-      <ng-template [ngIf]="waitlist?.length > 0">
-          <div class="row my-1">
-            <div class="col-lg-4">
-              Number of groups: <span
-                  class="badge badge-secondary badge-pill">{{ waitlist?.length }}</span>
-            </div>
-            <div class="col-lg-4">
-              Average Wait Time (in minutes): <span
-                  class="badge badge-secondary badge-pill">{{avgWaitMin}}</span>
-            </div>
-            <div class="col-lg-4">
-                Table Served Today: <span
-                    class="badge badge-secondary badge-pill">1</span>
-              </div>
-          </div>
-        </ng-template>
-      <div class="row">
-        <div class="table-responsive">
-          <table class="table text-center text-dark table-stripedcd  mt-2">
-
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">Reservation ID</th>
-                <th scope="col">Guest & Group Size</th>
-                <th scope="col">Time joined</th>
-                <th scope="col">Quoted Time</th>
-                <th scope="col">Notified</th>
-                <th scope="col">Confirmed</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let reservation of waitlist; index as id">
-                <th scope="row">{{reservation.queueID}}</th>
-                <td>
-
-                    <div class="media">
-                        <div class="media-left media-middle">
-                            <span id="initials">
-                                <span class="editable media-object" contenteditable="true"
-                                  (keyup)="updateGroupSize(reservation.queueID, 'groupSize', $event)"
-                                  (blur)="refreshTable(id, 'groupSize', $event)">
-                                  {{reservation.groupSize}}
-                                </span></span>
-                        </div>
-                        <div class="media-body text-left align-middle">
-                            <strong>{{reservation.customerName}}</strong><br>
-                            {{reservation.phone}}<br><small>{{reservation.email}}</small>
-                        </div>
-                      </div>
-                    </td>
-                <td class="text-center">{{ reservation.joinTime | date:'shortTime' }}</td>
-                <td class="text-center">{{ reservation.quotedtime | date:'shortTime' }}</td>
-                <td class="text-center">
-                  <div *ngIf="reservation.notified == true; else elseBlock"><i class="fa fa-check"></i></div>
-                  <ng-template #elseBlock>
-                    <i class="fa fa-times" aria-hidden="true"></i> &nbsp;
-                    <button class="btn btn-labeled btn-primary" (click)="notify(reservation.queueID)" type="button"
-                      placement="top"
-                      ngbTooltip="Send customer a notification to inform their table is almost ready.."><i
-                        class="fa fa-bell"></i></button>
-                  </ng-template>
-                </td>
-                <td class="text-center">
-                  <div *ngIf="reservation.confirmed == true; else elseBlock1"><i class="fa fa-check"></i></div>
-                  <ng-template #elseBlock1>
-                    <i class="fa fa-times" aria-hidden="true"></i> &nbsp;
-                    <button class="btn btn-labeled btn-warning" (click)="confirm(reservation.queueID)" type="button"
-                      placement="top"
-                      ngbTooltip="Confirm the customer has recevied the notifcation and confirmed their reservation."><i
-                        class="fa fa-check-circle"></i></button>
-                  </ng-template>
-                </td>
-                <td class="text-center">
-                  <button class="btn btn-labeled btn-success" (click)="complete(reservation.queueID)" type="button"
-                    placement="top" ngbTooltip="Complete a reservation."><i class="fa fa-check"
-                      aria-hidden="true"></i></button>
-                  <button class="btn btn-labeled btn-danger" (click)="remove(reservation.queueID)" type="button"
-                    placement="top" ngbTooltip="Remove entry from your waitlist."><i class="fa fa-trash"
-                      aria-hidden="true"></i></button></td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="col-lg-2">
+        <div class="btn-group-vertical">
+          <a routerLink="/waitlist-entry/{{restaurantId}}" role="button" class="btn btn-labeled btn-light"><i
+              class="fa fa-plus" aria-hidden="true"></i> Add to
+            Waitlist</a>
+          <a routerLink="/menu/{{restaurantId}}" role="button" class="btn btn-labeled btn-light"><i class="fa fa-bars"
+              aria-hidden="true"></i> Restaurant Menu</a>
         </div>
       </div>
+    </div>
+
+    <ng-template [ngIf]="waitlist?.length > 0">
+      <div class="row my-1">
+        <div class="col-lg-4">
+          Number of groups: <span class="badge badge-secondary badge-pill">{{ waitlist?.length }}</span>
+        </div>
+        <div class="col-lg-4">
+          Average Wait Time (in minutes): <span class="badge badge-secondary badge-pill">{{avgWaitMin}}</span>
+        </div>
+        <div class="col-lg-4">
+          Table Served Today: <span class="badge badge-secondary badge-pill">1</span>
+        </div>
+      </div>
+    </ng-template>
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table text-center text-dark table-stripedcd  mt-2">
+
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Reservation ID</th>
+              <th scope="col">Guest & Group Size</th>
+              <th scope="col">Time joined</th>
+              <th scope="col">Quoted Time</th>
+              <th scope="col">Notified</th>
+              <th scope="col">Confirmed</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let reservation of waitlist; index as id">
+              <th scope="row">{{reservation.queueID}}</th>
+              <td>
+
+                <div class="media">
+                  <div class="media-left media-middle">
+                    <span id="initials">
+                      <span class="editable media-object" contenteditable="true"
+                        (keyup)="updateGroupSize(reservation.queueID, 'groupSize', $event)"
+                        (blur)="refreshTable(id, 'groupSize', $event)">
+                        {{reservation.groupSize}}
+                      </span></span>
+                  </div>
+                  <div class="media-body text-left align-middle">
+                    <strong>{{reservation.customerName}}</strong><br>
+                    {{reservation.phone}}<br><small>{{reservation.email}}</small>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">{{ reservation.joinTime | date:'shortTime' }}</td>
+              <td class="text-center">{{ reservation.quotedtime | date:'shortTime' }}</td>
+              <td class="text-center">
+                <div *ngIf="reservation.notified == true; else elseBlock"><i class="fa fa-check"></i></div>
+                <ng-template #elseBlock>
+                  <i class="fa fa-times" aria-hidden="true"></i> &nbsp;
+                  <button class="btn btn-labeled btn-primary" (click)="notify(reservation.queueID)" type="button"
+                    placement="top" ngbTooltip="Send customer a notification to inform their table is almost ready.."><i
+                      class="fa fa-bell"></i></button>
+                </ng-template>
+              </td>
+              <td class="text-center">
+                <div *ngIf="reservation.confirmed == true; else elseBlock1"><i class="fa fa-check"></i></div>
+                <ng-template #elseBlock1>
+                  <i class="fa fa-times" aria-hidden="true"></i> &nbsp;
+                  <button class="btn btn-labeled btn-warning" (click)="confirm(reservation.queueID)" type="button"
+                    placement="top"
+                    ngbTooltip="Confirm the customer has recevied the notifcation and confirmed their reservation."><i
+                      class="fa fa-check-circle"></i></button>
+                </ng-template>
+              </td>
+              <td class="text-center">
+                <button class="btn btn-labeled btn-success" (click)="complete(reservation.queueID)" type="button"
+                  placement="top" ngbTooltip="Complete a reservation."><i class="fa fa-check"
+                    aria-hidden="true"></i></button>
+                <button class="btn btn-labeled btn-danger" (click)="remove(reservation.queueID)" type="button"
+                  placement="top" ngbTooltip="Remove entry from your waitlist."><i class="fa fa-trash"
+                    aria-hidden="true"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
   </ng-template>
 

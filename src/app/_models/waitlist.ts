@@ -7,9 +7,9 @@ export class Waitlist {
     groupSize: number;
     joinTime: Date;
     quotedtime: Date;
-    email : string;
-    phone : string;
+    email: string;
+    phone: string;
     notified: boolean;
-    confirmed:boolean;
+    confirmed: boolean;
 }
 

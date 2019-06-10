@@ -53,21 +53,21 @@ show:Boolean = true;
       }
       )
   }
-  
-createStarArray(n) { 
-  return new Array(n);
-}
 
-createEmptyStarArray(n) {
-  return new Array((5-n));
-}
+  createStarArray(n) {
+    return new Array(n);
+  }
+
+  createEmptyStarArray(n) {
+    return new Array((5 - n));
+  }
   keyDownFunction(event) {
-    if(event.keyCode == 13) {
+    if (event.keyCode == 13) {
       this.route.params.subscribe(params => {
-        console.log("params"+this.search);
-       this.restaurantAPIService.getNearByRestaurants(this.search).subscribe(restItems => {
+        console.log("params" + this.search);
+        this.restaurantAPIService.getNearByRestaurants(this.search).subscribe(restItems => {
           this.restuarant = restItems;
-          console.log("restItems :: "+restItems);
+          console.log("restItems :: " + restItems);
         })
       }
       )
@@ -75,13 +75,13 @@ createEmptyStarArray(n) {
   }
   ngOnInit() {
   }
-  onRestaurantClickEvent(resturantId){
-    console.log("resturantId---" +resturantId.textContent);
-    this.router.navigate(['./waitlist-entry/'+resturantId.textContent]);
+  onRestaurantClickEvent(resturantId) {
+    console.log("resturantId---" + resturantId.textContent);
+    this.router.navigate(['./waitlist-entry/' + resturantId.textContent]);
   }
 
 
-  onLoginClickEvent(resturantId){
-   
+  onLoginClickEvent(resturantId) {
+
   }
 }

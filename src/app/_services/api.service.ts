@@ -12,28 +12,39 @@ const API_URL = environment.apiUrl;
 })
 export class ApiService {
 
-  constructor(private http: Http) { 
+  constructor(private http: Http) {
 
   }
 
-
-  public makeOrders(orders: Order[]) {
+  public makeOrders(orders: Order[]): Observable<Response>[] {
+    var list = [];
     orders.forEach(o => {
       console.log('posting order!');
       console.log(o);
       let response = this.http.post(API_URL + '/orders', {
-        "menuitemId" : o.menuItemId,
-        "quantity" : o.quantity,
+        "orderId": o.orderId,
+        "menuitemId": o.menuItemId,
+        "quantity": o.quantity,
         "orderTime": o.orderTime,
-        "customerId" : o.customerId,
-        "restaurantID" : o.restaurantID
+        "customerId": o.customerId,
+        "restaurantID": o.restaurantID
       });
-      response.subscribe(r => console.log(r));
+      list.push(response);
     });
+    return list;
   }
 
   public getAllOrders(restaurantID: number, customerID: number): Observable<Order[]> {
     return this.http.get(API_URL + '/orders/' + restaurantID + '/' + customerID)
+      .pipe(map((response) => {
+        const items: Order[] = response.json();
+        console.log(items);
+        return items;
+      }));
+  }
+
+  public getOrder(orderId: String): Observable<Order[]> {
+    return this.http.get(API_URL + '/order/' + orderId)
       .pipe(map((response) => {
         const items: Order[] = response.json();
         console.log(items);

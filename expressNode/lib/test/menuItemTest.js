@@ -5,7 +5,8 @@ var async = require('async');
 var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should();
-const url = "https://waytlessserver.azurewebsites.net/";
+const url = "https://waytlessserver.azurewebsites.net";
+// const url = "http://localhost:8080";
 var http = require('http');
 chai.use(chaiHttp);
 
@@ -31,7 +32,7 @@ describe('Test fetch menu items result', function () {
 		expect(response).to.have.headers;
     });
 
-	it('Each element in the array has the expected properties', function(){
+	it('Each element in the array has the expected properties', function() {
 		expect(response.body).to.not.be.a.string;
 		expect(response.body).to.satisfy(
 			function (body) {
@@ -49,4 +50,36 @@ describe('Test fetch menu items result', function () {
 				return true;
 			});
 	});	
+});
+
+describe('Should add a new menu item and update it', function() {
+	let menuItem = {
+        "itemID" : 1001,
+        "itemName": "Summer rolls",
+        "price": 3.33,
+        "description": "Cold rolls",
+		"restaurantID": 50,
+		"itemCategory": {
+			"categoryId": 1,
+			"categoryName" : "Appetizer",
+			"description" : "Appetizer"
+		}
+	};
+
+	it('Should add and update a new menu item', function() {
+		chai.request(url)
+			.post("/menuitems").send(menuItem)
+			.end(function (err, res) {
+				expect(err).to.be.null;
+                expect(res).to.have.status(200);
+		});
+
+		menuItem.description = "Different description";
+		chai.request(url)
+			.patch("/menuitems").send(menuItem)
+			.end(function(err, res) {
+				expect(err).to.be.null;
+				expect(res).to.have.status(200);
+		});
+	});
 });

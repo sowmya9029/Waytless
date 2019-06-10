@@ -1,11 +1,15 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+  integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
+  integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 
 <div class="brand_logo_container">
-    <img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo">
-  </div>
+  <img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo">
+</div>
 
 <div class="card menu-card">
   <div class="card-body">
@@ -13,83 +17,87 @@
 
     <mat-tab-group>
       <mat-tab label="Appetizers">
-          <mat-grid-list cols="3" rowHeight="350px">
-            <mat-grid-tile
-              class="menu-item"
-              *ngFor="let a of appetizers">
-              <mat-card class="menu-item-body">          
-                <img mat-card-image src='{{a.url !== undefined ? a.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
-                <mat-card-content>
-                  <div class="menu-top">
-                    <span class="menu-item-name">{{a.itemName}}</span>
-                    <span class="menu-item-price">${{a.price}} x {{orders.get(a.itemID) === undefined ? 0 : orders.get(a.itemID)}}</span>
-                  </div>
-                  <div class="menu-bottom">
-                    <span>{{a.description}}</span><br/>
-                  </div>
-                </mat-card-content>
-                <mat-card-actions>
-                  <button (click)="addToCart(a)" mat-button>ADD</button>
-                  <button (click)="deleteFromCart(a)" mat-button>REMOVE</button>
-                </mat-card-actions>
-              </mat-card>
-            </mat-grid-tile>
-          </mat-grid-list>
+        <mat-grid-list cols="3" rowHeight="350px">
+          <mat-grid-tile class="menu-item" *ngFor="let a of appetizers">
+            <mat-card class="menu-item-body">
+              <img mat-card-image
+                src='{{a.url !== undefined ? a.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}'
+                alt="Photo of food">
+              <mat-card-content>
+                <div class="menu-top">
+                  <span class="menu-item-name">{{a.itemName}}</span>
+                  <span class="menu-item-price">${{a.price}} x
+                    {{orders.get(a.itemID) === undefined ? 0 : orders.get(a.itemID)}}</span>
+                </div>
+                <div class="menu-bottom">
+                  <span>{{a.description}}</span><br />
+                </div>
+              </mat-card-content>
+              <mat-card-actions>
+                <button (click)="addToCart(a)" mat-button>ADD</button>
+                <button (click)="deleteFromCart(a)" mat-button>REMOVE</button>
+              </mat-card-actions>
+            </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
       </mat-tab>
       <mat-tab label="Entrees">
         <mat-grid-list cols="3" rowHeight="350px">
-          <mat-grid-tile
-            class="menu-item"
-            *ngFor="let e of entrees">
-            <mat-card class="menu-item-body">          
-                <img mat-card-image src='{{e.url !== undefined ? e.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
-                <mat-card-content>
-                  <div class="menu-top">
-                    <span class="menu-item-name">{{e.itemName}}</span>
-                    <span class="menu-item-price">${{e.price}} x {{orders.get(e.itemID) === undefined ? 0 : orders.get(e.itemID)}}</span>
-                  </div>
-                  <div class="menu-bottom">
-                    <span>{{e.description}}</span><br/>
-                  </div>
-                </mat-card-content>
-                <mat-card-actions>
-                  <button (click)="addToCart(e)" mat-button>ADD</button>
-                  <button (click)="deleteFromCart(e)" mat-button>REMOVE</button>
-                </mat-card-actions>
-              </mat-card>
+          <mat-grid-tile class="menu-item" *ngFor="let e of entrees">
+            <mat-card class="menu-item-body">
+              <img mat-card-image
+                src='{{e.url !== undefined ? e.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}'
+                alt="Photo of food">
+              <mat-card-content>
+                <div class="menu-top">
+                  <span class="menu-item-name">{{e.itemName}}</span>
+                  <span class="menu-item-price">${{e.price}} x
+                    {{orders.get(e.itemID) === undefined ? 0 : orders.get(e.itemID)}}</span>
+                </div>
+                <div class="menu-bottom">
+                  <span>{{e.description}}</span><br />
+                </div>
+              </mat-card-content>
+              <mat-card-actions>
+                <button (click)="addToCart(e)" mat-button>ADD</button>
+                <button (click)="deleteFromCart(e)" mat-button>REMOVE</button>
+              </mat-card-actions>
+            </mat-card>
           </mat-grid-tile>
         </mat-grid-list>
       </mat-tab>
       <mat-tab label="Desserts">
         <mat-grid-list cols="3" rowHeight="350px">
-          <mat-grid-tile
-            class="menu-item"
-            *ngFor="let d of desserts">
-            <mat-card class="menu-item-body">          
-                <img mat-card-image src='{{d.url !== undefined ? d.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}' alt="Photo of food">
-                <mat-card-content>
-                  <div class="menu-top">
-                    <span class="menu-item-name">{{d.itemName}}</span>
-                    <span class="menu-item-price">${{d.price}} x {{orders.get(d.itemID) === undefined ? 0 : orders.get(d.itemID)}}</span>
-                  </div>
-                  <div class="menu-bottom">
-                    <span>{{d.description}}</span><br/>
-                  </div>
-                </mat-card-content>
-                <mat-card-actions>
-                  <button (click)="addToCart(d)" mat-button>ADD</button>
-                  <button (click)="deleteFromCart(d)" mat-button>REMOVE</button>
-                </mat-card-actions>
-              </mat-card>
+          <mat-grid-tile class="menu-item" *ngFor="let d of desserts">
+            <mat-card class="menu-item-body">
+              <img mat-card-image
+                src='{{d.url !== undefined ? d.url : "https://dintaifungusa.com/wp-content/uploads/2015/01/shrimp-fried-rice.jpg"}}'
+                alt="Photo of food">
+              <mat-card-content>
+                <div class="menu-top">
+                  <span class="menu-item-name">{{d.itemName}}</span>
+                  <span class="menu-item-price">${{d.price}} x
+                    {{orders.get(d.itemID) === undefined ? 0 : orders.get(d.itemID)}}</span>
+                </div>
+                <div class="menu-bottom">
+                  <span>{{d.description}}</span><br />
+                </div>
+              </mat-card-content>
+              <mat-card-actions>
+                <button (click)="addToCart(d)" mat-button>ADD</button>
+                <button (click)="deleteFromCart(d)" mat-button>REMOVE</button>
+              </mat-card-actions>
+            </mat-card>
           </mat-grid-tile>
         </mat-grid-list>
       </mat-tab>
     </mat-tab-group>
 
-    <div class = "total">
-      Total : $<span class = "totalprice">{{totalPrice}}</span>
+    <div class="total">
+      Total : $<span class="totalprice">{{totalPrice}}</span>
     </div>
 
-    <button mat-raised-button class = "btn btn-primary confirmBtn" (click)="makeOrder()" color="primary">Confirm order</button>
+    <button mat-raised-button class="btn btn-primary confirmBtn" (click)="makeOrder()" color="primary">Confirm
+      order</button>
   </div>
 </div>

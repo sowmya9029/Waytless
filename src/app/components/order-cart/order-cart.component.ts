@@ -8,7 +8,7 @@ import { MenuApiService } from 'app/_services/menu-api.service';
 export interface OrderDetail {
   name: string;
   price: number;
-  quantity : number;
+  quantity: number;
 }
 
 @Component({
@@ -23,37 +23,42 @@ export class OrderCartComponent implements OnInit {
   private menuItemsMap: Map<number, MenuItem>;
   private totalPrice: number;
 
-  private customerNumber;
-  private restaurantID;
+  private orderId;
 
   constructor(private apiService: ApiService,
-              private menuApiService: MenuApiService,
-              private route: ActivatedRoute) { 
-    this.customerNumber = 2;
-    this.restaurantID = 0;
+    private menuApiService: MenuApiService,
+    private route: ActivatedRoute) {
+    this.orderId = "";
     this.menuItemsMap = new Map;
     this.orderDetails = [];
     this.totalPrice = 0;
 
     this.route.params.subscribe(params => {
-      this.restaurantID += params['id'];
+      this.orderId += params['id'];
 
-      this.menuApiService.getAllMenuItems(this.restaurantID).subscribe(menuItems => {
+      this.apiService.getOrder(this.orderId).subscribe(allOrders => {
+        this.orders = allOrders;
+
+        console.log("loading: ");
+        console.log(allOrders);
+        console.log(allOrders[0]);
+        console.log("done loading: ");
+
+        this.menuApiService.getAllMenuItems(allOrders[0].restaurantID).subscribe(menuItems => {
           menuItems.forEach(m => this.menuItemsMap.set(m.itemID, m));
-          this.apiService.getAllOrders(this.restaurantID, this.customerNumber).subscribe(allOrders => {
-              this.orders = allOrders;
-              this.orders.forEach(o => {
-                this.totalPrice += o.quantity * this.menuItemsMap.get(o.menuItemId).price;
-                this.orderDetails.push({
-                  name: this.menuItemsMap.get(o.menuItemId).itemName,
-                  price: this.menuItemsMap.get(o.menuItemId).price,
-                  quantity: o.quantity
-                });
-              });
-            }
-          );
+          this.orders.forEach(o => {
+            this.orderDetails.push({
+              name: this.menuItemsMap.get(o.menuItemId).itemName,
+              price: this.menuItemsMap.get(o.menuItemId).price,
+              quantity: o.quantity
+            });
+            this.totalPrice += o.quantity * this.menuItemsMap.get(o.menuItemId).price;
+          });
         }
+        );
+      }
       );
+
     });
   }
 
