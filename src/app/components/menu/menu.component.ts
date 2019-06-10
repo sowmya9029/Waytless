@@ -5,6 +5,8 @@ import { ApiService } from 'app/_services/api.service';
 import { Order } from 'app/_models/order';
 import { MenuApiService } from 'app/_services/menu-api.service';
 import {RestaurantAPIService} from '../../_services/restaurant-api.service';
+import * as uuid from 'uuid';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -81,13 +83,15 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  private makeOrder() {
+   private makeOrder() {
     let confirmedOrders = [];
     let m = this.orders;
-    console.log('make orders!');
+    let orderId = uuid.v4();
+    console.log('make orders! ' + orderId);
     m.forEach((k, v, m) => {
       console.log(`key:${k} value:${v} map:${m}`);
       confirmedOrders.push({
+        orderId: orderId,
         menuItemId: v,
         quantity: k,
         orderTime: new Date(),
@@ -95,8 +99,10 @@ export class MenuComponent implements OnInit {
         restaurantID : this.restaurantID
       });
     })
-    this.apiService.makeOrders(confirmedOrders);
+    var responses = this.apiService.makeOrders(confirmedOrders);
     console.log('done posting orders!');
-    this.router.navigate([`/order-cart/` + this.restaurantID]);
+    forkJoin(responses).subscribe(r => {
+      this.router.navigate([`/order-cart/` + orderId]);
+    });
   }
 }
