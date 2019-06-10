@@ -465,6 +465,7 @@ waitlistCollection.insert(
 }
 )
 
+
 waitlistCollection.insert(
         {
                 queueID: 2,
