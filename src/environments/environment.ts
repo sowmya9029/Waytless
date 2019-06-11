@@ -10,7 +10,7 @@ export const environment = {
  /**for running services from azure */
   //apiUrl: 'https://waytlessserver.azurewebsites.net/'
   // If you need to test with OAuth use the url below.
-  // apiUrl : 'https://waytlessv1.azurewebsites.net/' 
+  //apiUrl : 'https://waytlessv1.azurewebsites.net/' 
   /**for deploying on azure  */
-  apiUrl:''
+ apiUrl:''
 };

@@ -14,6 +14,7 @@ import { WaitlistEntryComponent } from './components/waitlist-entry/waitlist-ent
 import {OrderCartComponent} from './components/order-cart/order-cart.component'
 import { manageWaitlistComponent } from './components/manageWaitlist/manageWaitlist.component';
 import { ConfirmReservationComponent } from './components/confirm-reservation/confirm-reservation.component';
+import { LoginpageComponent } from './components/loginpage/loginpage.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ConfirmReservationComponent } from './components/confirm-reservation/co
     WaitlistEntryComponent,
     OrderCartComponent,
     manageWaitlistComponent,
-    ConfirmReservationComponent
+    ConfirmReservationComponent,
+    LoginpageComponent
   ],
   imports: [
     BrowserModule,

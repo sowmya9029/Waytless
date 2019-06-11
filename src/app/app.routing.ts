@@ -15,6 +15,9 @@ import { manageWaitlistComponent } from './components/manageWaitlist/manageWaitl
 
 import {ConfirmReservationComponent} from './components/confirm-reservation/confirm-reservation.component';
 
+
+import {LoginpageComponent} from './components/loginpage/loginpage.component';
+
 const routes: Routes = [
   //{ path: 'create', component: CreateComponent },
   //{ path: 'edit/:id', component: EditComponent },
@@ -22,9 +25,13 @@ const routes: Routes = [
     { path: 'menu/:id', component: MenuComponent },
   //{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'home', component: HomeComponent },
+    { path: 'login', component: LoginpageComponent },
     { path: 'waitlist-entry/:id', component: WaitlistEntryComponent},
      { path: 'order-cart/:id',component: OrderCartComponent}, 
-   { path: '', redirectTo: '/home', pathMatch: 'full'},
+    //{ path: '', redirectTo: '/home', pathMatch: 'full'},
+   { path: '', redirectTo: '/login', pathMatch: 'full'},
+
+   
   // { path: 'managewaitlist/:id', component: manageWaitlistComponent },
    { path: 'managewaitlist', component: manageWaitlistComponent },
    { path: 'confirmRes/:restId/:queueId', component: ConfirmReservationComponent }
