@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { WaitlistService } from '../../_services/waitlist.service';
 import { RestaurantAPIService } from '../../_services/restaurant-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'app/_services/user.service';
 
 @Component({
   selector: 'app-waitlist-entry',
@@ -22,15 +23,32 @@ export class WaitlistEntryComponent implements OnInit {
   groupSize: number
   bookingTime: Date
 
-  constructor(@Inject(DOCUMENT) document, private waitlistservice: WaitlistService,
+  constructor(@Inject(DOCUMENT) document, 
+    private userService: UserService,
+    private waitlistservice: WaitlistService,
     private restaurantSerice: RestaurantAPIService,
     private route: ActivatedRoute) {
-    this.document = document
+    this.document = document;
     this.route.params.subscribe(params => {
       this.restaurantId = params['id'];
       this.restaurantSerice.getAllRestaurants().subscribe(restItems => {
         this.restaurantName = restItems[this.restaurantId - 1].name;
-      })
+      });
+
+      this.userService.getCurrentUsersEmail().subscribe(userEmail => {
+        this.waitlistservice.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
+          for (let i = 0; i < waitlistItems.length; i++) {
+            if (waitlistItems[i].email === userEmail) {
+              this.show = true;
+              this.name = waitlistItems[i].customerName;
+              this.phone = waitlistItems[i].phone;
+              this.email = waitlistItems[i].email;
+              this.groupSize = waitlistItems[i].groupSize;
+              break;
+            }
+          }
+        });
+      });
 
       //this.waitlistservice.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
         //var count = Object.keys(waitlistItems).length;
@@ -43,11 +61,10 @@ export class WaitlistEntryComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   addToWaitlist(restID: number) {
-    this.show = true
+    this.show = true;
     this.name = (<HTMLInputElement>document.getElementById('name')).value;
     this.phone = (<HTMLInputElement>document.getElementById('phone')).value;
     this.email = (<HTMLInputElement>document.getElementById('email')).value;
