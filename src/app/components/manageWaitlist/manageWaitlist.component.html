@@ -1,50 +1,74 @@
-<a routerLink="/home"><img src="../assets/images/LOGO.png" style="width: 110px;height: 110px"
-    class="mx-auto d-block img-responsive" id="siteIcon" alt="Back to Homepage"></a>
+<a routerLink="/home"><img src="../assets/images/LOGO.png" style="width: 110px;height: 110px; z-index:9999999;position:  relative;"
+    class="mx-auto d-block img-responsive mt-n5" id="siteIcon" alt="Back to Homepage"></a>
 
 
+  <ng-template [ngIf]="!restaurantName || !username">
+      <div class="container bg-light mt-n5 p-5 shadow py-3 rounded">
+        <div class="text-secondary text-center">
+          <br><br>
+          <h3>This restaurant does not have an active waitlist.</h3><br>
+          <h3>Or, you are not logged in. <a routerLink="/home">Back to homepage.</a></h3>
+          <br>
 
-<div class="container bg-light mt-n5 p-5 shadow py-3 rounded">
-  <ng-template [ngIf]="!restaurantName">
-    <div class="text-secondary text-center">
-      <br><br>
-      <h3>This restaurant does not have an active waitlist.</h3><br><br>
-
-    </div>
+        </div>
+      </div>
   </ng-template>
 
-  <ng-template [ngIf]="restaurantName">
+  <ng-template [ngIf]="restaurantName && username">
+    <div class="container mt-n5">
 
     <div class="row">
-      <div class="col-lg-10">
-          <h2 class="text-dark"><b>{{restaurantName}}</b> Waitlist</h2>
-      </div>
-      <div class="col-lg-2">
-        <div class="btn-group-vertical">
-          <a routerLink="/waitlist-entry/{{restaurantId}}" role="button" class="btn btn-labeled btn-light"><i
-              class="fa fa-plus" aria-hidden="true"></i> Add to
+      <div class="col-lg-7 bg-light text-dark ml-5 p-5 m-2 shadow">
+          <h2><b>{{currentRestaurant.name}}</b> Waitlist Portal</h2>
+          <img src="{{currentRestaurant.url}}">
+          
+          <p>{{currentRestaurant.address.number}} {{currentRestaurant.address.street}}<br>
+            {{currentRestaurant.address.city}}, WA {{currentRestaurant.address.zip}}<br>
+          {{currentRestaurant.email}}<br>
+          {{currentRestaurant.phoneNumber}}</p>
+
+          <div class="btn-group" role="group">
+          <a routerLink="/waitlist-entry/{{restaurantId}}" role="button" class="btn btn-labeled btn-success">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add to
             Waitlist</a>
-          <a routerLink="/menu/{{restaurantId}}" role="button" class="btn btn-labeled btn-light"><i class="fa fa-bars"
-              aria-hidden="true"></i> Restaurant Menu</a>
+          <a routerLink="/menu/{{restaurantId}}" role="button" class="btn btn-labeled btn-primary">
+            <i class="fa fa-bars" aria-hidden="true"></i> Restaurant Menu</a>
+          </div>
+      </div>
+
+      <div class="col-lg-4 bg-light text-dark p-0 m-2 shadow">
+        <div class="btn-group-vertical text-center">
+
+            <div class="card mx-auto" style="width: 100%;">
+                <img class="card-img-top" src="{{profilePic}}" alt="{{displayName}}">
+                <div class="card-body">
+                  <div class="card-text">
+                    <b>Welcome back </b><br>
+                    <h3><span class="badge badge-success badge-pill">{{displayName}}</span></h3>
+                  </div>
+                </div>
+              </div>
+
+          
+ 
         </div>
       </div>
     </div>
-    <ng-template [ngIf]="waitlist?.length > 0">
-      <div class="row my-1">
-        <div class="col-lg-4">
-            Welcome back <span class="badge badge-secondary badge-pill">{{displayName}}</span>
-        </div>
-        <div class="col-lg-4">
+
+    <ng-template [ngIf]="waitlist?.length > 0 && username">
+      <div class="row mx-2 bg-info text-white p-1 shadow py-3">
+        <div class="col-lg-6">
           Number of groups: <span class="badge badge-secondary badge-pill">{{ waitlist?.length }}</span>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6">
           Average Wait Time (in minutes): <span class="badge badge-secondary badge-pill">{{avgWaitMin}}</span>
         </div>
       </div>
     </ng-template>
 
-    <div class="row">
+    <div class="row bg-light text-dark pt-0 m-2 shadow">
       <div class="table-responsive">
-        <table class="table text-center text-dark table-stripedcd  mt-2">
+        <table class="table text-center text-dark">
 
           <thead class="thead-light">
             <tr>
@@ -112,10 +136,9 @@
         </table>
       </div>
     </div>
-
+</div>
   </ng-template>
 
-</div>
 
 
 <script>

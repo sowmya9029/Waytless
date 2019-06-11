@@ -24,6 +24,7 @@ export class manageWaitlistComponent implements OnInit {
   displayName: string;
   username: string;
   profilePic: string;
+  currentRestaurant: Restaurant;
 
   constructor(
     private waitlistService: WaitlistService,
@@ -32,11 +33,13 @@ export class manageWaitlistComponent implements OnInit {
     private route: ActivatedRoute) {
 
     this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
+      console.log("username" + this.username);
       this.restItems = restItems;
       this.restItems.forEach((item, index) => {
         if(item.owner == this.username) {
-          this.restaurantName = this.restItems[index].name;
-          this.restaurantId = this.restItems[index].restaurantID;
+          this.currentRestaurant = this.restItems[index];
+          this.restaurantName = this.currentRestaurant.name;
+          this.restaurantId = this.currentRestaurant.restaurantID;
           this.getWaitlist();
         }
       });
@@ -52,22 +55,23 @@ export class manageWaitlistComponent implements OnInit {
 
   ngOnInit() {
     this.getWaitlist();
+    console.log("username" + this.username);
     //this.getRestaurantInfo();
     //this.avgWaitMin = this.avgWaittime(this.waitlist);
   }
 
 
-  getRestaurantInfo() {
-    console.log("rest " + this.restItems.length );
-    this.restItems.forEach((item, index) => {
-      if(item.owner == this.username) {
+  //getRestaurantInfo() {
+  //  console.log("rest " + this.restItems.length );
+  //  this.restItems.forEach((item, index) => {
+  //    if(item.owner == this.username) {
         //this.avaliableRestaurants.push(this.restItems[index]);
-        this.restaurantName = this.restItems[index].name;
-        this.restaurantId = this.restItems[index].restaurantID;
-      }
-    });
+        //this.restaurantName = this.restItems[index].name;
+        //this.restaurantId = this.restItems[index].restaurantID;
+    //  }
+    //});
     //console.log(this.avaliableRestaurants.length);
-  }
+  //}
 
   avgWaittime(wl: Waitlist[]): number {
     var sum = 0;
