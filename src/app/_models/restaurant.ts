@@ -4,6 +4,7 @@ export class Restaurant {
     address: { street: string, number: string, zip: string, city: string };
     phoneNumber: number;
     email: string;
+    owner: string;
     cuisine: string;
     reviews: number;
     booked: number;
