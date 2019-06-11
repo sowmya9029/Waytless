@@ -18,7 +18,7 @@ search:string;
 restaurantName: string;
 restuarant:Restaurant[];
 reviews:number[] = new Array() ;
-displayName : String;
+displayEmail : String;
 show:Boolean = true;
 
   private waitlist: Waitlist[];
@@ -42,10 +42,10 @@ show:Boolean = true;
         
         });
 
-        this.userService.getCurrentUsersName().subscribe(currentUserDisplayName => {
+        this.userService.getCurrentUsersEmail().subscribe(currentUserDisplayName => {
 
-          this.displayName = currentUserDisplayName;
-          console.log(this.displayName);
+          this.displayEmail = currentUserDisplayName;
+          console.log(this.displayEmail);
           this.show = false;
         });
         
@@ -80,7 +80,10 @@ show:Boolean = true;
     this.router.navigate(['./waitlist-entry/' + resturantId.textContent]);
   }
 
-
+  public logout(){
+    this.userService.logoutUser();
+    this.show = true;
+  }
   onLoginClickEvent(resturantId) {
 
   }
