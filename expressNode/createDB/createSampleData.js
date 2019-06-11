@@ -21,7 +21,7 @@ restCollection.remove({})
                         owner: "uschohk@gmail.com",
                         rating: 5,
                         reviews: 679,
-                        booked:980,
+                        booked:989,
                         url:"../assets/images/dinthaifung.png"
                 }
         )
