@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantAPIService } from 'app/_services/restaurant-api.service';
 import { WaitlistService } from 'app/_services/waitlist.service';
 import { Waitlist } from 'app/_models/waitlist';
+import { Restaurant} from 'app/_models/restaurant';
 import { UserService } from 'app/_services/user.service';
 
 @Component({
@@ -16,9 +17,11 @@ export class manageWaitlistComponent {
   restaurantId: number;
   restaurantName: string;
   waitlist: Waitlist[];
+  restItems: Restaurant[];
+  //avaliableRestaurants: Restaurant[];
   avgWaitMin: number;
   userItems: any[];
-
+  owner: string;
   displayName: string;
   username: string;
   profilePic: string;
@@ -28,15 +31,14 @@ export class manageWaitlistComponent {
     private restaurantAPIService: RestaurantAPIService,
     private userService : UserService,
     private route: ActivatedRoute) {
-    this.route.params.subscribe(params => {
-      this.restaurantId = params['id'];
-    }),
+    //this.route.params.subscribe(params => {
+    //  this.restaurantId = params['id'];
+    //}),
     this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
-      this.restaurantName = restItems[this.restaurantId - 1].name;
+      this.restItems = restItems;
     }),
     this.userService.getUserdetails().subscribe(userItems => {
       this.userItems = userItems;
-      console.log(this.userItems);
       this.displayName = this.userItems[0];
       this.username = this.userItems[1];
       this.profilePic = this.userItems[2];
@@ -46,7 +48,21 @@ export class manageWaitlistComponent {
 
   ngOnInit() {
     this.getWaitlist();
+    this.getRestaurantInfo();
     //this.avgWaitMin = this.avgWaittime(this.waitlist);
+  }
+
+
+  getRestaurantInfo() {
+    console.log("rest " + this.restItems.length );
+    this.restItems.forEach((item, index) => {
+      if(item.owner == this.username) {
+        //this.avaliableRestaurants.push(this.restItems[index]);
+        this.restaurantName = this.restItems[index].name;
+        this.restaurantId = this.restItems[index].restaurantID;
+      }
+    });
+    //console.log(this.avaliableRestaurants.length);
   }
 
   avgWaittime(wl: Waitlist[]): number {
