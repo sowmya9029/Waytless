@@ -32,13 +32,13 @@ export class WaitlistEntryComponent implements OnInit {
         this.restaurantName = restItems[this.restaurantId - 1].name;
       })
 
-      this.waitlistservice.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
-        var count = Object.keys(waitlistItems).length;
-        console.log(count.valueOf());
-        this.queueID = count.valueOf() + 1;
-        console.log(this.queueID);
-        return count;
-      });
+      //this.waitlistservice.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
+        //var count = Object.keys(waitlistItems).length;
+        //console.log(count.valueOf());
+        //this.queueID = count.valueOf() + 1;
+        //console.log(this.queueID);
+        //return count;
+      //});
 
     });
   }
@@ -54,8 +54,8 @@ export class WaitlistEntryComponent implements OnInit {
     this.groupSize = Number((<HTMLInputElement>document.getElementById('group')).value);
 
     this.bookingTime = new Date(); // for current datetime
-
-    console.log("Queue in add:" + this.queueID);
+    this.queueID = this.hashCode(this.email);
+    console.log("Queue in add:" + this.hashCode(this.email));
 
     var waitlistEntry = {
       "queueID": this.queueID,
@@ -99,5 +99,18 @@ export class WaitlistEntryComponent implements OnInit {
     this.waitlistservice.removeReservation(resId, queueID);
     this.show = false;
 
+  }
+
+  hashCode(str: string) {
+      var hash = 0;
+      var i: number;
+      var chr: any;
+      if (str.length === 0) return hash;
+      for (i = 0; i < str.length; i++) {
+        chr   = str.charCodeAt(i);
+        hash  = ((hash << 5) - hash) + chr;
+        hash |= 0; // Convert to 32bit integer
+      }
+    return hash;
   }
 }
