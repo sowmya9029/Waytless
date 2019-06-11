@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantAPIService } from 'app/_services/restaurant-api.service';
 import { WaitlistService } from 'app/_services/waitlist.service';
 import { Waitlist } from 'app/_models/waitlist';
+import { UserService } from 'app/_services/user.service';
 
 @Component({
   selector: 'app-manageWaitlist',
@@ -14,21 +15,33 @@ export class manageWaitlistComponent {
   editField: string;
   restaurantId: number;
   restaurantName: string;
-
   waitlist: Waitlist[];
   avgWaitMin: number;
+  userItems: any[];
+
+  displayName: string;
+  username: string;
+  profilePic: string;
 
   constructor(
     private waitlistService: WaitlistService,
     private restaurantAPIService: RestaurantAPIService,
+    private userService : UserService,
     private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.restaurantId = params['id'];
-      this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
-        this.restaurantName = restItems[this.restaurantId - 1].name;
-      })
-    }
-    )
+    }),
+    this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
+      this.restaurantName = restItems[this.restaurantId - 1].name;
+    }),
+    this.userService.getUserdetails().subscribe(userItems => {
+      this.userItems = userItems;
+      console.log(this.userItems);
+      this.displayName = this.userItems[0];
+      this.username = this.userItems[1];
+      this.profilePic = this.userItems[2];
+    })
+    
   }
 
   ngOnInit() {
@@ -85,6 +98,7 @@ export class manageWaitlistComponent {
   }
 
   getWaitlist() {
+    console.log(" getWaitlist() ");
     if (this.restaurantId) {
       this.waitlistService.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
         this.waitlist = waitlistItems;
