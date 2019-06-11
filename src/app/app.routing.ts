@@ -25,7 +25,7 @@ const routes: Routes = [
     { path: 'waitlist-entry/:id', component: WaitlistEntryComponent},
      { path: 'order-cart/:id',component: OrderCartComponent}, 
    { path: '', redirectTo: '/home', pathMatch: 'full'},
-   { path: 'managewaitlist/:id', component: manageWaitlistComponent },
+  // { path: 'managewaitlist/:id', component: manageWaitlistComponent },
    { path: 'managewaitlist', component: manageWaitlistComponent },
    { path: 'confirmRes/:restId/:queueId', component: ConfirmReservationComponent }
   ];
