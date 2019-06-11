@@ -13,12 +13,20 @@ export class UserService {
 
   constructor(private http: Http) { }
 
-  public getCurrentUsersName(){
+  public getCurrentUsersEmail(){
     return this.http.get(API_URL + '/user/details').pipe(map((response) => {
         const user = response.json();
-        console.log("Name from userService" + user);
-        console.log(user.displayName);
-        return user.displayName;
+        console.log("Name from userService" + user.emails);
+        console.log(user.emails[0].value);
+        return user.emails[0].value;
     }));  
+  }
+
+
+  public logoutUser(){
+    this.http.get(API_URL + "/logout").pipe(map((response) => {
+      console.log("Logging off...");
+      console.log(response.status);
+    }));
   }
 }
