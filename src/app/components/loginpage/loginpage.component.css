@@ -1,0 +1,50 @@
+.brand_logo {
+    height: 110px;
+    width: 110px;
+    
+  }
+.login_container {
+  padding: 0 2rem;
+}
+  .login_btn {
+    width: 100%;
+    background: #c0392b !important;
+    color: white !important;
+  }
+  .login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+  }
+  .brand_logo_container {
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    top:10px;
+    left : 630px;
+    border-radius: 50%;
+    text-align: center;
+  }
+  .login_btn {
+    width: 200px;
+    background: #c0392b !important;
+    color: white !important;
+  }
+
+  .login-card {
+    max-width: 250px;
+    margin-left: 1100px;
+    margin-top: 20px;
+    align-content: center;
+    margin-right: 10px;
+  }
+  .logoutBtn{
+    height:40px; 
+    width:100px; 
+    margin: -20px -50px; 
+    position:relative;
+    color : white;
+    background-color: black;
+    text-align: center;
+    top:50%; 
+    left:50%;
+  }

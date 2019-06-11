@@ -82,7 +82,7 @@ show:Boolean = true;
 
   public logout(){
     this.userService.logoutUser();
-    this.show = true;
+    this.router.navigate(['']);
   }
   onLoginClickEvent(resturantId) {
 
