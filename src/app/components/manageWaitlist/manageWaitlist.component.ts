@@ -11,7 +11,7 @@ import { UserService } from 'app/_services/user.service';
   templateUrl: './manageWaitlist.component.html',
   styleUrls: ['./manageWaitlist.component.css']
 })
-export class manageWaitlistComponent {
+export class manageWaitlistComponent implements OnInit {
 
   editField: string;
   restaurantId: number;
@@ -36,6 +36,14 @@ export class manageWaitlistComponent {
     //}),
     this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
       this.restItems = restItems;
+      this.restItems.forEach((item, index) => {
+        if(item.owner == this.username) {
+          //this.avaliableRestaurants.push(this.restItems[index]);
+          this.restaurantName = this.restItems[index].name;
+          this.restaurantId = this.restItems[index].restaurantID;
+          this.getWaitlist();
+        }
+      });
     }),
     this.userService.getUserdetails().subscribe(userItems => {
       this.userItems = userItems;
@@ -48,7 +56,7 @@ export class manageWaitlistComponent {
 
   ngOnInit() {
     this.getWaitlist();
-    this.getRestaurantInfo();
+    //this.getRestaurantInfo();
     //this.avgWaitMin = this.avgWaittime(this.waitlist);
   }
 

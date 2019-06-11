@@ -16,11 +16,8 @@
 
     <div class="row">
       <div class="col-lg-10">
-        <div class="row">
           <h2 class="text-dark"><b>{{restaurantName}}</b> Waitlist</h2>
-        </div>
       </div>
-
       <div class="col-lg-2">
         <div class="btn-group-vertical">
           <a routerLink="/waitlist-entry/{{restaurantId}}" role="button" class="btn btn-labeled btn-light"><i
@@ -30,11 +27,11 @@
               aria-hidden="true"></i> Restaurant Menu</a>
         </div>
       </div>
-
+    </div>
     <ng-template [ngIf]="waitlist?.length > 0">
       <div class="row my-1">
         <div class="col-lg-4">
-            Welcome back, <span class="badge badge-secondary badge-pill">{{displayName}}</span>
+            Welcome back <span class="badge badge-secondary badge-pill">{{displayName}}</span>
         </div>
         <div class="col-lg-4">
           Number of groups: <span class="badge badge-secondary badge-pill">{{ waitlist?.length }}</span>
@@ -44,6 +41,7 @@
         </div>
       </div>
     </ng-template>
+
     <div class="row">
       <div class="table-responsive">
         <table class="table text-center text-dark table-stripedcd  mt-2">
@@ -112,8 +110,7 @@
         </table>
       </div>
     </div>
-    
-  </div>
+
   </ng-template>
 
 </div>
