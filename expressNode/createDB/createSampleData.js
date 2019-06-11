@@ -58,7 +58,7 @@ restCollection.remove({})
                         },
                         phoneNumber: 4258207740,
                         email: "admin@olivegarden.com",
-                        owner: "",
+                        owner: "sowmya9029@gmail.com",
                         rating: 4,
                         reviews: 879,
                         booked:100,

@@ -48,6 +48,7 @@
 
           <thead class="thead-light">
             <tr>
+              <th scole="col">Index</th>
               <th scope="col">Reservation ID</th>
               <th scope="col">Guest & Group Size</th>
               <th scope="col">Time joined</th>
@@ -59,7 +60,8 @@
           </thead>
           <tbody>
             <tr *ngFor="let reservation of waitlist; index as id">
-              <th scope="row">{{reservation.queueID}}</th>
+              <th scope="row">{{id + 1}}</th>
+              <td scope="row">{{reservation.queueID}}</td>
               <td>
 
                 <div class="media">
