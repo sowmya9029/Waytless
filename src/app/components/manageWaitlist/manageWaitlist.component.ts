@@ -18,7 +18,6 @@ export class manageWaitlistComponent implements OnInit {
   restaurantName: string;
   waitlist: Waitlist[];
   restItems: Restaurant[];
-  //avaliableRestaurants: Restaurant[];
   avgWaitMin: number;
   userItems: any[];
   owner: string;
@@ -31,14 +30,11 @@ export class manageWaitlistComponent implements OnInit {
     private restaurantAPIService: RestaurantAPIService,
     private userService : UserService,
     private route: ActivatedRoute) {
-    //this.route.params.subscribe(params => {
-    //  this.restaurantId = params['id'];
-    //}),
+
     this.restaurantAPIService.getAllRestaurants().subscribe(restItems => {
       this.restItems = restItems;
       this.restItems.forEach((item, index) => {
         if(item.owner == this.username) {
-          //this.avaliableRestaurants.push(this.restItems[index]);
           this.restaurantName = this.restItems[index].name;
           this.restaurantId = this.restItems[index].restaurantID;
           this.getWaitlist();
