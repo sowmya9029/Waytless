@@ -58,7 +58,7 @@ restCollection.remove({})
                         },
                         phoneNumber: 4258207740,
                         email: "admin@olivegarden.com",
-                        owner: "uschohk@gmail.com",
+                        owner: "",
                         rating: 4,
                         reviews: 879,
                         booked:100,
