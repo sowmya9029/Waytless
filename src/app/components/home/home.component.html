@@ -1,10 +1,10 @@
 <div class="brand_logo_container" >
-  <img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo">
+  <a href="/#/home"><img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo"></a>
 </div>
    
 <button type="button" class="logoutBtn"><a href = "https://waytlessv1.azurewebsites.net/logout" style="color:white">Log out</a></button>
 
-<div class="active-pink-3 active-pink-4 mb-4" style="width:50%;margin :0 auto ;margin-top: 90px">
+<div class="active-pink-3 active-pink-4 mb-4" style="width:50%;margin :0 auto ;margin-top: 40px">
   <b>Welcome, <span>{{displayEmail}}</span>!</b>
   <input [(ngModel)]='search' (keydown)="keyDownFunction($event)" class="form-control" type="text"
     placeholder="Search Restaurant by Name or City" aria-label="Search">
