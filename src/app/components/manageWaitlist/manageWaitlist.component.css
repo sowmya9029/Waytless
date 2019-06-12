@@ -12,3 +12,10 @@
     display: inline-flex;
   }
 
+  p {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  h2 {
+    font-family: 'Poppins', sans-serif;
+  }

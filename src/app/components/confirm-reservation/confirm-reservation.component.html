@@ -1,9 +1,11 @@
-<div class="mt-n5 mb-1"><a routerLink="/home"><img src="../assets/images/LOGO.png" style="width: 110px;height: 110px;"
-      class="mx-auto d-block" id="siteIcon" alt="Back to Homepage"></a></div>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+<a routerLink="/home"><img src="../assets/images/LOGO.png" style="width: 110px;height: 110px; z-index:9999999;position:  relative;"
+  class="mx-auto d-block img-responsive mt-n5" id="siteIcon" alt="Back to Homepage"></a>
 
 <div class="container">
 
-  <div class="col-lg-6 bg-light text-dark mx-auto mt-1 p-5 shadow py-3 rounded">
+  <div class="col-lg-6 bg-light text-dark mx-auto mt-n5 p-5 shadow py-3 rounded">
 
     <ng-template [ngIf]="!waitlist[index]">
       <div class="text-center">
@@ -15,7 +17,7 @@
 
     <ng-template [ngIf]="waitlist[index]">
       <p> Hello <b>{{customerName}},</b></p>
-      <p> Welcome back to {{restaurantName}}'s waitlist, your queue ID is <b>{{queueID}}.</b></p>
+      <p> Welcome back to <b>{{restaurantName}}</b>'s waitlist, your queue ID is <b>{{queueID}}.</b></p>
       <p><img src="{{restIMG}}" class="mx-auto rounded" alt="{{restaurantName}}"></p>
       <ng-template [ngIf]="notified">
 
@@ -30,8 +32,11 @@
       </ng-template>
 
       <ng-template [ngIf]="!notified">
-        <p>You have not been notified. Check back later!</p>
 
+        
+        <div class="text-center">
+        <p>You have not been notified. Check back later!</p>
+        </div>
       </ng-template>
       <p>You can start browsing the
         <a routerLink="/menu/{{restaurantId}}" role="button" class="btn btn-labeled btn-success"><i class="fa fa-bars"
