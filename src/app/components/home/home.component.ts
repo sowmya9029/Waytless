@@ -80,14 +80,8 @@ show:Boolean = true;
   onRestaurantClickEvent(resturantId,restaurant_owner_email) {
     console.log("resturantId---" + restaurant_owner_email.textContent);
     // the owner of restaurant 
-    if(this.displayEmail === restaurant_owner_email.textContent)
-    {  
-      this.router.navigate(['./managewaitlist']);
-    }
-     else 
-     {
-      this.router.navigate(['./waitlist-entry/' + resturantId.textContent]);
-     }
+
+     this.router.navigate(['./waitlist-entry/' + resturantId.textContent]);
   }
 
   public logout(){
