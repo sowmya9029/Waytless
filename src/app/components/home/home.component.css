@@ -139,7 +139,9 @@
 .div_body{
   background-position-x: fixed;
   font-family: 'Roboto', sans-serif;
-  margin:0px !important;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
