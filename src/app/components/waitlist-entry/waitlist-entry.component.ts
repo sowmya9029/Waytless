@@ -97,7 +97,7 @@ export class WaitlistEntryComponent implements OnInit {
     let date = this.bookingTime.getFullYear() + '-' + (this.bookingTime.getMonth() + 1) + '-' + this.bookingTime.getDate();
     let time = this.bookingTime.getHours() + ":" + this.bookingTime.getMinutes() + ":" + this.bookingTime.getSeconds();
     this.addedTime = date + ' ' + time;
-    this.waitTime = String((this.queueID - 1) * 5) + 'mins';
+    this.waitTime = String((this.queueID - 1) % 60) + ' mins';
   }
 
   public editWaitList(resId: number, queueID: number) {
