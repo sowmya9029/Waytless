@@ -1,7 +1,7 @@
 <div class="brand_logo_container">
-  <img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo">
- 
-</div><br><br>
+    <a href="/#/home"><img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo"></a>
+</div>
+
 <h2>{{restaurantName}}</h2>
 <button type="button" class="logoutBtn"><a href = "/logout" style="color:white">Log out</a></button>
 <div class="row">
@@ -27,7 +27,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-envelope"></i></span>
           </div>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{ loginEmail }}">
         </div><br>
         <div class="input-group input-group-lg">
           <div class="input-group-prepend">

@@ -3,7 +3,7 @@ export class Order {
     menuItemId: number;
     quantity: number;
     orderTime: Date;
-    customerId : number;
+    customerId : String;
     restaurantID : number;
 
     constructor(values: Object = {}) {

@@ -1,8 +1,7 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins|Open+Sans&display=swap" rel="stylesheet">
 
 <a routerLink="/home"><img src="../assets/images/LOGO.png" style="width: 110px;height: 110px; z-index:9999999;position:  relative;"
-    class="mx-auto d-block img-responsive mt-n5" id="siteIcon" alt="Back to Homepage"></a>
-
+    class="mx-auto d-block img-responsive mt-5" id="siteIcon" alt="Back to Homepage"></a>
 
   <ng-template [ngIf]="!restaurantName || !username">
       <div class="container bg-light mt-n5 p-5 shadow py-3 rounded">
@@ -36,7 +35,7 @@
           <a routerLink="/menu/{{restaurantId}}" role="button" class="btn btn-labeled btn-primary">
             <i class="fa fa-bars" aria-hidden="true"></i> Restaurant Menu</a>
             <a href="/logout" role="button" class="btn btn-labeled btn-danger">
-              <i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
+              <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Log out</a>
           </div>
       </div>
 
