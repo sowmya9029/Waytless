@@ -12,6 +12,8 @@ import { UserService } from 'app/_services/user.service';
 })
 export class WaitlistEntryComponent implements OnInit {
 
+  loginEmail: string;
+
   show: boolean = false
   restaurantId: number
   restaurantName: string
@@ -41,6 +43,7 @@ export class WaitlistEntryComponent implements OnInit {
       });
 
       this.userService.getCurrentUsersEmail().subscribe(userEmail => {
+        this.loginEmail = userEmail;
         this.waitlistservice.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
           for (let i = 0; i < waitlistItems.length; i++) {
             if (waitlistItems[i].email === userEmail) {
