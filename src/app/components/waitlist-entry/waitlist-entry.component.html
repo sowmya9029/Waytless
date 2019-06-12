@@ -1,76 +1,78 @@
 <div class="brand_logo_container">
   <img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo">
-</div>
-<br><br>
+</div><br><br>
 <h2>{{restaurantName}}</h2>
 
-<div class="waitlist-entry-card" style="width: 80rem;">
-  <div class="card-body">
-    <h4 class="card-title"><b>Add to waitlist</b> </h4>
-    <form>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-user"></i></span>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="customer-waitlist-information-card">
+      <h4 class="card-title"><b>Add to waitlist</b> </h4>
+      <form>
+        <div class="input-group input-group-lg">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-user"></i></span>
+          </div>
+          <input type="text" class="form-control" id="name" placeholder="Full name">
         </div>
-        <input type="text" class="form-control" id="name" placeholder="Full name">
-      </div>
-      <br>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-mobile-alt"></i></span>
+        <br>
+        <div class="input-group input-group-lg">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-mobile-alt"></i></span>
+          </div>
+          <input type="text" class="form-control" id="phone" placeholder="Phone number">
         </div>
-        <input type="text" class="form-control" id="phone" placeholder="Phone number">
-      </div>
-      <br>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-envelope"></i></span>
+        <br>
+        <div class="input-group input-group-lg">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-envelope"></i></span>
+          </div>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+        </div><br>
+        <div class="input-group input-group-lg">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-user-friends"></i></span>
+          </div>
+          <input type="text" class="form-control" id="group" placeholder="Group size">
         </div>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-      </div><br>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-user-friends"></i></span>
-        </div>
-        <input type="text" class="form-control" id="group" placeholder="Group size">
-      </div>
-      <br>
+        <br>
+      </form>
 
-    </form>
-
-    <button type="button" class="btn btn-primary btn-lg" id="addBtn"
-      (click)="addToWaitlist(restaurantId)">Submit</button>
-
+      <button type="button" class="btn btn-primary btn-lg" id="addBtn" (click)="addToWaitlist(restaurantId)">
+        Submit
+      </button>
+    </div>
   </div>
-</div>
 
-<div class="customer-waitlist-information-card" style="width: 40rem;">
-  <div class="card-body">
-    <h4 class="card-title"><b>Your waitlist information </b> <span class="glyphicon glyphicon-info-sign"></span></h4>
-    <div [hidden]="!show">
-      <b>Name : </b> <span id="bookedName">{{name}}</span> <br><br>
-      <b>Group size : </b> <span id="groupSize">{{groupSize}}</span>
-      <br><br>
-      <b>Booking time: </b><span id="addedTime">{{ addedTime }}</span> <br><br>
-      <b>Approximate wait time : </b><span id="waitTime">{{ waitTime }}</span><br><br>
-      <button type="button" class="btn btn-dark mr-2" data-toggle="modal" data-target="#exampleModal">
-        Edit<i class="fas fa-edit"></i>
-      </button>
-      <button type="button" class="btn btn-dark mr-2" (click)="deleteFromWaitList(restaurantId,queueID)">
-        Delete <i class="fas fa-trash-alt"></i>
-      </button>
-    </div>
-    <div [hidden]="show">
-      <p style="color:grey;padding:10px;">
-        "Add yourself to waitlist to monitor your status."
-      </p>
-    </div>
+  <div class="col-sm-6">
+    <div class="customer-waitlist-information-card">
+      <h4 class="card-title"><b>Your waitlist information </b> <span class="glyphicon glyphicon-info-sign"></span></h4>
+      <div [hidden]="!show">
+        <b>Name : </b> <span id="bookedName">{{name}}</span> <br><br>
+        <b>Group size : </b> <span id="groupSize">{{groupSize}}</span>
+        <br><br>
+        <b>Booking time: </b><span id="addedTime">{{ addedTime }}</span> <br><br>
+        <b>Approximate wait time : </b><span id="waitTime">{{ waitTime }}</span><br><br>
+        <button type="button" class="btn btn-dark mr-2" data-toggle="modal" data-target="#exampleModal">
+          Edit<i class="fas fa-edit"></i>
+        </button>
+        <button type="button" class="btn btn-dark mr-2" (click)="deleteFromWaitList(restaurantId,queueID)">
+          Delete <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+      <div [hidden]="show">
+        <p style="color:grey;padding:10px;">
+          "Add yourself to waitlist to monitor your status."
+        </p>
+      </div>
 
+    </div>
   </div>
 </div>
 
 <br>
-<button class="selectMenuBtn" mat-raised-button color="warn" routerLink="/menu/{{restaurantId}}">MENU</button>
+<div class="text-center">
+    <button class="selectMenuBtn" mat-raised-button color="warn" routerLink="/menu/{{restaurantId}}">MENU</button>
+</div>
 
 <div style="text-align: center" class="manageWait"><br><br>
   <a routerLink="/managewaitlist"><img style="width: 50px;height: 50px;"
