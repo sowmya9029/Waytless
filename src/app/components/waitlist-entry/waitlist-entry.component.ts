@@ -47,7 +47,7 @@ export class WaitlistEntryComponent implements OnInit {
               this.phone = waitlistItems[i].phone;
               this.email = waitlistItems[i].email;
               this.groupSize = waitlistItems[i].groupSize;
-              this.bookingTime = waitlistItems[i].joinTime;
+              this.bookingTime = new Date(waitlistItems[i].joinTime);
 
               this.displayTime();
               break;
