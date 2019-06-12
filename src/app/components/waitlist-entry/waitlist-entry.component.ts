@@ -23,6 +23,9 @@ export class WaitlistEntryComponent implements OnInit {
   groupSize: number
   bookingTime: Date
 
+  waitTime: string
+  addedTime: string
+
   constructor(@Inject(DOCUMENT) document, 
     private userService: UserService,
     private waitlistservice: WaitlistService,
@@ -45,20 +48,13 @@ export class WaitlistEntryComponent implements OnInit {
               this.email = waitlistItems[i].email;
               this.groupSize = waitlistItems[i].groupSize;
               this.bookingTime = waitlistItems[i].joinTime;
+
+              this.displayTime();
               break;
             }
           }
         });
       });
-
-      //this.waitlistservice.getWaitlist(this.restaurantId).subscribe(waitlistItems => {
-        //var count = Object.keys(waitlistItems).length;
-        //console.log(count.valueOf());
-        //this.queueID = count.valueOf() + 1;
-        //console.log(this.queueID);
-        //return count;
-      //});
-
     });
   }
 
@@ -89,18 +85,18 @@ export class WaitlistEntryComponent implements OnInit {
       "completed": false
     };
 
-
     // storing into db 
     this.waitlistservice.storeWaitlistEntry(waitlistEntry);
+    this.displayTime();
+    $(':input').val('');
+  }
 
+  private displayTime() {
     // extract the date and time seperately from the booking time.
     let date = this.bookingTime.getFullYear() + '-' + (this.bookingTime.getMonth() + 1) + '-' + this.bookingTime.getDate();
     let time = this.bookingTime.getHours() + ":" + this.bookingTime.getMinutes() + ":" + this.bookingTime.getSeconds();
-
-    (<HTMLInputElement>document.getElementById('addedTime')).innerHTML = date + ' ' + time;
-    (<HTMLInputElement>document.getElementById('waitTime')).innerHTML = String((this.queueID - 1) * 5) + 'mins';
-
-    $(':input').val('');
+    this.addedTime = date + ' ' + time;
+    this.waitTime = String((this.queueID - 1) * 5) + 'mins';
   }
 
   public editWaitList(resId: number, queueID: number) {
