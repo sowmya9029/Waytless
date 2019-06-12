@@ -33,6 +33,8 @@
             Waitlist</a>
           <a routerLink="/menu/{{restaurantId}}" role="button" class="btn btn-labeled btn-primary">
             <i class="fa fa-bars" aria-hidden="true"></i> Restaurant Menu</a>
+            <a href="/logout" role="button" class="btn btn-labeled btn-danger">
+              <i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
           </div>
       </div>
 
@@ -120,16 +122,15 @@
                   <i class="fa fa-times" aria-hidden="true"></i> &nbsp;
                   <button class="btn btn-labeled btn-warning" (click)="confirm(reservation.queueID)" type="button"
                     placement="top"
-                    ngbTooltip="Confirm the customer has recevied the notifcation and confirmed their reservation."><i
-                      class="fa fa-check-circle"></i></button>
+                    ngbTooltip="Manually mark customer has confirmed their reservation"><i class="fa fa-check-circle"></i></button>
                 </ng-template>
               </td>
               <td class="text-center">
                 <button class="btn btn-labeled btn-success" (click)="complete(reservation.queueID)" type="button"
-                  placement="top" ngbTooltip="Complete a reservation."><i class="fa fa-check"
+                  placement="top" ngbTooltip="Complete a reservation when customer arrives."><i class="fa fa-check"
                     aria-hidden="true"></i></button>
                 <button class="btn btn-labeled btn-danger" (click)="remove(reservation.queueID)" type="button"
-                  placement="top" ngbTooltip="Remove entry from your waitlist."><i class="fa fa-trash"
+                  placement="top" ngbTooltip="Remove from your waitlist when customer is a no show or requested a cancellation"><i class="fa fa-trash"
                     aria-hidden="true"></i></button></td>
             </tr>
           </tbody>
