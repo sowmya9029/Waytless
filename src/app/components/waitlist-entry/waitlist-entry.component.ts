@@ -135,4 +135,6 @@ export class WaitlistEntryComponent implements OnInit {
     this.userService.logoutUser();
     this.router.navigate(['']);
   }
+
+  
 }

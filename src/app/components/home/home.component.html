@@ -5,22 +5,16 @@
     <img src="../assets/images/LOGO.png" class="brand_logo" alt="Logo">
   </div>
    
-  <button type="button" class="logoutBtn"><a href = "https://waytlessv1.azurewebsites.net/logout" style="color:white">Log out</a></button>
-     
-
-   
+<button type="button" class="logoutBtn"><a href = "https://waytlessv1.azurewebsites.net/logout" style="color:white">Log out</a></button>
 <div class="active-pink-3 active-pink-4 mb-4" style="width:50%;margin :0 auto ;margin-top: 90px">
   <input [(ngModel)]='search' (keydown)="keyDownFunction($event)" class="form-control" type="text"
     placeholder="Search Restaurant by Name or City" aria-label="Search">
 </div>
 <div class="div_body">
-
-
-
   <br>
   <span class="title">Popular Restaurants</span>
   <div class="row" style="margin-left: 5px">
-    <div class="card" style="width: 18rem;" (click)="onRestaurantClickEvent(restaurant_id)"
+    <div class="card" style="width: 18rem;" (click)="onRestaurantClickEvent(restaurant_id,restaurant_owner_email)"
       *ngFor="let r of restuarant">
       <img src={{r.url}} style="width: 290px;height: 200px">
       <div class="card-body">
@@ -32,6 +26,7 @@
             *ngFor="let e of createEmptyStarArray(r.rating)">
           <span class="rating_text">{{r.reviews}} Reviews</span>
           <span #restaurant_id style="display:none">{{r.restaurantID}}</span>
+          <span #restaurant_owner_email style="display:none">{{r.owner}}</span>
         </div>
         <p class="text">{{r.cuisine}} . $$$ . {{r.address.city}}</p>
         <p class="mat-body-2">Booked {{r.booked}} times</p>
