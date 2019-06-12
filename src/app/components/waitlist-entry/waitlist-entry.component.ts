@@ -26,7 +26,7 @@ export class WaitlistEntryComponent implements OnInit {
   waitTime: string
   addedTime: string
 
-  constructor(@Inject(DOCUMENT) document, 
+  constructor(@Inject(DOCUMENT) document,
     private userService: UserService,
     private waitlistservice: WaitlistService,
     private restaurantSerice: RestaurantAPIService,
@@ -49,6 +49,7 @@ export class WaitlistEntryComponent implements OnInit {
               this.groupSize = waitlistItems[i].groupSize;
               this.bookingTime = new Date(waitlistItems[i].joinTime);
 
+              this.queueID = this.hashCode(this.email);
               this.displayTime();
               break;
             }
@@ -112,19 +113,19 @@ export class WaitlistEntryComponent implements OnInit {
     console.log("Queue in delete:" + queueID);
     this.waitlistservice.removeReservation(resId, queueID);
     this.show = false;
-
   }
 
   hashCode(str: string) {
-      var hash = 0;
-      var i: number;
-      var chr: any;
-      if (str.length === 0) return hash;
-      for (i = 0; i < str.length; i++) {
-        chr   = str.charCodeAt(i);
-        hash  = ((hash << 5) - hash) + chr;
-        hash |= 0; // Convert to 32bit integer
-      }
+    var hash = 0;
+    var i: number;
+    var chr: any;
+    if (str.length === 0) return hash;
+    for (i = 0; i < str.length; i++) {
+      chr = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + chr;
+      hash |= 0; // Convert to 32bit integer
+    }
+    if (hash < 0) hash = hash * -1;
     return hash;
   }
 }
