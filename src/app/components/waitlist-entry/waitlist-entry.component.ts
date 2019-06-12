@@ -28,6 +28,8 @@ export class WaitlistEntryComponent implements OnInit {
 
   constructor(@Inject(DOCUMENT) document,
     private userService: UserService,
+    private router: Router,
+    
     private waitlistservice: WaitlistService,
     private restaurantSerice: RestaurantAPIService,
     private route: ActivatedRoute) {
@@ -127,5 +129,10 @@ export class WaitlistEntryComponent implements OnInit {
     }
     if (hash < 0) hash = hash * -1;
     return hash;
+  }
+
+  public logout(){
+    this.userService.logoutUser();
+    this.router.navigate(['']);
   }
 }

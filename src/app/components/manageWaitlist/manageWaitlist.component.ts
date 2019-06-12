@@ -27,6 +27,7 @@ export class manageWaitlistComponent implements OnInit {
   currentRestaurant: Restaurant;
 
   constructor(
+    
     private waitlistService: WaitlistService,
     private restaurantAPIService: RestaurantAPIService,
     private userService : UserService,
@@ -131,5 +132,5 @@ export class manageWaitlistComponent implements OnInit {
     }
 
   }
-
+  
 }

@@ -4,7 +4,7 @@ import { Order } from 'app/_models/order';
 import { MenuItem } from 'app/_models/menuItem';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MenuApiService } from 'app/_services/menu-api.service';
-
+import { UserService } from 'app/_services/user.service';
 export interface OrderDetail {
   name: string;
   price: number;
@@ -24,9 +24,10 @@ export class OrderCartComponent implements OnInit {
   private totalPrice: number;
 
   private orderId;
-
   constructor(private apiService: ApiService,
     private menuApiService: MenuApiService,
+    private router: Router,
+    private userService : UserService,
     private route: ActivatedRoute) {
     this.orderId = "";
     this.menuItemsMap = new Map;
@@ -61,7 +62,10 @@ export class OrderCartComponent implements OnInit {
 
     });
   }
-
+  public logout(){
+    this.userService.logoutUser();
+    this.router.navigate(['']);
+  }
   ngOnInit() { }
 
   public orderConfirm() {

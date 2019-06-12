@@ -10,6 +10,16 @@
     padding: 10px;
     text-align: center;
   }
+
+  .logoutBtn{
+    height:40px; 
+    width:100px; 
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    background-color: black;
+    text-align: center;
+  }
   .brand_logo {
     height: 110px;
     width: 110px;

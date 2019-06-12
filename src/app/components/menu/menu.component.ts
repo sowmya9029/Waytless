@@ -7,7 +7,7 @@ import { MenuApiService } from 'app/_services/menu-api.service';
 import { RestaurantAPIService } from '../../_services/restaurant-api.service';
 import * as uuid from 'uuid';
 import { forkJoin } from 'rxjs';
-
+import { UserService } from 'app/_services/user.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -29,6 +29,7 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private userService : UserService,
     private apiService: ApiService,
     private menuApiService: MenuApiService,
     private restaurantService: RestaurantAPIService,
@@ -82,7 +83,10 @@ export class MenuComponent implements OnInit {
       }
     }
   }
-
+  public logout(){
+    this.userService.logoutUser();
+    this.router.navigate(['']);
+  }
   private makeOrder() {
     let confirmedOrders = [];
     let m = this.orders;
