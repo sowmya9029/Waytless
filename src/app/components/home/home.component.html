@@ -5,7 +5,6 @@
 <ng-template [ngIf]="displayEmail"><button type="button" class="logoutBtn"><a href = "https://waytlessv1.azurewebsites.net/logout" style="color:white">Log out</a></button></ng-template>
 <ng-template [ngIf]="!displayEmail"><button type="button" class="logoutBtn"><a href="/auth/google" style="color:white">Log In</a></button></ng-template>
 
-
 <div class="active-pink-3 active-pink-4 mb-4" style="width:50%;margin :0 auto ;margin-top: 40px">
   <ng-template [ngIf]="displayEmail"><b>Welcome, <span>{{displayEmail}}</span>!</b></ng-template>
   <input [(ngModel)]='search' (keydown)="keyDownFunction($event)" class="form-control" type="text"
