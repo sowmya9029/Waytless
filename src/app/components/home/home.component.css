@@ -31,15 +31,8 @@
     position: absolute;
     top: 8px;
     right: 16px;
-    color : white;
-    background-color: white;
+    background-color: black;
     text-align: center;
-<<<<<<< HEAD
-=======
-    top:50%; 
-    left:50%;
-    border-radius: 5mm;
->>>>>>> 8da0285546e9cf8fff3ae10d1458e50d48d711f8
   }
   .example-card {
     max-width: 300px;
