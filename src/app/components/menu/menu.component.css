@@ -1,12 +1,6 @@
 
 .brand_logo_container {
-    position: absolute;
-    height: 150px;
-    width: 150px;
-    top: 10px;
-    left : 620px;
     border-radius: 50%;
-   
     padding: 10px;
     text-align: center;
   }
