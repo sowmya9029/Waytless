@@ -27,6 +27,8 @@ export class MenuComponent implements OnInit {
 
   private totalPrice: number;
 
+  private loginUser: string;
+
   constructor(
     private router: Router,
     private userService : UserService,
@@ -41,7 +43,11 @@ export class MenuComponent implements OnInit {
       this.restaurantID += params['id'];
       this.restaurantService.getAllRestaurants().subscribe(restItems => {
         this.restaurantName = restItems[this.restaurantID - 1].name;
-      })
+      });
+
+      this.userService.getCurrentUsersEmail().subscribe(email => {
+        this.loginUser = email;
+      });
 
       this.menuApiService.getAllMenuItems(this.restaurantID).subscribe(menuItems => {
         this.appetizers = menuItems.filter(i => i.itemCategory.categoryId == 1);
@@ -99,7 +105,7 @@ export class MenuComponent implements OnInit {
         menuItemId: v,
         quantity: k,
         orderTime: new Date(),
-        customerId: this.customerNumber,
+        customerId: this.loginUser,
         restaurantID: this.restaurantID
       });
     })
